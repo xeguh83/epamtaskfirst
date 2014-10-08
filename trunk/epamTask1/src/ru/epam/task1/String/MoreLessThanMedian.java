@@ -1,16 +1,16 @@
 package ru.epam.task1.String;
 
-public class MaxAndMinLengthString extends Task {
+public class MoreLessThanMedian extends Task {
 	
 	private int id;
 	private String shortName;
 	
-	public MaxAndMinLengthString() {
+	public MoreLessThanMedian() {
 		this.id = Task.getNextId();
 		Task.setNextId(this.id + 1);
-		this.shortName = "Самая короткая и длинная строки";
+		this.shortName = "Строки меньше/больше средней длины";
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -24,6 +24,5 @@ public class MaxAndMinLengthString extends Task {
 		// TODO Auto-generated method stub
 		
 	}
-	
 
 }
