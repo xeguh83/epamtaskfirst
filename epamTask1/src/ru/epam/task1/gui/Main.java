@@ -6,6 +6,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
 import ru.epam.task1.String.*;
+import ru.epam.task1.word.CharMinWord;
 
 
 public class Main {
@@ -33,7 +34,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		createTaskList();
+		Task[] taskList = createTaskList();
 		drawTitle();
 //		console = System.console();
 //		boolean exit = false;
@@ -49,12 +50,14 @@ public class Main {
 	
 	
 	
-	private static void createTaskList() {
+	private static Task[] createTaskList() {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
-		taskList[1] = new MaxAndMinLengthString();
-		taskList[2] = new SortString();
-		taskList[3] = new MoreLessThanMedian();
+		taskList[0] = new MaxAndMinLengthString();
+		taskList[1] = new SortString();
+		taskList[2] = new MoreLessThanMedian();
+		taskList[3] = new CharMinWord();
+		return taskList;
 		
 	}
 

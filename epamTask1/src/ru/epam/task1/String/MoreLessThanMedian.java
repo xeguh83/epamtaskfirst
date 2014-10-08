@@ -1,22 +1,11 @@
 package ru.epam.task1.String;
 
+import ru.epam.task1.gui.Task;
+
 public class MoreLessThanMedian extends Task {
 	
-	private int id;
-	private String shortName;
-	
 	public MoreLessThanMedian() {
-		this.id = Task.getNextId();
-		Task.setNextId(this.id + 1);
-		this.shortName = "Строки меньше/больше средней длины";
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public String getShortName() {
-		return shortName;
+		super("Строки меньше/больше средней длины");
 	}
 
 	@Override
