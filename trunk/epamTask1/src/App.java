@@ -6,8 +6,6 @@ import java.rmi.NotBoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.aturkin.tree.model.Tree;
-
 public class App {
 
 	private static Console console;
