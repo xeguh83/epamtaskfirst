@@ -5,8 +5,12 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
-import ru.epam.task1.String.*;
-import ru.epam.task1.word.CharMinWord;
+import ru.epam.task1.arguments.DataFromArguments;
+import ru.epam.task1.math.*;
+import ru.epam.task1.matrix.*;
+import ru.epam.task1.string.*;
+import ru.epam.task1.useswitch.*;
+import ru.epam.task1.word.*;
 
 
 public class Main {
@@ -53,10 +57,26 @@ public class Main {
 	private static Task[] createTaskList() {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
-		taskList[0] = new MaxAndMinLengthString();
-		taskList[1] = new SortString();
-		taskList[2] = new MoreLessThanMedian();
-		taskList[3] = new CharMinWord();
+		taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки");
+		taskList[1] = new SortString("Сортировка строк");
+		taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
+		taskList[3] = new CharMinWord("Найти слово с минимумом букв");
+		taskList[4] = new EngCharWord("Найти слово из латинских букв");
+		taskList[5] = new CodeRisingWord("Найти слово с увеличивающимся кодом");
+		taskList[6] = new DifferentCharWord("Найти слово с разными кодами");
+		taskList[7] = new PalindromWord("Найти слово-палиндром");
+		taskList[8] = new DataFromArguments("Задачи 1-8 из аргументов ком. строки");
+		taskList[9] = new SwitchFirstInterval("Найти принадлежность k интервалу A");
+		taskList[10] = new SwitchSecondInterval("Найти принадлежность k интервалу B");
+		taskList[11] = new NumsInMatrix("Перевести числа в матрицу");
+		taskList[12] = new QuadraticEq("Решение квадратных уравнений");
+		taskList[13] = new NumToMonth("Вывод месяца по номеру");
+		taskList[14] = new MatrixSedDots("Найти седловые точки матрицы");
+		taskList[15] = new MatrixBuildRisingRows("Перестройка матрицы по возрастанию");
+		taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы");
+		taskList[17] = new MatrixBigestLocalMax("Наибольший локальный минимум матрицы");
+		taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы");
+		taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");
 		return taskList;
 		
 	}
