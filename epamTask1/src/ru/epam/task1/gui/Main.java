@@ -54,6 +54,8 @@ public class Main {
 		Task[] taskList = new Task[20];
 		taskList[1] = new MaxAndMinLengthString();
 		taskList[2] = new SortString();
+		taskList[3] = new MoreLessThanMedian();
+		
 	}
 
 

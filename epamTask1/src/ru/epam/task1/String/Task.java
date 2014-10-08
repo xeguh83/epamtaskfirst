@@ -12,6 +12,6 @@ public abstract class Task {
 		Task.nextId = nextId;
 	}
 
-	protected abstract void drawTask();
+	public abstract void drawTask();
 
 }

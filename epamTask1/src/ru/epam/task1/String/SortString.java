@@ -11,8 +11,22 @@ public class SortString extends Task {
 		this.shortName = "Сортировка строк";
 	}
 
+	
+	
+	public int getId() {
+		return id;
+	}
+
+
+
+	public String getShortName() {
+		return shortName;
+	}
+
+
+
 	@Override
-	protected void drawTask() {
+	public void drawTask() {
 		// TODO Auto-generated method stub
 		
 	}
