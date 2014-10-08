@@ -1,22 +1,11 @@
 package ru.epam.task1.String;
 
+import ru.epam.task1.gui.Task;
+
 public class MaxAndMinLengthString extends Task {
 	
-	private int id;
-	private String shortName;
-	
 	public MaxAndMinLengthString() {
-		this.id = Task.getNextId();
-		Task.setNextId(this.id + 1);
-		this.shortName = "Самая короткая и длинная строки";
-	}
-	
-	public int getId() {
-		return id;
-	}
-
-	public String getShortName() {
-		return shortName;
+		super("Самая короткая и длинная строки");
 	}
 
 	@Override
