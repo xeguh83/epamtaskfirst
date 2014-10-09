@@ -57,26 +57,26 @@ public class Main {
 	private static Task[] createTaskList() {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
-		taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки");
-		taskList[1] = new SortString("Сортировка строк");
-		taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
-		taskList[3] = new CharMinWord("Найти слово с минимумом букв");
-		taskList[4] = new EngCharWord("Найти слово из латинских букв");
-		taskList[5] = new CodeRisingWord("Найти слово с увеличивающимся кодом");
-		taskList[6] = new DifferentCharWord("Найти слово с разными кодами");
-		taskList[7] = new PalindromWord("Найти слово-палиндром");
-		taskList[8] = new DataFromArguments("Задачи 1-8 из аргументов ком. строки");
-		taskList[9] = new SwitchFirstInterval("Найти принадлежность k интервалу A");
-		taskList[10] = new SwitchSecondInterval("Найти принадлежность k интервалу B");
-		taskList[11] = new NumsInMatrix("Перевести числа в матрицу");
-		taskList[12] = new QuadraticEq("Решение квадратных уравнений");
-		taskList[13] = new NumToMonth("Вывод месяца по номеру");
-		taskList[14] = new MatrixSedDots("Найти седловые точки матрицы");
-		taskList[15] = new MatrixBuildRisingRows("Перестройка матрицы по возрастанию");
-		taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы");
-		taskList[17] = new MatrixBigestLocalMax("Наибольший локальный минимум матрицы");
-		taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы");
-		taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");
+		taskList[0] = new MaxAndMinLengthString("РЎР°РјР°СЏ РєРѕСЂРѕС‚РєР°СЏ Рё РґР»РёРЅРЅР°СЏ СЃС‚СЂРѕРєРё");
+		taskList[1] = new SortString("РЎРѕСЂС‚РёСЂРѕРІРєР° СЃС‚СЂРѕРє");
+		taskList[2] = new MoreLessThanMedian("РЎС‚СЂРѕРєРё РјРµРЅСЊС€Рµ/Р±РѕР»СЊС€Рµ СЃСЂРµРґРЅРµР№ РґР»РёРЅС‹");
+		taskList[3] = new CharMinWord("РќР°Р№С‚Рё СЃР»РѕРІРѕ СЃ РјРёРЅРёРјСѓРјРѕРј Р±СѓРєРІ");
+		taskList[4] = new EngCharWord("РќР°Р№С‚Рё СЃР»РѕРІРѕ РёР· Р»Р°С‚РёРЅСЃРєРёС… Р±СѓРєРІ");
+		taskList[5] = new CodeRisingWord("РќР°Р№С‚Рё СЃР»РѕРІРѕ СЃ СѓРІРµР»РёС‡РёРІР°СЋС‰РёРјСЃСЏ РєРѕРґРѕРј");
+		taskList[6] = new DifferentCharWord("РќР°Р№С‚Рё СЃР»РѕРІРѕ СЃ СЂР°Р·РЅС‹РјРё РєРѕРґР°РјРё");
+		taskList[7] = new PalindromWord("РќР°Р№С‚Рё СЃР»РѕРІРѕ-РїР°Р»РёРЅРґСЂРѕРј");
+		taskList[8] = new DataFromArguments("Р—Р°РґР°С‡Рё 1-8 РёР· Р°СЂРіСѓРјРµРЅС‚РѕРІ РєРѕРј. СЃС‚СЂРѕРєРё");
+		taskList[9] = new SwitchFirstInterval("РќР°Р№С‚Рё РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ k РёРЅС‚РµСЂРІР°Р»Сѓ A");
+		taskList[10] = new SwitchSecondInterval("РќР°Р№С‚Рё РїСЂРёРЅР°РґР»РµР¶РЅРѕСЃС‚СЊ k РёРЅС‚РµСЂРІР°Р»Сѓ B");
+		taskList[11] = new NumsInMatrix("РџРµСЂРµРІРµСЃС‚Рё С‡РёСЃР»Р° РІ РјР°С‚СЂРёС†Сѓ");
+		taskList[12] = new QuadraticEq("Р РµС€РµРЅРёРµ РєРІР°РґСЂР°С‚РЅС‹С… СѓСЂР°РІРЅРµРЅРёР№");
+		taskList[13] = new NumToMonth("Р’С‹РІРѕРґ РјРµСЃСЏС†Р° РїРѕ РЅРѕРјРµСЂСѓ");
+		taskList[14] = new MatrixSedDots("РќР°Р№С‚Рё СЃРµРґР»РѕРІС‹Рµ С‚РѕС‡РєРё РјР°С‚СЂРёС†С‹");
+		taskList[15] = new MatrixBuildRisingRows("РџРµСЂРµСЃС‚СЂРѕР№РєР° РјР°С‚СЂРёС†С‹ РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ");
+		taskList[16] = new MatrixLocalMin("РќР°Р№С‚Рё Р»РѕРєР°Р»СЊРЅС‹Рµ РјРёРЅРёРјСѓРјС‹ РјР°С‚СЂРёС†С‹");
+		taskList[17] = new MatrixBigestLocalMax("РќР°РёР±РѕР»СЊС€РёР№ Р»РѕРєР°Р»СЊРЅС‹Р№ РјРёРЅРёРјСѓРј РјР°С‚СЂРёС†С‹");
+		taskList[18] = new MatrixCharacterLowering("РЈРјРµРЅСЊС€РµРЅРёРµ С…Р°СЂР°РєС‚РµСЂРёСЃС‚РёРє РјР°С‚СЂРёС†С‹");
+		taskList[19] = new MatrixMainDiagFill("Р—Р°РїРѕР»РЅРµРЅРёРµ РіР»Р°РІРЅРѕР№ РґРёР°РіРѕРЅР°Р»Рё");
 		return taskList;
 		
 	}
@@ -117,12 +117,10 @@ public class Main {
 	}
 	
 	public static void drawTitle() {
-		 System.out.println("################################################################################");
-		 System.out.println("#                                                                              #");
-		 System.out.println("#                  Добро пожаловать в программу демонстрирующую                #");
-		 System.out.println("#                     решение задач Теста №1 от <epam> Systems                 #");
-		 System.out.println("#                                                                              #");
-		 System.out.println("################################################################################");
+		 System.out.println(" в•”в•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•—\r\n" +
+				 			" в•‘                  Р”РѕР±СЂРѕ РїРѕР¶Р°Р»РѕРІР°С‚СЊ РІ РїСЂРѕРіСЂР°РјРјСѓ РґРµРјРѕРЅСЃС‚СЂРёСЂСѓСЋС‰СѓСЋ              в•‘\r\n" +
+				 			" в•‘                     СЂРµС€РµРЅРёРµ Р·Р°РґР°С‡ РўРµСЃС‚Р° в„–1 РѕС‚ <epam> Systems               в•‘\r\n" +
+				 			" в•љв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ђв•ќ\r\n");
 	}
 	
 	
