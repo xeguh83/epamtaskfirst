@@ -40,7 +40,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		Task[] taskList = createTaskList();
 		drawTitle();
-//		console = System.console();
+		printMenu(taskList);
+		//		console = System.console();
 //		boolean exit = false;
 //		while (!exit) {
 //			switch (printMenu()) {
@@ -51,9 +52,23 @@ public class Main {
 //		}
 
 	}
+		
 	
-	
-	
+	private static void printMenu(Task[] taskList) {
+		// TODO Auto-generated method stub
+		StringBuffer[] sb = new StringBuffer[12];
+		int sbIndex = 0;
+		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗\r\n");
+		for (int i = 0; i < ((int)(Math.round(taskList.length / 2)) + 1); i++) {
+			sbIndex++;
+//			sb[sbIndex].append(" ║" + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName() 
+//							 + "║"));
+		}
+		
+	}
+
+
+
 	private static Task[] createTaskList() {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
@@ -94,27 +109,27 @@ public class Main {
 
 
 
-	private static int printMenu() {
-		int command = 0;
-		boolean success = false;
-		
-		while (!success) {
-			try {
-				System.out.println("1. Create new tree");
-				System.out.println("2. Add left child");
-				System.out.println("3. Add right child");
-				System.out.println("4. Print tree");
-				System.out.println("5. Exit");
-				
-				command = Integer.valueOf(console.readLine("Enter command: "));
-				success = true;
-			} catch (NumberFormatException e) {
-				success = false;
-			}
-		}
-		
-		return command;
-	}
+//	private static int printMenu() {
+//		int command = 0;
+//		boolean success = false;
+//		
+//		while (!success) {
+//			try {
+//				System.out.println("1. Create new tree");
+//				System.out.println("2. Add left child");
+//				System.out.println("3. Add right child");
+//				System.out.println("4. Print tree");
+//				System.out.println("5. Exit");
+//				
+//				command = Integer.valueOf(console.readLine("Enter command: "));
+//				success = true;
+//			} catch (NumberFormatException e) {
+//				success = false;
+//			}
+//		}
+//		
+//		return command;
+//	}
 	
 	public static void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
