@@ -58,15 +58,31 @@ public class Main {
 		// TODO Auto-generated method stub
 		StringBuffer[] sb = new StringBuffer[12];
 		int sbIndex = 0;
-		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗\r\n");
-		for (int i = 0; i < ((int)(Math.round(taskList.length / 2)) + 1); i++) {
+		sb[sbIndex] = new StringBuffer();
+		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗");
+		for (int i = 0; i < 10; i++) {
 			sbIndex++;
-//			sb[sbIndex].append(" ║" + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName() 
-//							 + "║"));
+			sb[sbIndex] = new StringBuffer();	
+			sb[sbIndex].append(" ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
+							 + " ║" + String.format("%02d", taskList[i + 10].getId()) + "." + taskList[i + 10].getShortName() + getNeededSpaces(taskList[i + 10].getShortName()) + "║");
 		}
+		sbIndex++;
+		sb[sbIndex] = new StringBuffer();
+		sb[sbIndex].append(" ╚══════════════════════════════════════╩═════════════════════════════════════╝");
 		
+		for (StringBuffer strBuf : sb) {
+			System.out.println(strBuf);
+		}
 	}
 
+	private static String getNeededSpaces(String string) {
+		// TODO Auto-generated method stub
+		String spaces = "";
+		for (int i = 0; i < (34 - string.length()); i++ ) {
+			spaces = spaces + " ";
+		}
+		return spaces;
+	}
 
 
 	private static Task[] createTaskList() {
@@ -77,19 +93,19 @@ public class Main {
 		taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
 		taskList[3] = new CharMinWord("Найти слово с минимумом букв");
 		taskList[4] = new EngCharWord("Найти слово из латинских букв");
-		taskList[5] = new CodeRisingWord("Найти слово с увеличивающимся кодом");
+		taskList[5] = new CodeRisingWord("Найти слово с растущим кодом");
 		taskList[6] = new DifferentCharWord("Найти слово с разными кодами");
 		taskList[7] = new PalindromWord("Найти слово-палиндром");
-		taskList[8] = new DataFromArguments("Задачи 1-8 из аргументов ком. строки");
+		taskList[8] = new DataFromArguments("Задачи 1-8 из арг. ком. строки");
 		taskList[9] = new SwitchFirstInterval("Найти принадлежность k интервалу A");
-		taskList[10] = new SwitchSecondInterval("Найти принадлежность k интервалу B");
+		taskList[10] = new SwitchSecondInterval("Найти принадлежность интервалу B");
 		taskList[11] = new NumsInMatrix("Перевести числа в матрицу");
 		taskList[12] = new QuadraticEq("Решение квадратных уравнений");
 		taskList[13] = new NumToMonth("Вывод месяца по номеру");
 		taskList[14] = new MatrixSedDots("Найти седловые точки матрицы");
-		taskList[15] = new MatrixBuildRisingRows("Перестройка матрицы по возрастанию");
+		taskList[15] = new MatrixBuildRisingRows("Перестройка возрастающей матрицы");
 		taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы");
-		taskList[17] = new MatrixBigestLocalMax("Наибольший локальный минимум матрицы");
+		taskList[17] = new MatrixBigestLocalMax("Локальный максимум матрицы");
 		taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы");
 		taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");
 		return taskList;
@@ -135,7 +151,7 @@ public class Main {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 				 			" ║                  Добро пожаловать в программу демонстрирующую              ║\r\n" +
 				 			" ║                     решение задач Теста №1 от <epam> Systems               ║\r\n" +
-				 			" ╚════════════════════════════════════════════════════════════════════════════╝\r\n");
+				 			" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 	
 	
