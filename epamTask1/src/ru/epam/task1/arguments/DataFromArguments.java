@@ -11,8 +11,14 @@ public class DataFromArguments extends Task {
 
 	@Override
 	public void drawTask() {
-		// TODO Auto-generated method stub
-		
+		// Не используется
 	}
+
+	@Override
+	public void drawTask(String[] string) {
+		//TODO реализовать выполнение из командной строки
+		System.out.println("I get string from command line");
+	}
+	
 
 }
