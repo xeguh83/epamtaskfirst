@@ -1,10 +1,7 @@
 package ru.epam.task1.gui;
 
-import java.io.Console;
-import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
-import java.util.*;
-
+import java.io.*;
+import java.util.Scanner;
 
 import ru.epam.task1.arguments.DataFromArguments;
 import ru.epam.task1.math.*;
@@ -16,7 +13,6 @@ import ru.epam.task1.word.*;
 
 public class Main {
 	
-	private static Console console;
 
 	static
 	{
@@ -41,30 +37,28 @@ public class Main {
 		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
 		Task[] taskList = createTaskList();
-	//
+
 		while(true) {
 			drawTitle();
 			printMenu(taskList);
 			System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
 			System.out.print("Введите номер задачи (00 для выхода из программы):");
-			String option = in.nextLine();
-			if (Integer.parseInt(option) == 0) {
-				break;
-			} else if (Integer.parseInt(option) == 9) {
-				taskList[8].drawTask(args);
-			} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < taskList.length)) {
-				taskList[Integer.parseInt(option) - 1].drawTask();
+			try {
+				String option = in.nextLine();
+				if (Integer.parseInt(option) == 0) {
+					break;
+				} else if (Integer.parseInt(option) == 9) {
+					taskList[8].drawTask(args);
+				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < taskList.length)) {
+					taskList[Integer.parseInt(option) - 1].drawTask();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Неверный ввод номера задачи");
 			}
+
 		}
-		//		console = System.console();
-//		boolean exit = false;
-//		while (!exit) {
-//			switch (printMenu()) {
-//				case 1: {
-//					break;			
-//				}
-//			}
-//		}
+
 
 	}
 		
@@ -128,40 +122,6 @@ public class Main {
 	}
 
 
-
-	private static void clearScreen() {
-		// TODO Auto-generated method stub
-		char c = '\n';
-		int length = 28;
-		char[] chars = new char[length];
-		Arrays.fill(chars, c);
-		System.out.print(String.valueOf(chars));
-	}
-
-
-
-//	private static int printMenu() {
-//		int command = 0;
-//		boolean success = false;
-//		
-//		while (!success) {
-//			try {
-//				System.out.println("1. Create new tree");
-//				System.out.println("2. Add left child");
-//				System.out.println("3. Add right child");
-//				System.out.println("4. Print tree");
-//				System.out.println("5. Exit");
-//				
-//				command = Integer.valueOf(console.readLine("Enter command: "));
-//				success = true;
-//			} catch (NumberFormatException e) {
-//				success = false;
-//			}
-//		}
-//		
-//		return command;
-//	}
-	
 	public static void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 				 			" ║                  Добро пожаловать в программу демонстрирующую              ║\r\n" +
