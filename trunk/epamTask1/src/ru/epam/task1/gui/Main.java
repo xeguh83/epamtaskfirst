@@ -3,7 +3,8 @@ package ru.epam.task1.gui;
 import java.io.Console;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
+import java.util.*;
+
 
 import ru.epam.task1.arguments.DataFromArguments;
 import ru.epam.task1.math.*;
@@ -38,9 +39,23 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		Scanner in = new Scanner(System.in);
 		Task[] taskList = createTaskList();
-		drawTitle();
-		printMenu(taskList);
+	
+		while(true) {
+			drawTitle();
+			printMenu(taskList);
+			System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+			System.out.print("Введите номер задачи (00 для выхода из программы):");
+			String option = in.nextLine();
+			if (Integer.parseInt(option) == 0) {
+				break;
+			} else if (Integer.parseInt(option) == 9) {
+				taskList[8].drawTask(args);
+			} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < taskList.length)) {
+				taskList[Integer.parseInt(option) - 1].drawTask();
+			}
+		}
 		//		console = System.console();
 //		boolean exit = false;
 //		while (!exit) {

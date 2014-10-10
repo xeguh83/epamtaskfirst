@@ -22,5 +22,9 @@ public abstract class Task {
 	}
 
 	public abstract void drawTask();
+	
+	public void drawTask(String[] string) {
+		//Вариант метода для передачи аргументов командной строки
+	}
 
 }
