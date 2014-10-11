@@ -12,30 +12,7 @@ public class MaxAndMinLengthString extends Task {
 	}
 
 	@Override
-	public void drawTask() {
-		Scanner in = new Scanner(System.in);
-		while (true) {
-			drawTitle();
-			System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
-			System.out.print("Введите любую строку для продолжения (0 для выхода в меню)");
-			try {
-				String option = in.nextLine();
-				if (option.equalsIgnoreCase("0")) {
-					break;
-				} else {
-					doLogic();
-					break;
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-				System.out.println("Неправильный ввод! Попробуйте ещё раз.");
-			}
-		}
-		
-		
-	}
-
-	private void doLogic() {
+	protected void doLogic() {
 		// TODO Auto-generated method stub
 		drawTitle();
 		String[] stringsForWork = incomingString.split("\\.");
@@ -46,17 +23,18 @@ public class MaxAndMinLengthString extends Task {
 		System.out.println("Строка с минимальной длиной: (" + stringsForWork[inner.getMinStringIndex()].length() + "): "
 				+ stringsForWork[inner.getMinStringIndex()]);
 		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
-		System.out.print("Введите любую строку для выхода в меню)");
+		System.out.print("Введите любую строку для выхода в меню");
 		try {
 			Scanner in = new Scanner(System.in);
 			in.nextLine();
 		} catch (Exception e) {
 			// TODO: handle exception
-			System.out.println("Неправильный ввод! Попробуйте ещё раз.");
+			System.out.println(e);
 		}
 	}
 
-	private void drawTitle() {
+	@Override
+	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 				 			" ║     Задача №1. Ввести n строк с консоли, найти самую короткую и самую      ║\r\n" +
 				 			" ║           длинную строки. Вывести найденные строки и их длину.             ║\r\n" +
