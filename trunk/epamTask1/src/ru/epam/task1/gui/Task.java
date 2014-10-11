@@ -1,5 +1,7 @@
 package ru.epam.task1.gui;
 
+import java.util.Scanner;
+
 public abstract class Task {
 	
 	private static int nextId = 1;
@@ -21,10 +23,34 @@ public abstract class Task {
 		return shortName;
 	}
 
-	public abstract void drawTask();
+	public void drawTask() {
+		Scanner in = new Scanner(System.in);
+		while (true) {
+			drawTitle();
+			System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+			System.out.print("Р’РІРµРґРёС‚Рµ Р»СЋР±СѓСЋ СЃС‚СЂРѕРєСѓ РґР»СЏ РїСЂРѕРґРѕР»Р¶РµРЅРёСЏ (0 РґР»СЏ РІС‹С…РѕРґР° РІ РјРµРЅСЋ)");
+			try {
+				String option = in.nextLine();
+				if (option.equalsIgnoreCase("0")) {
+					break;
+				} else {
+					doLogic();
+					break;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println(e);
+			}
+		}
+		
+	}
 	
+	protected abstract void doLogic();
+
+	protected abstract void drawTitle();
+
 	public void drawTask(String[] string) {
-		//Вариант метода для передачи аргументов командной строки
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	}
 
 }
