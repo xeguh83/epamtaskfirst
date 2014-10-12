@@ -14,7 +14,6 @@ public class MaxAndMinLengthString extends Task {
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		drawTitle();
 		String[] stringsForWork = incomingString.split("\\.");
 		System.out.println("Загружены следующие строки:");
 		MaxAndMinString inner = new MaxAndMinString(stringsForWork);
@@ -23,14 +22,6 @@ public class MaxAndMinLengthString extends Task {
 		System.out.println("Строка с минимальной длиной: (" + stringsForWork[inner.getMinStringIndex()].length() + "): "
 				+ stringsForWork[inner.getMinStringIndex()]);
 		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
-		System.out.print("Введите любую строку для выхода в меню");
-		try {
-			Scanner in = new Scanner(System.in);
-			in.nextLine();
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
 	}
 
 	@Override
