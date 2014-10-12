@@ -14,12 +14,12 @@ public final class CharMinWord extends Task {
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		String[] strings = incomingString.split("\\s");
-		HashSet[] hashSets = new HashSet[strings.length];
-		for (int i = 0; i < strings.length; i++) {
+		String[] word = incomingString.split("\\s");
+		HashSet[] hashSets = new HashSet[word.length];
+		for (int i = 0; i < word.length; i++) {
 			hashSets[i] = new HashSet();
-			for (int j = 0; j < strings[i].toCharArray().length; j++) {
-				hashSets[i].add(strings[i].toCharArray()[j]);
+			for (int j = 0; j < word[i].toCharArray().length; j++) {
+				hashSets[i].add(word[i].toCharArray()[j]);
 			}
 		}
 		int minLength = findMinWordLength(hashSets);
@@ -27,7 +27,7 @@ public final class CharMinWord extends Task {
 		while (hashSets[i].size() > minLength) {
 			i++;
 		}
-		System.out.println("Слово с минимальным количеством разных символов(" + minLength + "): " + strings[i]);
+		System.out.println("Слово с минимальным количеством разных символов(" + minLength + "): " + word[i]);
 		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
 	}
 
