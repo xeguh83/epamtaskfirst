@@ -40,7 +40,6 @@ public class SortString extends Task {
 	
 	private void printResults(ComparableString[] stringsForWork) {
 		// TODO Auto-generated method stub
-		drawTitle();
 		System.out.println("Сортировка по увеличению длины строки:");
 		for (ComparableString string : stringsForWork) {
 			System.out.println(string);
@@ -49,15 +48,6 @@ public class SortString extends Task {
 		for (int i = stringsForWork.length - 1; i >= 0 ; i=i-1) {
 			System.out.println(stringsForWork[i]);
 		}
-		System.out.print("Нажмите Enter для выхода в меню");
-		try {
-			Scanner in = new Scanner(System.in);
-			in.nextLine();
-		} catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e);
-		}
-		
 	}
 
 	private class ComparableString implements Comparable<ComparableString> {

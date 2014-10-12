@@ -34,7 +34,9 @@ public abstract class Task {
 				if (option.equalsIgnoreCase("0")) {
 					break;
 				} else {
+					drawTitle();
 					doLogic();
+					pressAnyKeyForMenu();
 					break;
 				}
 			} catch (Exception e) {
@@ -51,6 +53,17 @@ public abstract class Task {
 
 	public void drawTask(String[] string) {
 		//������� ������ ��� �������� ���������� ��������� ������
+	}
+	
+	private static void pressAnyKeyForMenu() {
+		System.out.print("Нажмите Enter для выхода в меню");
+		try {
+			Scanner in = new Scanner(System.in);
+			in.nextLine();
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
 	}
 
 }

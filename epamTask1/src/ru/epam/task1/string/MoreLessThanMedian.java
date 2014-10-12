@@ -25,7 +25,6 @@ public class MoreLessThanMedian extends Task {
 
 	private void printResult(String[] strings, int mediana) {
 		// TODO Auto-generated method stub
-		drawTitle();
 		System.out.println("Строки с длинами меньше или равными средней (" + mediana + "):");
 		for (String string : strings) {
 			if (string.length() <= mediana) System.out.println(string + "("+ string.length() + ")");
@@ -34,15 +33,6 @@ public class MoreLessThanMedian extends Task {
 		for (String string : strings) {
 			if (string.length() > mediana) System.out.println(string + "("+ string.length() + ")");
 		}
-		System.out.print("Нажмите Enter для выхода в меню");
-		try {
-			Scanner in = new Scanner(System.in);
-			in.nextLine();
-		} catch (Exception e) {
-			// TODO: handle exception
-		System.out.println(e);
-		}
-
 	}
 
 	@Override
