@@ -8,11 +8,19 @@ public abstract class Task {
 	
 	private int id;
 	private String shortName;
+	private String incomingString;
 	
 	protected Task(String shortName) {
 		id = nextId;
 		nextId++;
 		this.shortName = shortName;
+	}
+	
+	protected Task(String shortName, String incomingString) {
+		id = nextId;
+		nextId++;
+		this.shortName = shortName;
+		this.incomingString = incomingString;
 	}
 	
 	public int getId() {
@@ -64,6 +72,11 @@ public abstract class Task {
 			// TODO: handle exception
 			System.out.println(e);
 		}
+	}
+	
+	protected String[] getWords() {
+		// TODO Auto-generated method stub
+		return incomingString.split("\\s");
 	}
 
 }
