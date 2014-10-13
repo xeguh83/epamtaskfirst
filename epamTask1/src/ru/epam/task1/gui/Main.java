@@ -103,7 +103,7 @@ public class Main {
 		taskList[3] = new CharMinWord("Найти слово с минимумом букв");
 		taskList[4] = new EngCharWord("Найти слово из латинских букв");
 		taskList[5] = new CodeRisingWord("Найти слово с растущим кодом");
-		taskList[6] = new DifferentCharWord("Найти слово с разными кодами");
+		taskList[6] = new DifferentCharWord("Найти слово с разными кодами", "Мама рамур. Мама. Мылаа. Рааму. Мама мала рама вчара. Вчара.мама будут мыты рама завтра");
 		taskList[7] = new PalindromWord("Найти слово-палиндром");
 		taskList[8] = new DataFromArguments("Задачи 1-8 из арг. ком. строки");
 		taskList[9] = new SwitchFirstInterval("Найти принадлежность k интервалу A");
