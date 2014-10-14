@@ -15,14 +15,14 @@ public class DifferentCharWord extends Task {
 	protected void doLogic() {
 		// TODO Auto-generated method stub
 		String[] word = getWords();
-		HashSet<Character>[] hashSets = new HashSet[word.length];
+		HashSet<Character> charSet;
 		boolean result = false;
-		for (int i = 0; i < hashSets.length; i++) {
-			hashSets[i] = new HashSet<Character>();
+		for (int i = 0; i < word.length; i++) {
+			charSet = new HashSet<Character>();
 			for (int j = 0; j < word[i].toCharArray().length; j++) {
-				hashSets[i].add(word[i].toCharArray()[j]);
+				charSet.add(word[i].toCharArray()[j]);
 			}
-			if (word[i].length() == hashSets[i].size()) {
+			if (word[i].length() == charSet.size()) {
 				printResultWord(word[i]);
 				result = true;
 				break;
