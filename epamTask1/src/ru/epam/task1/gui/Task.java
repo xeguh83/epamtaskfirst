@@ -1,5 +1,6 @@
 package ru.epam.task1.gui;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public abstract class Task {
@@ -35,7 +36,7 @@ public abstract class Task {
 		Scanner in = new Scanner(System.in);
 		while (true) {
 			drawTitle();
-			System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+			Task.printEmptyLines(15);
 			System.out.print("Введите любую строку для продолжения (0 для выхода в меню)");
 			try {
 				String option = in.nextLine();
@@ -52,7 +53,7 @@ public abstract class Task {
 				System.out.println(e);
 			}
 		}
-		
+//		System.in.close();
 	}
 	
 	protected abstract void doLogic();
@@ -63,7 +64,7 @@ public abstract class Task {
 		//������� ������ ��� �������� ���������� ��������� ������
 	}
 	
-	private static void pressAnyKeyForMenu() {
+	protected static void pressAnyKeyForMenu() throws IOException {
 		System.out.print("Нажмите Enter для выхода в меню");
 		try {
 			Scanner in = new Scanner(System.in);
@@ -72,6 +73,15 @@ public abstract class Task {
 			// TODO: handle exception
 			System.out.println(e);
 		}
+//		System.in.close();
+	}
+	
+	public static void printEmptyLines(int countEmptyLines) {
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < countEmptyLines; i++) {
+			sb.append("\r\n");
+		}
+		System.out.println(sb);
 	}
 	
 	protected String[] getWords() {
