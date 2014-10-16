@@ -6,15 +6,15 @@ import ru.epam.task1.gui.Task;
 
 public class DifferentCharWord extends Task {
 	
-	public DifferentCharWord(String shortName, String incomingString) {
-		super(shortName, incomingString);
+	public DifferentCharWord(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		String[] word = getWords();
+		String[] word = getStrings().;
 		HashSet<Character> charSet;
 		boolean result = false;
 		for (int i = 0; i < word.length; i++) {

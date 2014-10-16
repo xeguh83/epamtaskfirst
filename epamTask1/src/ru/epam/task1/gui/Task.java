@@ -1,15 +1,16 @@
 package ru.epam.task1.gui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Task {
 	
 	private static int nextId = 1;
 	
-	private int id;
-	private String shortName;
-	private String incomingString;
+	private final int id;
+	private final String shortName;
+	private String[] incomingStrings;
 	
 	protected Task(String shortName) {
 		id = nextId;
@@ -17,11 +18,11 @@ public abstract class Task {
 		this.shortName = shortName;
 	}
 	
-	protected Task(String shortName, String incomingString) {
+	protected Task(String shortName, String[] incomingStrings) {
 		id = nextId;
 		nextId++;
 		this.shortName = shortName;
-		this.incomingString = incomingString;
+		this.incomingStrings = incomingStrings;
 	}
 	
 	public int getId() {
@@ -84,9 +85,13 @@ public abstract class Task {
 		System.out.println(sb);
 	}
 	
-	protected String[] getWords() {
+	protected String[] getStrings() {
 		// TODO Auto-generated method stub
-		return incomingString.split("\\s");
+		return incomingStrings;
+	}
+	
+	protected String[] getWordFromStringArray(String[] stringArray) {
+		String work = stringArray[0].split(regex)
 	}
 
 }
