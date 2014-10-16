@@ -14,5 +14,17 @@ public class MatrixBuildRisingRows extends Task {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	protected void doLogic() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void drawTitle() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
