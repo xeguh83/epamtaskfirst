@@ -1,16 +1,34 @@
 package ru.epam.task1.gui;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Properties;
 import java.util.Scanner;
 
 import ru.epam.task1.arguments.DataFromArguments;
-import ru.epam.task1.math.*;
-import ru.epam.task1.matrix.*;
-import ru.epam.task1.string.*;
-import ru.epam.task1.useswitch.*;
-import ru.epam.task1.word.*;
+import ru.epam.task1.math.NumToMonth;
+import ru.epam.task1.math.NumsInMatrix;
+import ru.epam.task1.math.QuadraticEq;
+import ru.epam.task1.matrix.MatrixBigestLocalMax;
+import ru.epam.task1.matrix.MatrixBuildRisingRows;
+import ru.epam.task1.matrix.MatrixCharacterLowering;
+import ru.epam.task1.matrix.MatrixLocalMin;
+import ru.epam.task1.matrix.MatrixMainDiagFill;
+import ru.epam.task1.matrix.MatrixSedDots;
+import ru.epam.task1.string.MaxAndMinLengthString;
+import ru.epam.task1.string.MoreLessThanMedian;
+import ru.epam.task1.string.SortString;
+import ru.epam.task1.useswitch.SwitchFirstInterval;
+import ru.epam.task1.useswitch.SwitchSecondInterval;
+import ru.epam.task1.word.CharMinWord;
+import ru.epam.task1.word.CodeRisingWord;
+import ru.epam.task1.word.DifferentCharWord;
+import ru.epam.task1.word.EngCharWord;
+import ru.epam.task1.word.PalindromWord;
 
 
 public class Main {
@@ -59,8 +77,8 @@ public class Main {
 			}
 
 		}
-
-
+		
+		in.close();
 	}
 		
 	
@@ -99,14 +117,14 @@ public class Main {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
 			try {
-				taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки");
+				taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки", getStringsFromFile("task1.txt"));
 				taskList[1] = new SortString("Сортировка строк");
 				taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
 				taskList[3] = new CharMinWord("Найти слово с минимумом букв");
 				taskList[4] = new EngCharWord("Найти слово из латинских букв");
 				taskList[5] = new CodeRisingWord("Найти слово с растущим кодом");
-				taskList[6] = new DifferentCharWord("Найти слово с разными кодами", getStringFromFile("task7.txt"));
-				taskList[7] = new PalindromWord("Найти слово-палиндром", getStringFromFile("task8.txt"));
+				taskList[6] = new DifferentCharWord("Найти слово с разными кодами", getStringsFromFile("task7.txt"));
+				taskList[7] = new PalindromWord("Найти слово-палиндром", getStringsFromFile("task8.txt"));
 				taskList[8] = new DataFromArguments("Задачи 1-8 из арг. ком. строки");
 				taskList[9] = new SwitchFirstInterval("Найти принадлежность k интервалу A");
 				taskList[10] = new SwitchSecondInterval("Найти принадлежность интервалу B");
@@ -128,18 +146,18 @@ public class Main {
 	}
 
 
-	private static String getStringFromFile(String file) throws IOException {
+	private static String[] getStringsFromFile(String file) throws IOException {
 		// TODO Auto-generated method stub
 		   BufferedReader reader = new BufferedReader(new FileReader(new File("./" + file)));
-		    //Use an arraylist to store the values including nulls
-		    StringBuffer store = new StringBuffer();
+		    ArrayList<String> store = new ArrayList<String>();
 		    String line;
 		    while((line = reader.readLine())!= null)
 		    {
-		            store.append(line);
+		            store.add(line);
 		    } 
 		    reader.close();
-		    return store.toString();
+		    String[] strings = new String[store.size()];
+		    return store.toArray(strings);
 	}
 
 

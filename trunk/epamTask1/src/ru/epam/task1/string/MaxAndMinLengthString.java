@@ -1,27 +1,42 @@
 package ru.epam.task1.string;
 
-import java.util.Scanner;
-
 import ru.epam.task1.gui.Task;
 
 public class MaxAndMinLengthString extends Task {
-	private String incomingString = "Мама мыла раму. Мама мыла раму вчера. Мама будет мыть раму завтра";
-	
-	public MaxAndMinLengthString(String shortName) {
-		super(shortName);
+	private int maxStringIndex = Integer.MIN_VALUE;
+	private int minStringIndex = Integer.MAX_VALUE;
+		
+	public MaxAndMinLengthString(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 	}
 
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		String[] stringsForWork = incomingString.split("\\.");
+		String[] stringsForWork = getStrings();
 		System.out.println("Загружены следующие строки:");
-		MaxAndMinString inner = new MaxAndMinString(stringsForWork);
-		System.out.println("Строка с максимальной длиной (" + stringsForWork[inner.getMaxStringIndex()].length() + "): " 
-				+ stringsForWork[inner.getMaxStringIndex()]);
-		System.out.println("Строка с минимальной длиной: (" + stringsForWork[inner.getMinStringIndex()].length() + "): "
-				+ stringsForWork[inner.getMinStringIndex()]);
-		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+		setMaxAndMinStringLengthIndex(stringsForWork);
+		System.out.println("Строка с максимальной длиной (" + stringsForWork[maxStringIndex].length() + "): " 
+				+ stringsForWork[maxStringIndex]);
+		System.out.println("Строка с минимальной длиной: (" + stringsForWork[minStringIndex].length() + "): "
+				+ stringsForWork[minStringIndex]);
+		Task.printEmptyLines(12);
+	}
+
+	private void setMaxAndMinStringLengthIndex(String[] strings) {
+		// TODO Auto-generated method stub
+		int maxStrLength = Integer.MIN_VALUE;
+		int minStrLength = Integer.MAX_VALUE;
+		for (int i = 0; i < strings.length; i++) {
+			if (strings[i].length() > maxStrLength) {
+				maxStrLength = strings[i].length();
+				maxStringIndex = i;
+			}
+			if (strings[i].length() < minStrLength) {
+				minStrLength = strings[i].length();
+				minStringIndex = i;
+			}
+		}
 	}
 
 	@Override
@@ -31,38 +46,9 @@ public class MaxAndMinLengthString extends Task {
 				 			" ║           длинную строки. Вывести найденные строки и их длину.             ║\r\n" +
 		 					" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-		 					" ║  Строки разделённые знаком \".\" буду считаны из файла data.properties из    ║\r\n" +
-		 					" ║              параметра task1. Нажмите Enter для загрузки данных.           ║\r\n" +
+		 					" ║Строки будут считаны из файла task1.txt (учитывается только перевод строки).║\r\n" +
+		 					" ║                Подготовьте данные для загрузки и нажмите Enter.            ║\r\n" +
 		 					" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
-	
-	private class MaxAndMinString {
-		private int maxStringIndex;
-		private int minStringIndex;
-		
-		public MaxAndMinString(String[] string) {
-			int maxStr = Integer.MIN_VALUE;
-			int minStr = Integer.MAX_VALUE;
-			for (int i = 0; i < string.length; i++) {
-				if (string[i].length() > maxStr) {
-					maxStr = string[i].length();
-					maxStringIndex = i;
-				}
-				if (string[i].length() < minStr) {
-					minStr = string[i].length();
-					minStringIndex = i;
-				}
-			}
-		}
 
-		public int getMaxStringIndex() {
-			return maxStringIndex;
-		}
-
-		public int getMinStringIndex() {
-			return minStringIndex;
-		}
-		
-		
-	}
 }

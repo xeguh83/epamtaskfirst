@@ -8,8 +8,8 @@ import ru.epam.task1.gui.Task;
 
 public class PalindromWord extends Task {
 
-	public PalindromWord(String shortName, String string) {
-		super(shortName, string);
+	public PalindromWord(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 		// TODO Auto-generated constructor stub
 	}
 
