@@ -15,4 +15,16 @@ public class MatrixLocalMin extends Task {
 		
 	}
 
+	@Override
+	protected void doLogic() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	protected void drawTitle() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

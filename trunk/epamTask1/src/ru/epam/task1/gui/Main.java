@@ -130,7 +130,7 @@ public class Main {
 
 	private static String getStringFromFile(String file) throws IOException {
 		// TODO Auto-generated method stub
-		   BufferedReader reader = new BufferedReader(new FileReader(new File(file)));
+		   BufferedReader reader = new BufferedReader(new FileReader(new File("./" + file)));
 		    //Use an arraylist to store the values including nulls
 		    StringBuffer store = new StringBuffer();
 		    String line;
