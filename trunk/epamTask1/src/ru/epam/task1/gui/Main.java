@@ -60,7 +60,7 @@ public class Main {
 			drawTitle();
 			printMenu(taskList);
 			Task.printEmptyLines(7);
-			System.out.print("Введите номер задачи (00 для выхода из программы):");
+			System.out.print(" Введите номер задачи (00 для выхода из программы):");
 			try {
 				String option = in.nextLine();
 				if (Integer.parseInt(option) == 0) {
@@ -87,7 +87,7 @@ public class Main {
 			drawPreMenuTitle(); 
 			drawPreMenuTable(taskList); 	
 			Task.printEmptyLines(13);
-			System.out.print("Введите номер задачи (00 для выхода в меню)");
+			System.out.print(" Введите номер задачи (00 для выхода в меню)");
 			try {
 				String option = in.nextLine();
 				if (Integer.parseInt(option) == 0) {
