@@ -38,7 +38,7 @@ public abstract class Task {
 		while (true) {
 			drawTitle();
 			Task.printEmptyLines(15);
-			System.out.print("Введите любую строку для продолжения (0 для выхода в меню)");
+			System.out.print(" Введите любую строку для продолжения (0 для выхода в меню)");
 			try {
 				String option = in.nextLine();
 				if (option.equalsIgnoreCase("0")) {
@@ -65,7 +65,7 @@ public abstract class Task {
 	}
 	
 	protected static void pressAnyKeyForMenu() throws IOException {
-		System.out.print("Нажмите Enter для выхода в меню");
+		System.out.print(" Нажмите Enter для выхода в меню");
 		try {
 			Scanner in = new Scanner(System.in);
 			in.nextLine();
@@ -75,7 +75,7 @@ public abstract class Task {
 	}
 	
 	protected void pressAnyKey() {
-		System.out.print("Нажмите Enter для продолжения");
+		System.out.print(" Нажмите Enter для продолжения");
 		try {
 			Scanner in = new Scanner(System.in);
 			in.nextLine();
