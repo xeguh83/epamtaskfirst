@@ -54,7 +54,6 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		Scanner in = new Scanner(System.in);
 		Task[] taskList = createTaskList();
 		while(true) {
@@ -121,8 +120,8 @@ public class Main {
 				taskList[1] = new SortString("Сортировка строк", getStringsFromFile("task2.txt"));
 				taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины", getStringsFromFile("task3.txt"));
 				taskList[3] = new CharMinWord("Найти слово с минимумом букв", getStringsFromFile("task4.txt"));
-				taskList[4] = new EngCharWord("Найти слово из латинских букв");
-				taskList[5] = new CodeRisingWord("Найти слово с растущим кодом");
+				taskList[4] = new EngCharWord("Найти слово из латинских букв", getStringsFromFile("task5.txt"));
+				taskList[5] = new CodeRisingWord("Найти слово с растущим кодом", getStringsFromFile("task6.txt"));
 				taskList[6] = new DifferentCharWord("Найти слово с разными кодами", getStringsFromFile("task7.txt"));
 				taskList[7] = new PalindromWord("Найти слово-палиндром", getStringsFromFile("task8.txt"));
 				taskList[8] = new DataFromArguments("Задачи 1-8 из арг. ком. строки");

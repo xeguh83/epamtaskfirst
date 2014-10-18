@@ -90,7 +90,6 @@ public abstract class Task {
 	}
 	
 	protected String[] getStrings() {
-		// TODO Auto-generated method stub
 		return incomingStrings;
 	}
 	

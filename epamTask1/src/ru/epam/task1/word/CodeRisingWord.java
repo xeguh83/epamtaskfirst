@@ -3,17 +3,14 @@ package ru.epam.task1.word;
 import ru.epam.task1.gui.Task;
 
 public class CodeRisingWord extends Task {
-	private String incomingString = "Мама мыла раму mom washed bcd window in her home";
 	
-	public CodeRisingWord(String shortName) {
-		super(shortName);
-		// TODO Auto-generated constructor stub
+	public CodeRisingWord(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 	}
 
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
-		String[] word = incomingString.split("\\s");
+		String[] word = getWordsFromStringArray();
 		String resultWord = "";
 		for (String string : word) {
 			if (neededWord(string)) {
@@ -26,11 +23,10 @@ public class CodeRisingWord extends Task {
 		} else {
 			System.out.println("Первое слово в котором символы идут в строгом порядке это:" + resultWord);			
 		}
-		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+		Task.printEmptyLines(14);
 	}
 
 	private boolean neededWord(String string) {
-		// TODO Auto-generated method stub
 		if (string.length() <= 1) {
 			return false;
 		}
@@ -45,7 +41,7 @@ public class CodeRisingWord extends Task {
 
 	private boolean simbolNextByAsc2Code(char c, char d) {
 		// TODO Auto-generated method stub
-		if ((int)d - (int)c == 1) {
+		if (d - c == 1) {
 			return true;
 		}
 		return false;
@@ -59,8 +55,8 @@ public class CodeRisingWord extends Task {
 							" ║    возрастания кодов. Если таких слов несколько - найти первое из них.     ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║   Слова разделённые знаком \" \" буду считаны из файла data.properties из    ║\r\n" +
-							" ║              параметра task5. Нажмите Enter для загрузки данных.           ║\r\n" +
+				 			" ║              Слова разделённые пробелами считаны из файла task6.txt        ║\r\n" +
+							" ║                          Нажмите Enter для продолжения                     ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 
