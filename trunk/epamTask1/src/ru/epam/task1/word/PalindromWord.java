@@ -10,13 +10,12 @@ public class PalindromWord extends Task {
 
 	public PalindromWord(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		String[] words = getWords();
+		String[] words = getWordsFromStringArray();
 		ArrayList<String> palindromWords = wordsConsistOnlyNums(words);
 		for (int i = 0; i < palindromWords.size(); i++) {
 				if (!isPalindrom(palindromWords.get(i))) {
@@ -72,8 +71,8 @@ public class PalindromWord extends Task {
 							" ║              Если таких слов больше одного, найти второе из них.           ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║   Слова разделённые знаком \" \" буду считаны из файла data.properties из    ║\r\n" +
-							" ║              параметра task8. Нажмите Enter для загрузки данных.           ║\r\n" +
+				 			" ║              Слова разделённые пробелами считаны из файла task8.txt        ║\r\n" +
+				 			" ║                          Нажмите Enter для продолжения                     ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 
