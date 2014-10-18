@@ -13,8 +13,7 @@ public class DifferentCharWord extends Task {
 
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
-		String[] word = getStrings().;
+		String[] word = getWordsFromStringArray();
 		HashSet<Character> charSet;
 		boolean result = false;
 		for (int i = 0; i < word.length; i++) {
@@ -31,7 +30,7 @@ public class DifferentCharWord extends Task {
 		if (!result) {
 			System.out.println("Слово состоящее только из различных символов не найдено!");
 		}
-		System.out.println("\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n");
+		Task.printEmptyLines(14);
 	}
 
 	private void printResultWord(String word) {
@@ -47,8 +46,8 @@ public class DifferentCharWord extends Task {
 							" ║               Если таких слов несколько вывести первое из них.             ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║   Слова разделённые знаком \" \" буду считаны из файла data.properties из    ║\r\n" +
-							" ║              параметра task7. Нажмите Enter для загрузки данных.           ║\r\n" +
+				 			" ║              Слова разделённые пробелами считаны из файла task7.txt        ║\r\n" +
+				 			" ║                          Нажмите Enter для продолжения                     ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 
