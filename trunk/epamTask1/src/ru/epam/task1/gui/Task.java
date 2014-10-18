@@ -94,9 +94,9 @@ public abstract class Task {
 		return incomingStrings;
 	}
 	
-	protected String[] getWordsFromStringArray(String[] stringArray) {
+	protected String[] getWordsFromStringArray() {
 		ArrayList<String> wordsList = new ArrayList<String>();
-		for (String string : stringArray) {
+		for (String string : incomingStrings) {
 			String[] stringOfWords = string.split("\\s");
 			for (String word : stringOfWords) {
 				wordsList.add(word);

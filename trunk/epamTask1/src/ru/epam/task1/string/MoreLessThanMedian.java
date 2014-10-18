@@ -1,25 +1,23 @@
 package ru.epam.task1.string;
 
-import java.util.Scanner;
-
 import ru.epam.task1.gui.Task;
 
 public class MoreLessThanMedian extends Task {
-	private String incomingString = "Мама мыла раму. Мама. Мыла. Раму. Мама мыла раму вчера. Вчера.Мама будет мыть раму завтра";
 	
-	public MoreLessThanMedian(String shortName) {
-		super(shortName);
+	public MoreLessThanMedian(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 	}
+
 
 	@Override
 	protected void doLogic() {
 		// TODO Auto-generated method stub
-		String[] strings = incomingString.split("\\.");
+		String[] strings = getStrings();
 		int mediana = 0;
 		for (String string : strings) {
 			mediana += string.length();
 		}
-		mediana = (int) (mediana / strings.length);
+		mediana = mediana / strings.length;
 		printResult(strings, mediana);
 	}
 
@@ -43,8 +41,8 @@ public class MoreLessThanMedian extends Task {
 							" ║             длина которых меньше (больше) средней, а также длину.          ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║  Строки разделённые знаком \".\" буду считаны из файла data.properties из    ║\r\n" +
-							" ║              параметра task3. Нажмите Enter для загрузки данных.           ║\r\n" +
+				 			" ║Строки будут считаны из файла task3.txt (учитывается только перевод строки).║\r\n" +
+				 			" ║                      Для продолжения нажмите Enter.                        ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 
