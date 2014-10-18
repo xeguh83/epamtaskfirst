@@ -119,8 +119,8 @@ public class Main {
 			try {
 				taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки", getStringsFromFile("task1.txt"));
 				taskList[1] = new SortString("Сортировка строк", getStringsFromFile("task2.txt"));
-				taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
-				taskList[3] = new CharMinWord("Найти слово с минимумом букв");
+				taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины", getStringsFromFile("task3.txt"));
+				taskList[3] = new CharMinWord("Найти слово с минимумом букв", getStringsFromFile("task4.txt"));
 				taskList[4] = new EngCharWord("Найти слово из латинских букв");
 				taskList[5] = new CodeRisingWord("Найти слово с растущим кодом");
 				taskList[6] = new DifferentCharWord("Найти слово с разными кодами", getStringsFromFile("task7.txt"));
