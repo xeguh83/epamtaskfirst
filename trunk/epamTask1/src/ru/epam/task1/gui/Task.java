@@ -50,11 +50,9 @@ public abstract class Task {
 					break;
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println(e);
 			}
 		}
-//		System.in.close();
 	}
 	
 	protected abstract void doLogic();
@@ -62,7 +60,6 @@ public abstract class Task {
 	protected abstract void drawTitle();
 
 	public void drawTask(String[] string) {
-		//������� ������ ��� �������� ���������� ��������� ������
 	}
 	
 	protected static void pressAnyKeyForMenu() throws IOException {
@@ -71,12 +68,19 @@ public abstract class Task {
 			Scanner in = new Scanner(System.in);
 			in.nextLine();
 		} catch (Exception e) {
-			// TODO: handle exception
 			System.out.println(e);
 		}
-//		System.in.close();
 	}
 	
+	protected void pressAnyKey() {
+		System.out.print("Нажмите Enter для продолжения");
+		try {
+			Scanner in = new Scanner(System.in);
+			in.nextLine();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 	public static void printEmptyLines(int countEmptyLines) {
 		StringBuilder sb = new StringBuilder();
 		for (int i = 0; i < countEmptyLines; i++) {
@@ -90,8 +94,16 @@ public abstract class Task {
 		return incomingStrings;
 	}
 	
-	protected String[] getWordFromStringArray(String[] stringArray) {
-		String work = stringArray[0].split(regex)
+	protected String[] getWordsFromStringArray(String[] stringArray) {
+		ArrayList<String> wordsList = new ArrayList<String>();
+		for (String string : stringArray) {
+			String[] stringOfWords = string.split("\\s");
+			for (String word : stringOfWords) {
+				wordsList.add(word);
+			}
+		}
+		String[] wordsArray = new String[wordsList.size()];
+		return wordsList.toArray(wordsArray);
 	}
 
 }
