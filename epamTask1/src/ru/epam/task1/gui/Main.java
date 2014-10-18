@@ -118,7 +118,7 @@ public class Main {
 		Task[] taskList = new Task[20];
 			try {
 				taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки", getStringsFromFile("task1.txt"));
-				taskList[1] = new SortString("Сортировка строк");
+				taskList[1] = new SortString("Сортировка строк", getStringsFromFile("task2.txt"));
 				taskList[2] = new MoreLessThanMedian("Строки меньше/больше средней длины");
 				taskList[3] = new CharMinWord("Найти слово с минимумом букв");
 				taskList[4] = new EngCharWord("Найти слово из латинских букв");
@@ -147,7 +147,6 @@ public class Main {
 
 
 	private static String[] getStringsFromFile(String file) throws IOException {
-		// TODO Auto-generated method stub
 		   BufferedReader reader = new BufferedReader(new FileReader(new File("./" + file)));
 		    ArrayList<String> store = new ArrayList<String>();
 		    String line;
@@ -156,8 +155,13 @@ public class Main {
 		            store.add(line);
 		    } 
 		    reader.close();
-		    String[] strings = new String[store.size()];
-		    return store.toArray(strings);
+		    if (store.size() == 0) {
+		    	String[] strings = {""};
+		    	return strings;
+		    } else {
+		    	String[] strings = new String[store.size()];
+		    	return store.toArray(strings);		    	
+		    }
 	}
 
 

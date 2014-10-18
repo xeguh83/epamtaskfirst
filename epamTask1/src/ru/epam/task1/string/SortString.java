@@ -1,15 +1,14 @@
 package ru.epam.task1.string;
 
 import java.util.Arrays;
-import java.util.Scanner;
+import java.util.Comparator;
 
 import ru.epam.task1.gui.Task;
 
 public class SortString extends Task {
-	private String incomingString = "Мама мыла раму. Мама. Мыла. Раму. Мама мыла раму вчера. Вчера.Мама будет мыть раму завтра";
 	
-	public SortString(String shortName) {
-		super(shortName);
+	public SortString(String shortName, String[] incomingStrings) {
+		super(shortName, incomingStrings);
 	}
 
 	@Override
@@ -20,55 +19,45 @@ public class SortString extends Task {
 				 			" ║              порядке возрастания (убывания) значений их длины              ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║  Строки разделённые знаком \".\" буду считаны из файла data.properties из    ║\r\n" +
-							" ║              параметра task2. Нажмите Enter для загрузки данных.           ║\r\n" +
+				 			" ║Строки будут считаны из файла task2.txt (учитывается только перевод строки).║\r\n" +
+				 			" ║                      Для продолжения нажмите Enter.                        ║\r\n" +
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
-		String[] strings = incomingString.split("\\.");
-		ComparableString[] stringsForWork = new ComparableString[strings.length];
-		for (int i = 0; i < strings.length; i++) {
-			stringsForWork[i] = new ComparableString(strings[i]);
-		}
-		
-		Arrays.sort(stringsForWork);
-		printResults(stringsForWork);
-	}
-	
-	private void printResults(ComparableString[] stringsForWork) {
-		// TODO Auto-generated method stub
+		String[] strings = getStrings();
+		Arrays.sort(strings, new StringLengthComparator());
 		System.out.println("Сортировка по увеличению длины строки:");
-		for (ComparableString string : stringsForWork) {
+		printStringsIncreaseSort(strings);
+		pressAnyKey();
+		System.out.println("Сортировка по уменьшению длины строки:");
+		printStringsDecreaseSort(strings);
+	}
+
+	private void printStringsDecreaseSort(String[] strings) {
+		for (int i = strings.length - 1 ; i >= 0; i--) {
+			System.out.println(strings[i]);
+		}
+	}
+
+	private void printStringsIncreaseSort(String[] strings) {
+		for (String string : strings) {
 			System.out.println(string);
 		}
-		System.out.println("Сортировка по уменьшению длины строки:");
-		for (int i = stringsForWork.length - 1; i >= 0 ; i=i-1) {
-			System.out.println(stringsForWork[i]);
-		}
 	}
 
-	private class ComparableString implements Comparable<ComparableString> {
-		private String string; 
-		
-		public ComparableString(String string) {
-			this.string = string;
-		}
-		
+	private class StringLengthComparator implements Comparator<String>{
 		@Override
-		public int compareTo(ComparableString other) {
-			// TODO Auto-generated method stub
-			return Integer.compare(this.string.length(), other.string.length());
+		public int compare(String obj1, String obj2) {			
+			if( null != obj1 && null != obj2 ) return Integer.compare(obj1.length(), obj2.length());
+			if( null == obj1 && null == obj2 ) throw new IllegalArgumentException("Both strings is null");
+			if( null == obj1 ){
+				return -1;
+			}else{			
+				return 1;
+			}		
 		}
-
-		@Override
-		public String toString() {
-			return string;
-			
-		}
-		
 	}
 
 }
