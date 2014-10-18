@@ -59,7 +59,9 @@ public abstract class Task {
 
 	protected abstract void drawTitle();
 
-	public void drawTask(String[] string) {
+	public void drawTask(String[] strings) {
+		incomingStrings = strings;
+		drawTask();
 	}
 	
 	protected static void pressAnyKeyForMenu() throws IOException {

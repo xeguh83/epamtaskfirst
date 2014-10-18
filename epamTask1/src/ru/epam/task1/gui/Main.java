@@ -66,7 +66,7 @@ public class Main {
 				if (Integer.parseInt(option) == 0) {
 					break;
 				} else if (Integer.parseInt(option) == 9) {
-					taskList[8].drawTask(args);
+					drawPreMenuForArgs(taskList, args);
 				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < taskList.length)) {
 					taskList[Integer.parseInt(option) - 1].drawTask();
 				}
@@ -81,24 +81,79 @@ public class Main {
 	}
 		
 	
+	private static void drawPreMenuForArgs(Task[] taskList, String[] args) {
+		while (true) {			
+			Scanner in = new Scanner(System.in);
+			drawPreMenuTitle(); 
+			drawPreMenuTable(taskList); 	
+			Task.printEmptyLines(13);
+			System.out.print("Введите номер задачи (00 для выхода в меню)");
+			try {
+				String option = in.nextLine();
+				if (Integer.parseInt(option) == 0) {
+					break;
+				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < 9)) {
+					taskList[Integer.parseInt(option) - 1].drawTask(args);
+					break;
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+				System.out.println("Неверный ввод номера задачи");
+			}
+
+		}
+	}
+
+
+	private static void drawPreMenuTable(Task[] taskList) {
+		StringBuilder[] sb = new StringBuilder[6];
+		int sbIndex = 0;
+		sb[sbIndex] = new StringBuilder();
+		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗");
+		for (int i = 0; i < 4; i++) {
+			sbIndex++;
+			sb[sbIndex] = new StringBuilder();	
+			sb[sbIndex].append(" ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
+							 + " ║" + String.format("%02d", taskList[i + 4].getId()) + "." + taskList[i + 4].getShortName() + getNeededSpaces(taskList[i + 4].getShortName()) + "║");
+		}
+		sbIndex++;
+		sb[sbIndex] = new StringBuilder();
+		sb[sbIndex].append(" ╚══════════════════════════════════════╩═════════════════════════════════════╝");
+		
+		for (StringBuilder strB : sb) {
+			System.out.println(strB);
+		}
+	}
+
+
+	private static void drawPreMenuTitle() {
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+							" ║                Выберите задачу которую следует решить, используя           ║\r\n" +
+							" ║                     данные из параметров командной строки                  ║\r\n" +
+							" ╚════════════════════════════════════════════════════════════════════════════╝");
+
+		
+	}
+
+
 	private static void printMenu(Task[] taskList) {
 		// TODO Auto-generated method stub
-		StringBuffer[] sb = new StringBuffer[12];
+		StringBuilder[] sb = new StringBuilder[12];
 		int sbIndex = 0;
-		sb[sbIndex] = new StringBuffer();
+		sb[sbIndex] = new StringBuilder();
 		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗");
 		for (int i = 0; i < 10; i++) {
 			sbIndex++;
-			sb[sbIndex] = new StringBuffer();	
+			sb[sbIndex] = new StringBuilder();	
 			sb[sbIndex].append(" ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
 							 + " ║" + String.format("%02d", taskList[i + 10].getId()) + "." + taskList[i + 10].getShortName() + getNeededSpaces(taskList[i + 10].getShortName()) + "║");
 		}
 		sbIndex++;
-		sb[sbIndex] = new StringBuffer();
+		sb[sbIndex] = new StringBuilder();
 		sb[sbIndex].append(" ╚══════════════════════════════════════╩═════════════════════════════════════╝");
 		
-		for (StringBuffer strBuf : sb) {
-			System.out.println(strBuf);
+		for (StringBuilder strB : sb) {
+			System.out.println(strB);
 		}
 	}
 
