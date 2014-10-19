@@ -1,6 +1,5 @@
 package ru.epam.task1.gui;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -64,7 +63,7 @@ public abstract class Task {
 		drawTask();
 	}
 	
-	protected static void pressAnyKeyForMenu() throws IOException {
+	protected static void pressAnyKeyForMenu() {
 		System.out.print(" Нажмите Enter для выхода в меню");
 		try {
 			Scanner in = new Scanner(System.in);
