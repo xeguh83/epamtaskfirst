@@ -1,5 +1,7 @@
 package ru.epam.task1.math;
 
+import java.text.DateFormatSymbols;
+
 import ru.epam.task1.gui.Task;
 
 public class NumToMonth extends Task {
@@ -11,8 +13,11 @@ public class NumToMonth extends Task {
 
 	@Override
 	public void drawTask() {
-		// TODO Auto-generated method stub
-		Month.
+		DateFormatSymbols date = new DateFormatSymbols();
+		String[] m = date.getMonths();
+		for (String string : m) {
+			System.out.println(string);
+		}
 	}
 
 	@Override
