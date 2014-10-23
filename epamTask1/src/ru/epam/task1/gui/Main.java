@@ -185,7 +185,7 @@ public class Main {
 				taskList[11] = new NumsInMatrix("Перевести числа в матрицу");
 				taskList[12] = new QuadraticEq("Решение квадратных уравнений");
 				taskList[13] = new NumToMonth("Вывод месяца по номеру");
-				taskList[14] = new MatrixSedDots("Найти седловые точки матрицы");
+				taskList[14] = new MatrixSedDots("Найти седловые точки матрицы", getStringsFromFile("task15.txt"));
 				taskList[15] = new MatrixBuildRisingRows("Перестройка возрастающей матрицы");
 				taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы");
 				taskList[17] = new MatrixBigestLocalMax("Локальный максимум матрицы");
