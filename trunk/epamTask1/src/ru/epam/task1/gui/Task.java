@@ -94,6 +94,30 @@ public abstract class Task {
 		return incomingStrings;
 	}
 	
+	protected double[][] getMatrixFromStringArray() {
+		ArrayList<Double> doublelist = new ArrayList<Double>();
+		double[][] array = new double[incomingStrings.length][];
+		try {
+			for (int i = 0; i < array.length; i++) {
+				String[] words = incomingStrings[i].split("\\s");
+				array[i] = new double[words.length]; 
+				for (int j = 0; j < array[i].length; j++) {
+					array[i][j] = Double.parseDouble(words[j]);				
+				}
+			}			
+			if (array.length > 1) {
+				for (int i = 0; i < array.length - 1; i++) {
+					if (array[i].length != array[i + 1].length) {
+						return new double[0][0];
+					}
+				}
+			}
+		} catch (Exception e) {
+			return new double[0][0];
+		}
+		return array;
+	}
+	
 	protected String[] getWordsFromStringArray() {
 		ArrayList<String> wordsList = new ArrayList<String>();
 		for (String string : incomingStrings) {
