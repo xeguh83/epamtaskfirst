@@ -1,14 +1,12 @@
 package ru.epam.task1.matrix;
 
 import java.util.ArrayList;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import ru.epam.task1.gui.Task;
 
 public class MatrixLocalMin extends Task {
 	private int countLocalMin = 0;
-	private double[][] matrixData; 
+	private final double[][] matrixData; 
 
 	public MatrixLocalMin(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
@@ -29,7 +27,9 @@ public class MatrixLocalMin extends Task {
 		pressAnyKey();
 		drawTitle();
 		doLogic();
-		System.out.println(countLocalMin);
+		System.out.println(" Количество локальных минимумов: " + countLocalMin);
+		Task.printEmptyLines(14);
+		Task.pressAnyKeyForMenu();
 		countLocalMin = 0;
 	}
 
@@ -52,8 +52,6 @@ public class MatrixLocalMin extends Task {
 			}
 		}
 		return true;
-		
-		
 	}
 
 	private ArrayList<Double> getListOfNeighbors(int rowNumber, int columnNumber) {
