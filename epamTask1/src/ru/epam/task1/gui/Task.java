@@ -1,6 +1,7 @@
 package ru.epam.task1.gui;
 
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.Scanner;
 
 public abstract class Task {
@@ -83,7 +84,7 @@ public abstract class Task {
 		}
 	}
 	public static void printEmptyLines(int countEmptyLines) {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder("");
 		for (int i = 0; i < countEmptyLines; i++) {
 			sb.append("\r\n");
 		}
@@ -128,6 +129,18 @@ public abstract class Task {
 		}
 		String[] wordsArray = new String[wordsList.size()];
 		return wordsList.toArray(wordsArray);
+	}
+	
+	protected void printMatrix(double[][] matrix) {
+		Formatter f = new Formatter();
+		for (int i = 0; i < matrix.length; i++) {
+			f.format(" [ ", "");
+			for (int j = 0; j < matrix[i].length; j++) {
+				f.format("%#8.2f", matrix[i][j], " ");
+			}
+			f.format(" ]%n", "");
+		}
+		System.out.println(f);
 	}
 
 }
