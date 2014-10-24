@@ -187,7 +187,7 @@ public class Main {
 				taskList[13] = new NumToMonth("Вывод месяца по номеру");
 				taskList[14] = new MatrixSedDots("Найти седловые точки матрицы", getStringsFromFile("task15.txt"));
 				taskList[15] = new MatrixBuildRisingRows("Перестройка возрастающей матрицы", getStringsFromFile("task16.txt"));
-				taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы");
+				taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы", getStringsFromFile("task17.txt"));
 				taskList[17] = new MatrixBigestLocalMax("Локальный максимум матрицы");
 				taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы");
 				taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");

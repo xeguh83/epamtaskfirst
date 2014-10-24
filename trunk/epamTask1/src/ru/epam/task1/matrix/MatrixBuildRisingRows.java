@@ -3,7 +3,7 @@ package ru.epam.task1.matrix;
 import ru.epam.task1.gui.Task;
 
 public class MatrixBuildRisingRows extends Task {
-	private final double[][] matrixData; 
+	private double[][] matrixData; 
 
 	public MatrixBuildRisingRows(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
