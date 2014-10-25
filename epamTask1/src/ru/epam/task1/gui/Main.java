@@ -31,9 +31,15 @@ import ru.epam.task1.word.EngCharWord;
 import ru.epam.task1.word.PalindromWord;
 
 
+/** 
+ * Точка входа в программу.
+ * Отвечает за отрисовку и перемещение по главному меню
+ * @author Туркин А.К.
+ *
+ */
 public class Main {
 	
-
+// переопределяет кодировку PrintStream на Cp866
 	static
 	{
 	  try
@@ -53,6 +59,12 @@ public class Main {
 	}
 	
 	
+	/**<p>Точка входа в программу</p>
+	 * 
+	 * Формирует массив задач и отрисовывает меню. 
+	 * Осуществляет переход на задачу по вводу её номера
+	 * @param args данные из параметров командной строки
+	 */
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		Task[] taskList = createTaskList();
@@ -81,6 +93,11 @@ public class Main {
 	}
 		
 	
+	/**<p>Пременю для отработки задач 1-8 с данными из командной строки</p>
+	 * Отрисовывает список задач для выполнения и осуществляет переход на задачу по выбору пользователя
+	 * @param taskList массив задач для перехода
+	 * @param args параметры командной строки для передачи в выбранную задачу
+	 */
 	private static void drawPreMenuForArgs(Task[] taskList, String[] args) {
 		while (true) {			
 			Scanner in = new Scanner(System.in);
@@ -105,6 +122,10 @@ public class Main {
 	}
 
 
+	/**<p>Вывод списка задач для выполнения с данными из командной строки</p>
+	 * Отрисовывает таблицу составленную из массива задач
+	 * @param taskList массив задач для перехода
+	 */
 	private static void drawPreMenuTable(Task[] taskList) {
 		StringBuilder[] sb = new StringBuilder[6];
 		int sbIndex = 0;
@@ -126,6 +147,9 @@ public class Main {
 	}
 
 
+	/**
+	 * Выводит на консоль заглавие таблицы выбора задачи
+	 */
 	private static void drawPreMenuTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║                Выберите задачу которую следует решить, используя           ║\r\n" +
@@ -136,6 +160,10 @@ public class Main {
 	}
 
 
+	/**<p>Вывод списка задач для выполнения</p>
+	 * Отрисовывает таблицу составленную из массива задач
+	 * @param taskList массив задач для перехода
+	 */
 	private static void printMenu(Task[] taskList) {
 		// TODO Auto-generated method stub
 		StringBuilder[] sb = new StringBuilder[12];
@@ -157,6 +185,10 @@ public class Main {
 		}
 	}
 
+	/**Вспомогательный метод для подсчёта и вывода необходимого количества пробелов для выравнивания таблицы выбора
+	 * @param string строка таблицы для определения необходимой длины пробелов
+	 * @return строка из пробелов необходимой длины
+	 */
 	private static String getNeededSpaces(String string) {
 		// TODO Auto-generated method stub
 		String spaces = "";
@@ -167,6 +199,10 @@ public class Main {
 	}
 
 
+	/**<p>Формирование списка задач</p>
+	 * Формируется список задач для перехода из меню. 
+	 * @return массив задач
+	 */
 	private static Task[] createTaskList() {
 		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
@@ -200,6 +236,14 @@ public class Main {
 	}
 
 
+	/**<p>Загрузка строк из файла</p>
+	 * Считывает построчно текстовый файл указанный в параметре метода и
+	 * формирует массив из этих строк. В случае если файл пуст формирует 
+	 * массив из одного пустого элемента
+	 * @param file название файла для загрузки данных
+	 * @return массив строк считанных из файла
+	 * @throws IOException при ошибке Ввода/Вывода
+	 */
 	private static String[] getStringsFromFile(String file) throws IOException {
 		
 			BufferedReader reader = new BufferedReader(new FileReader(new File("./" + file)));
@@ -221,6 +265,9 @@ public class Main {
 	}
 
 
+	/**
+	 * Выводит на экран заглавие программы
+	 */
 	public static void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 				 			" ║                  Добро пожаловать в программу демонстрирующую              ║\r\n" +

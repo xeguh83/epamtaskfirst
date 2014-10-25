@@ -59,7 +59,7 @@ public class MatrixSedDots extends Task {
 
 	private boolean isMaxInColumn(int rowNumber, int columnNumber) {
 		for (int i = 0; i < matrixData.length; i++) {
-			if (new Double(matrixData[rowNumber][columnNumber]).compareTo(matrixData[i][columnNumber]) < 0) {
+			if (Double.compare(matrixData[rowNumber][columnNumber], matrixData[i][columnNumber]) < 0) {
 				return false;
 			}
 		}
@@ -68,7 +68,7 @@ public class MatrixSedDots extends Task {
 
 	private boolean isMinInRow(int rowNumber, int columnNumber) {
 		for (int i = 0; i < matrixData[rowNumber].length; i++) {
-			if (new Double(matrixData[rowNumber][columnNumber]).compareTo(matrixData[rowNumber][i]) > 0) {
+			if (Double.compare(matrixData[rowNumber][columnNumber], matrixData[rowNumber][i]) > 0) {
 				return false;
 			}
 		}
