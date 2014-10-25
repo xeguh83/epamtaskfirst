@@ -189,7 +189,7 @@ public class Main {
 				taskList[15] = new MatrixBuildRisingRows("Перестройка возрастающей матрицы", getStringsFromFile("task16.txt"));
 				taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы", getStringsFromFile("task17.txt"));
 				taskList[17] = new MatrixBigestLocalMax("Локальный максимум матрицы", getStringsFromFile("task18.txt"));
-				taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы");
+				taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы", getStringsFromFile("task19.txt"));
 				taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
