@@ -67,7 +67,7 @@ public class Main {
 					break;
 				} else if (Integer.parseInt(option) == 9) {
 					drawPreMenuForArgs(taskList, args);
-				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < taskList.length)) {
+				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < (taskList.length + 1))) {
 					taskList[Integer.parseInt(option) - 1].drawTask();
 				}
 			} catch (Exception e) {
@@ -190,7 +190,7 @@ public class Main {
 				taskList[16] = new MatrixLocalMin("Найти локальные минимумы матрицы", getStringsFromFile("task17.txt"));
 				taskList[17] = new MatrixBigestLocalMax("Локальный максимум матрицы", getStringsFromFile("task18.txt"));
 				taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы", getStringsFromFile("task19.txt"));
-				taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали");
+				taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали", getStringsFromFile("task20.txt"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
