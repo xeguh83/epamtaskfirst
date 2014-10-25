@@ -16,38 +16,33 @@ public class PalindromWord extends Task {
 	protected void doLogic() {
 		// TODO Auto-generated method stub
 		String[] words = getWordsFromStringArray();
-		ArrayList<String> palindromWords = wordsConsistOnlyNums(words);
-		for (int i = 0; i < palindromWords.size(); i++) {
-				if (!isPalindrom(palindromWords.get(i))) {
-					palindromWords.remove(i);
-				}
-		}
-		printOneOrSecondPalindromWord(palindromWords);
+		ArrayList<String> palindroms = getPalindromsOnlyNumList(words);
+		printOneOrSecondPalindromWord(palindroms);
 		Task.printEmptyLines(14);
 	}
 
 	private void printOneOrSecondPalindromWord(ArrayList<String> palindromWords) {
 		// TODO Auto-generated method stub
 		if (palindromWords.size() == 0) {
-			System.out.println("Слова-палиндромы состоящие только из цифр не найдены");
+			System.out.println(" Слова-палиндромы состоящие только из цифр не найдены");
 		} else if (palindromWords.size() == 1) {
-			System.out.println("Найдено единственное слово-палиндром состоящее только из цифр: " + palindromWords.get(0));
+			System.out.println(" Найдено единственное слово-палиндром состоящее только из цифр: " + palindromWords.get(0));
 		} else {
-			System.out.println("Второе слово-палиндром состоящее только из цифр: " + palindromWords.get(1));
+			System.out.println(" Второе слово-палиндром состоящее только из цифр: " + palindromWords.get(1));
 		}
 	}
 
-	private ArrayList<String> wordsConsistOnlyNums(String[] words) {
+	private ArrayList<String> getPalindromsOnlyNumList(String[] words) {
 		// TODO Auto-generated method stub
-		ArrayList<String> wordsOnlyNums = new ArrayList<String>();
+		ArrayList<String> palindromsOnlyNums = new ArrayList<String>();
 		Pattern pattern = Pattern.compile("[0-9]+");
         for (String word : words) {
             Matcher numMatcher = pattern.matcher(word);
-            if (numMatcher.matches()) {
-            	wordsOnlyNums.add(word);
+            if (numMatcher.matches() && isPalindrom(word)) {
+            	palindromsOnlyNums.add(word);
             }
         }
-		return wordsOnlyNums;
+		return palindromsOnlyNums;
 	}
 
 	private boolean isPalindrom(String word) {

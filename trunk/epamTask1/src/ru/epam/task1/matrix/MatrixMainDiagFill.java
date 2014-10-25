@@ -2,6 +2,10 @@ package ru.epam.task1.matrix;
 
 import ru.epam.task1.gui.Task;
 
+/**
+ * @author например Андрей
+ *
+ */
 public class MatrixMainDiagFill extends Task {
 	private final double[][] matrixData; 
 

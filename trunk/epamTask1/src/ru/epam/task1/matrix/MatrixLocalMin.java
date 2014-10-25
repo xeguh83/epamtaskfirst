@@ -46,8 +46,9 @@ public class MatrixLocalMin extends Task {
 
 	private boolean isLocalMin(int rowNumber, int columnNumber) {
 		ArrayList<Double> neighbors = getListOfNeighbors(rowNumber, columnNumber);
+		double checkingElementValue = matrixData[rowNumber][columnNumber];
 		for (Double element : neighbors) {
-			if (matrixData[rowNumber][columnNumber] >= element) {
+			if (checkingElementValue >= element) {
 				return false;
 			}
 		}
