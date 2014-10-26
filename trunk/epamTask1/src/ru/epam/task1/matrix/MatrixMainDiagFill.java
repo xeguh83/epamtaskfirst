@@ -3,17 +3,34 @@ package ru.epam.task1.matrix;
 import ru.epam.task1.gui.Task;
 
 /**
- * @author например Андрей
- *
+ * Класс для перестановки элементов матрицы так чтобы главная диагональ
+ * матрицы состояла из максимальных элементов, при этом элемент (0, 0) был максимальным, 
+ * элемент (1, 1) следующим по величине и т. д.
+ * @author Туркин А.К.
  */
 public class MatrixMainDiagFill extends Task {
 	private final double[][] matrixData; 
 
+	/**
+	 * Конструктор передает сокращенное наименование задания для формирования таблицы 
+	 * заданий, массив строк с начальными данными. Также конструктор формирует матрицу
+	 * в виде двухмерного массива вещественных чисел из массива строк с помощью метода
+	 * <code>getMatrixFromStringArray()</code>
+	 * @param shortName сокращенное наименование задания
+	 * @param incomingStrings массив строк с начальным условием задачи
+	 */
 	public MatrixMainDiagFill(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 		matrixData = getMatrixFromStringArray();
 	}
 
+	/**
+	 * Метод выводит в консоль текст задания и проверяет содержимое матрицы. Если матрица
+	 * пустая задание завершается и происходит выход в меню. Иначе происходит ожидание ввода
+	 * любой строки для того чтобы дать возможность пользователю прочитать задание и вывод 
+	 * результатов (перестановка элементов так, чтобы главная диагональ состояла из максимальных
+	 * элементов) посчитанных методом <code>doLogic()</code>
+	 */
 	@Override
 	public void drawTask() {
 		drawTitle();
@@ -33,6 +50,11 @@ public class MatrixMainDiagFill extends Task {
 		Task.pressAnyKeyForMenu();
 	}
 
+	/**
+	 * Метод формирует главную диагональ как массив вещественных чисел
+	 * и меняет местами элементы матрицы так, чтобы главная диагональ состояла из 
+	 * максимальных элементов  
+	 */
 	@Override
 	protected void doLogic() {
 		double[] mainDiag = new double[matrixData.length]; 
@@ -42,12 +64,26 @@ public class MatrixMainDiagFill extends Task {
 	}
 
 
+	/**
+	 * Метод меняет местами элемент матрицы заданый объектом класса <code>MatrixDoubleElement</code> 
+	 * и элемент главной диагонали заданый одной координатой
+	 * @param element элемент матрицы из поля <code>matrixData</code> в виде объекта класса <code>MatrixDoubleElement</code>
+	 * @param i координата главной диагонали матрицы из поля <code>matrixData</code>
+	 */
 	private void swapFoundWithDiag(MatrixDoubleElement element, int i) {
 		double tempValue = matrixData[i][i];
 		matrixData[i][i] = element.getValue();
 		matrixData[element.getRowNumber()][element.getColumnNumber()] = tempValue;
 	}
 
+	/**
+	 * Метод возвращает максимальный элемент матрицы в виде объекта класса <code>MatrixDoubleElement</code>, 
+	 * исключая при этом установленные элементы главной диагонали, количество которых определяется 
+	 * входящим параметром
+	 * @param settedDiagElements количество установленных элементов главной диагонали матрицы из поля <code>matrixData</code>
+	 * @return максимальный элемент матрицы в виде объекта класса <code>MatrixDoubleElement</code>, исключая при этом 
+	 * уже установленные элементы главной диагонали
+	 */
 	private MatrixDoubleElement getMaxElemExceptMainDiag(int settedDiagElements) {
 		MatrixDoubleElement element = new MatrixDoubleElement(Double.MIN_VALUE, 0, 0);
 		for (int i = 0; i < matrixData.length; i++) {
@@ -64,6 +100,9 @@ public class MatrixMainDiagFill extends Task {
 		return element;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
@@ -76,11 +115,21 @@ public class MatrixMainDiagFill extends Task {
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 	
+	/**
+	 * Внутренний класс для передачи координат элемента матрицы и ее значения
+	 * @author Туркин А.К.
+	 */
 	private class MatrixDoubleElement {
 		private double value;
 		private int rowNumber;
 		private int columnNumber;
 		
+		/**
+		 * Конструктор для инициализации значений координат элемента матрицы и ее значения
+		 * @param value значение элемента матрицы
+		 * @param rowNumber номер строки элемента матрицы
+		 * @param columnNumber номер столбца элемента матрицы
+		 */
 		public MatrixDoubleElement(double value, int rowNumber, int columnNumber) {
 			this.value = value;
 			this.rowNumber = rowNumber;

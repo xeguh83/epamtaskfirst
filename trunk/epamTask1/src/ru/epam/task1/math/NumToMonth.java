@@ -5,14 +5,31 @@ import java.util.Scanner;
 
 import ru.epam.task1.gui.Task;
 
+/**<p>Вывод месяца по числу</p>
+ * Класс выводит наименование месяца в локали по умолчанию по 
+ * числу введенному пользователем, при этом проверяя корректность ввода
+ * @author Туркин А.К.
+ *
+ */
 public class NumToMonth extends Task {
 	private int monthNumber;
 	
 
+	/**Конструктор для передачи короткого наименования задачи для постройки таблицы задач 
+	 * @param shortName короткое наименование задачи
+	 */
 	public NumToMonth(String shortName) {
 		super(shortName);
 	}
 
+	/**<p>Отрисовка задания</p> 
+	 * <p>Метод выводит в консоль наименование задачи, необходимые пустые строки 
+	 * для корректного отображения окна и ждет ввода пользователем номера месяца, 
+	 * при этом проверяя правильность ввода.</p>
+	 * <p>При вводе номера месяца от 1 до 12 выводится наименование месяца в 
+	 * локали по умолчанию, при вводе 0 происходит выход в меню, а при вводе 
+	 * остальных значений происходит перерисовка окна</p> 
+	 */
 	@Override
 	public void drawTask() {
 		int monthNumber = 0;
@@ -36,6 +53,11 @@ public class NumToMonth extends Task {
 		}
 	}
 
+	/**<p>Считывание числа из консоли</p>
+	 * Метод ожидает на ввод целое число и нажатие Enter. При ошибочном вводе
+	 * возращяется значение -1
+	 * @return целое число введенное с клавиатуры
+	 */
 	private int getNumFromKeyboard() {
 		Scanner in = new Scanner(System.in);
 		try {
@@ -47,6 +69,10 @@ public class NumToMonth extends Task {
 	}
 
 
+	/**
+	 * Метод выводит на экран наименование месяца из локали по умолчанию по значению
+	 * поля <code>monthNumber</code>
+	 */
 	@Override
 	protected void doLogic() {
 		DateFormatSymbols date = new DateFormatSymbols();
@@ -54,6 +80,9 @@ public class NumToMonth extends Task {
 		System.out.println(" Месяц номер " + monthNumber + " это " + months[monthNumber - 1]);
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

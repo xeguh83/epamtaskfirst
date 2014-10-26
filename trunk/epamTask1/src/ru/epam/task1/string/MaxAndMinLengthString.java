@@ -2,17 +2,30 @@ package ru.epam.task1.string;
 
 import ru.epam.task1.gui.Task;
 
+/**
+ * Класс для нахождения минимальной и максимальной (по длине) строк в массиве
+ * @author Туркин А.К.
+ */
 public class MaxAndMinLengthString extends Task {
 	private int maxStringIndex = Integer.MIN_VALUE;
 	private int minStringIndex = Integer.MAX_VALUE;
 		
+	/**
+	 * Конструктор для передачи короткого наименования задачи для постройки таблицы задач и 
+	 * массива строк содержащего начальные условия задачи
+	 * @param shortName короткое наименование задачи
+	 * @param incomingStrings массив строк с начальным условием задачи
+	 */
 	public MaxAndMinLengthString(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод выводит в консоль список загруженных строк, затем выводит строку с максимальной длиной 
+	 * и строку с минимальной длиной 
+	 */
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
 		String[] stringsForWork = getStrings();
 		System.out.println("Загружены следующие строки:");
 		setMaxAndMinStringLengthIndex(stringsForWork);
@@ -23,8 +36,12 @@ public class MaxAndMinLengthString extends Task {
 		Task.printEmptyLines(12);
 	}
 
+	/**
+	 * Метод производит перебор по строкам и указывает в поля <code>maxStringIndex</code> и 
+	 * <code>minStringIndex</code> индексы максимальной и минимальной строки (по ее длине) в массиве
+	 * @param strings массив строк для определения максимальной и минимальной длины
+	 */
 	private void setMaxAndMinStringLengthIndex(String[] strings) {
-		// TODO Auto-generated method stub
 		int maxStrLength = Integer.MIN_VALUE;
 		int minStrLength = Integer.MAX_VALUE;
 		for (int i = 0; i < strings.length; i++) {
@@ -39,6 +56,9 @@ public class MaxAndMinLengthString extends Task {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

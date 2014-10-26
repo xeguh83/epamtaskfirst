@@ -6,16 +6,34 @@ import java.util.regex.Pattern;
 
 import ru.epam.task1.gui.Task;
 
+/**
+ * Класс находит слова состоящие только из латинских символов, а среди них
+ * количество слов с одинаковым количеством гласных и согласных букв
+ * @author Туркин А.К.
+ * @since 1.4
+ */
 public class EngCharWord extends Task {
 	
+	/**
+	 * Конструктор для передачи короткого наименования задачи для постройки таблицы задач и 
+	 * массива строк содержащего начальные условия задачи
+	 * @param shortName короткое наименование задачи
+	 * @param incomingStrings массив строк с начальным условием задачи
+	 */
 	public EngCharWord(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
 
+	/**
+	 * Метод формирует массив слов, переданных из файла с помощью метода <code>getWordsFromStringArray</code> 
+	 * и выводит в консоль  слова состоящие только из латинских символов, а затем среди них количество слов 
+	 * с одинаковым количеством гласных и согласных букв
+	 * @see #getWordsFromStringArray()
+	 * @since 1.4 
+	 */
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
 		String[] word = getWordsFromStringArray();
 		ArrayList<String> listOfEngWords = getAndPrintEngWords(word);
 		System.out.print("Среди них слова с равным числом гласных и согласных: ");
@@ -30,6 +48,12 @@ public class EngCharWord extends Task {
 		
 	}
 
+	/**
+	 * Метод обрабатывает массив слов и возращает только те слова в виде списка, 
+	 * которые состоят только из латинских символов 
+	 * @param words массив слов для обработки
+	 * @return список слов содержащих только латинские символы
+	 */
 	private ArrayList<String> getAndPrintEngWords(String[] words) {
 		// TODO Auto-generated method stub
         System.out.print("Слов составленных из латинского алфавита: ");
@@ -46,6 +70,9 @@ public class EngCharWord extends Task {
 	}
 
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		// TODO Auto-generated method stub

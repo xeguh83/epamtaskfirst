@@ -114,7 +114,6 @@ public class Main {
 					break;
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println("Неверный ввод номера задачи");
 			}
 
@@ -165,7 +164,6 @@ public class Main {
 	 * @param taskList массив задач для перехода
 	 */
 	private static void printMenu(Task[] taskList) {
-		// TODO Auto-generated method stub
 		StringBuilder[] sb = new StringBuilder[12];
 		int sbIndex = 0;
 		sb[sbIndex] = new StringBuilder();
@@ -190,7 +188,6 @@ public class Main {
 	 * @return строка из пробелов необходимой длины
 	 */
 	private static String getNeededSpaces(String string) {
-		// TODO Auto-generated method stub
 		String spaces = "";
 		for (int i = 0; i < (34 - string.length()); i++ ) {
 			spaces = spaces + " ";
@@ -204,7 +201,6 @@ public class Main {
 	 * @return массив задач
 	 */
 	private static Task[] createTaskList() {
-		// TODO Auto-generated method stub
 		Task[] taskList = new Task[20];
 			try {
 				taskList[0] = new MaxAndMinLengthString("Самая короткая и длинная строки", getStringsFromFile("task1.txt"));
@@ -228,7 +224,6 @@ public class Main {
 				taskList[18] = new MatrixCharacterLowering("Уменьшение характеристик матрицы", getStringsFromFile("task19.txt"));
 				taskList[19] = new MatrixMainDiagFill("Заполнение главной диагонали", getStringsFromFile("task20.txt"));
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		return taskList;

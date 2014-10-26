@@ -2,16 +2,29 @@ package ru.epam.task1.string;
 
 import ru.epam.task1.gui.Task;
 
+/**
+ * Класс выводит в консоль строки которые меньше/больше средней по длине
+ * @author Туркин А.К.
+ */
 public class MoreLessThanMedian extends Task {
 	
+	/**
+	 * Конструктор для передачи короткого наименования задачи для постройки таблицы задач и 
+	 * массива строк содержащего начальные условия задачи
+	 * @param shortName короткое наименование задачи
+	 * @param incomingStrings массив строк с начальным условием задачи
+	 */
 	public MoreLessThanMedian(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
 
+	/**
+	 * Метод вычисляет среднюю длину строки из массива строк и передает 
+	 * ее в метод <code>printResult</code>
+	 */
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
 		String[] strings = getStrings();
 		int mediana = 0;
 		for (String string : strings) {
@@ -21,8 +34,13 @@ public class MoreLessThanMedian extends Task {
 		printResult(strings, mediana);
 	}
 
+	/**
+	 * Метод выводит в консоль строки, которые меньше или равны заданной средней длине, а
+	 * затем выводит строки которые больше средней заданой длины
+	 * @param strings массив строк для вывода
+	 * @param mediana средняя длина строки
+	 */
 	private void printResult(String[] strings, int mediana) {
-		// TODO Auto-generated method stub
 		System.out.println("Строки с длинами меньше или равными средней (" + mediana + "):");
 		for (String string : strings) {
 			if (string.length() <= mediana) System.out.println(string + "("+ string.length() + ")");
@@ -33,6 +51,9 @@ public class MoreLessThanMedian extends Task {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		// TODO Auto-generated method stub
