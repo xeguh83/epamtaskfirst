@@ -5,13 +5,29 @@ import java.util.Scanner;
 
 import ru.epam.task1.gui.Task;
 
+/**
+ * Класс вычисляет и выводит в консоль информацию о попадании введеного 
+ * значения k в заданый интервал
+ * @author Туркин А.К.
+ * @since 1.7
+ */
 public class SwitchSecondInterval extends Task {
 	int k;
 
+	/**
+	 * Конструктор для передачи короткого наименования задачи для постройки таблицы задач
+	 * @param shortName короткое наименование задачи
+	 */
 	public SwitchSecondInterval(String shortName) {
 		super(shortName);
 	}
 
+	/**
+	 * Метод отрисовывает наименование и текст задания, а затем ожидает на ввод
+	 * целого числа. В случае ввода целого числа, это число записывается в поле
+	 * <code>k</code>, а затем вызывается метод <code>doLogic</code>. В случае
+	 * некорректного ввода окно перерисовывается и повторяется запрос  
+	 */
 	@Override
 	public void drawTask() {
 		Scanner in = new Scanner(System.in);
@@ -34,6 +50,11 @@ public class SwitchSecondInterval extends Task {
 		}
 	}
 
+	/**
+	 * Метод вычисляет попадание значение из поля <code>k</code> в интервалы из условия 
+	 * задачи, а затем формирует список строковых интерпретаций найденных интервалов и 
+	 * передает их в метод <code>printResult</code>
+	 */
 	@Override
 	protected void doLogic() {
 		ArrayList<String> resInterval = new ArrayList<String>();
@@ -52,6 +73,12 @@ public class SwitchSecondInterval extends Task {
 		printResult(resInterval);
 	}
 
+	/**
+	 * Метод используя оператор <code>switch</code> выбирает фразы выводящиеся в консоль в 
+	 * соответствии со строковыми интерпретациями найденных интервалов
+	 * @param resInterval список строковых интерпретаций найденного интервала
+	 * @since 1.7
+	 */
 	private void printResult(ArrayList<String> resInterval) {
 		for (String string : resInterval) {
 			switch (string) {
@@ -74,6 +101,9 @@ public class SwitchSecondInterval extends Task {
 		Task.printEmptyLines(14);
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

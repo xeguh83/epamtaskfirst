@@ -1,19 +1,35 @@
 package ru.epam.task1.matrix;
 
-//import org.apache.commons.math3.linear.MatrixUtils;
-//import org.apache.commons.math3.linear.RealMatrix;
-
 import ru.epam.task1.gui.Task;
 
+/**
+ * Класс определяет количество седловых точек матрицы (минимальная в строке и 
+ * максимальная в столбце точка матрицы)
+ * @author Туркин А.К.
+ */
 public class MatrixSedDots extends Task {
 	private int countSaddleDots = 0;
 	private final double[][] matrixData; 
 
+	/**
+	 * Конструктор передает сокращенное наименование задания для формирования таблицы 
+	 * заданий, массив строк с начальными данными. Также конструктор формирует матрицу
+	 * в виде двухмерного массива вещественных чисел из массива строк с помощью метода
+	 * <code>getMatrixFromStringArray()</code>
+	 * @param shortName сокращенное наименование задания
+	 * @param incomingStrings массив строк с начальным условием задачи
+	 */
 	public MatrixSedDots(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 		matrixData = getMatrixFromStringArray();
 	}
 
+	/**
+	 * Метод выводит в консоль текст задания и проверяет содержимое матрицы. Если матрица
+	 * пустая задание завершается и происходит выход в меню. Иначе происходит ожидание ввода
+	 * любой строки для того чтобы дать возможность пользователю прочитать задание и вывод 
+	 * результатов (подсчёт количества седловых точек матрицы) посчитанных методом <code>doLogic()</code>
+	 */
 	@Override
 	public void drawTask() {
 //		RealMatrix m = MatrixUtils.createRealMatrix(matrixData);
@@ -39,6 +55,11 @@ public class MatrixSedDots extends Task {
 		countSaddleDots = 0;
 	}
 
+	/**
+	 * Метод производит перебор каждого элемента матрицы с проверкой является ли он 
+	 * седловой точкой матрицы. При переборе метод определяет количество седловых 
+	 * точек и записывает его значение в поле <code>countSaddleDots</code>
+	 */
 	@Override
 	protected void doLogic() {
 		for (int i = 0; i < matrixData.length; i++) {
@@ -50,6 +71,12 @@ public class MatrixSedDots extends Task {
 		}
 	}
 
+	/**
+	 * Метод определяет является ли элемент матрицы седловой точкой
+	 * @param i номер строки матрицы
+	 * @param j номер столбца матрицы
+	 * @return <code>true</code> если точка является седловой и <code>false</code> если не является
+	 */
 	private boolean isSaddleDot(int i, int j) {
 		if (isMinInRow(i, j) && isMaxInColumn(i, j)) {
 			return true;
@@ -57,6 +84,12 @@ public class MatrixSedDots extends Task {
 		return false;
 	}
 
+	/**
+	 * Метод определяет является ли элемент матрицы максимальным в своём столбце
+	 * @param rowNumber номер строки матрицы
+	 * @param columnNumber номер столбца матрицы
+	 * @return <code>true</code> если элемент матрицы является максимальным в своем столбце и <code>false</code> если не является
+	 */
 	private boolean isMaxInColumn(int rowNumber, int columnNumber) {
 		for (int i = 0; i < matrixData.length; i++) {
 			if (Double.compare(matrixData[rowNumber][columnNumber], matrixData[i][columnNumber]) < 0) {
@@ -66,6 +99,12 @@ public class MatrixSedDots extends Task {
 		return true;
 	}
 
+	/**
+	 * Метод определяет является ли элемент матрицы минимальным в своей строке
+	 * @param rowNumber номер строки матрицы
+	 * @param columnNumber номер столбца матрицы
+	 * @return <code>true</code> если элемент матрицы является минимальным в своей строке и <code>false</code> если не является
+	 */
 	private boolean isMinInRow(int rowNumber, int columnNumber) {
 		for (int i = 0; i < matrixData[rowNumber].length; i++) {
 			if (Double.compare(matrixData[rowNumber][columnNumber], matrixData[rowNumber][i]) > 0) {
@@ -75,6 +114,9 @@ public class MatrixSedDots extends Task {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task1.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
