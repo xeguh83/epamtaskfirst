@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import ru.epam.task1.arguments.DataFromArguments;
@@ -71,7 +73,8 @@ public class Main {
 		while(true) {
 			drawTitle();
 			printMenu(taskList);
-			Task.printEmptyLines(7);
+			printTaskDate();
+			Task.printEmptyLines(5);
 			System.out.print(" Введите номер задачи (00 для выхода из программы):");
 			try {
 				String option = in.nextLine();
@@ -93,6 +96,23 @@ public class Main {
 	}
 		
 	
+	/**
+	 * Метод выводит в консоль дату выдачи задания и дату окончания работ по заданию
+	 */
+	private static void printTaskDate() {
+		Calendar begin = new GregorianCalendar(2014, 9, 6);
+		String startingDate = Integer.toString(begin.get(Calendar.DAY_OF_MONTH)) 
+				+ "." + Integer.toString(begin.get(Calendar.MONTH) + 1) 
+				+ "." + Integer.toString(begin.get(Calendar.YEAR));
+		Calendar fin = new GregorianCalendar(2014, 9, 26);
+		String finishingDate = Integer.toString(fin.get(Calendar.DAY_OF_MONTH)) 
+				+ "." + Integer.toString(fin.get(Calendar.MONTH) + 1) 
+				+ "." + Integer.toString(fin.get(Calendar.YEAR));
+		 System.out.println(" Начало задания:  " + startingDate);
+		 System.out.println(" Конец задания:  " + finishingDate);
+	}
+
+
 	/**<p>Пременю для отработки задач 1-8 с данными из командной строки</p>
 	 * Отрисовывает список задач для выполнения и осуществляет переход на задачу по выбору пользователя
 	 * @param taskList массив задач для перехода
