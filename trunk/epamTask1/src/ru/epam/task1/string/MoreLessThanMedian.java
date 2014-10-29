@@ -56,7 +56,6 @@ public class MoreLessThanMedian extends Task {
 	 */
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║     Задача №3. Ввести n строк с консоли. Вывести на консоль те строки,     ║\r\n" +
 							" ║             длина которых меньше (больше) средней, а также длину.          ║\r\n" +

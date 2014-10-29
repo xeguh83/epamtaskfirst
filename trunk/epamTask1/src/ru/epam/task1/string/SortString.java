@@ -89,7 +89,9 @@ public class SortString extends Task {
 		@Override
 		public int compare(String obj1, String obj2) {			
 			if( null != obj1 && null != obj2 ) return Integer.compare(obj1.length(), obj2.length());
-			if( null == obj1 && null == obj2 ) throw new IllegalArgumentException("Both strings is null");
+			if( null == obj1 && null == obj2 ) {
+				return 0;
+			}
 			if( null == obj1 ){
 				return -1;
 			}else{			

@@ -78,7 +78,6 @@ public class CodeRisingWord extends Task {
 	 */
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║     Задача №6. Найти слово, символы в котором идут в строгом порядке       ║\r\n" +
 							" ║    возрастания кодов. Если таких слов несколько - найти первое из них.     ║\r\n" +
