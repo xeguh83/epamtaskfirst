@@ -90,7 +90,6 @@ public class PalindromWord extends Task {
 	 */
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║   Задача №8. Среди слов состоящих только из цифр, найти слово-палиндром.   ║\r\n" +
 							" ║              Если таких слов больше одного, найти второе из них.           ║\r\n" +

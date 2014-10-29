@@ -73,8 +73,9 @@ public class Main {
 		while(true) {
 			drawTitle();
 			printMenu(taskList);
+			printHelpPanel();
 			printTaskDate();
-			Task.printEmptyLines(5);
+			Task.printEmptyLines(1);
 			System.out.print(" Введите номер задачи (00 для выхода из программы):");
 			try {
 				String option = in.nextLine();
@@ -86,7 +87,6 @@ public class Main {
 					taskList[Integer.parseInt(option) - 1].drawTask();
 				}
 			} catch (Exception e) {
-				// TODO: handle exception
 				System.out.println("Неверный ввод номера задачи");
 			}
 
@@ -96,6 +96,14 @@ public class Main {
 	}
 		
 	
+	private static void printHelpPanel() {
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+							" ║ Загрузка начальных данных происходит при запуске программы. Для того чтобы ║\r\n" +
+							" ║ изменить начальные данные, отредактируйте файлы и перезапустите программу  ║\r\n" +
+							" ╚════════════════════════════════════════════════════════════════════════════╝");		
+	}
+
+
 	/**
 	 * Метод выводит в консоль дату выдачи задания и дату окончания работ по заданию
 	 */
@@ -146,23 +154,13 @@ public class Main {
 	 * @param taskList массив задач для перехода
 	 */
 	private static void drawPreMenuTable(Task[] taskList) {
-		StringBuilder[] sb = new StringBuilder[6];
-		int sbIndex = 0;
-		sb[sbIndex] = new StringBuilder();
-		sb[sbIndex].append(" ╔══════════════════════════════════════╦═════════════════════════════════════╗");
+		String menu = " ╔══════════════════════════════════════╦═════════════════════════════════════╗\r\n";
 		for (int i = 0; i < 4; i++) {
-			sbIndex++;
-			sb[sbIndex] = new StringBuilder();	
-			sb[sbIndex].append(" ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
-							 + " ║" + String.format("%02d", taskList[i + 4].getId()) + "." + taskList[i + 4].getShortName() + getNeededSpaces(taskList[i + 4].getShortName()) + "║");
+			menu += " ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
+					 + " ║" + String.format("%02d", taskList[i + 4].getId()) + "." + taskList[i + 4].getShortName() + getNeededSpaces(taskList[i + 4].getShortName()) + "║\r\n";
 		}
-		sbIndex++;
-		sb[sbIndex] = new StringBuilder();
-		sb[sbIndex].append(" ╚══════════════════════════════════════╩═════════════════════════════════════╝");
-		
-		for (StringBuilder strB : sb) {
-			System.out.println(strB);
-		}
+		menu += " ╚══════════════════════════════════════╩═════════════════════════════════════╝";
+		System.out.println(menu);
 	}
 
 

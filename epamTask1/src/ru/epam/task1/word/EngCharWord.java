@@ -55,7 +55,6 @@ public class EngCharWord extends Task {
 	 * @return список слов содержащих только латинские символы
 	 */
 	private ArrayList<String> getAndPrintEngWords(String[] words) {
-		// TODO Auto-generated method stub
         System.out.print("Слов составленных из латинского алфавита: ");
 		Pattern pattern = Pattern.compile("[a-zA-Z]+");
         ArrayList<String> engWords = new ArrayList<String>();
@@ -75,7 +74,6 @@ public class EngCharWord extends Task {
 	 */
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║Задача №5. Найти количество слов, содержащих только символы латинского алфа-║\r\n" +
 							" ║вита, а среди них - количество слов с равным числом гласных и согласных букв║\r\n" +

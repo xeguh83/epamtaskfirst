@@ -178,7 +178,10 @@ public abstract class Task {
 				String[] words = incomingStrings[i].split("\\s");
 				array[i] = new double[words.length]; 
 				for (int j = 0; j < array[i].length; j++) {
-					array[i][j] = Double.parseDouble(words[j]);				
+					array[i][j] = Double.parseDouble(words[j]);
+					if (Double.isNaN(array[i][j])) {
+						throw new NumberFormatException("С числами типа NaN вычисления не имеют смысла");
+					}
 				}
 			}			
 			if (array.length > 1) {

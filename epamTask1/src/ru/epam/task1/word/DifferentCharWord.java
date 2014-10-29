@@ -18,7 +18,6 @@ public class DifferentCharWord extends Task {
 	 */
 	public DifferentCharWord(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -61,7 +60,6 @@ public class DifferentCharWord extends Task {
 	 */
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║       Задача №7. Найти слово, состоящее только из различных символов.      ║\r\n" +
 							" ║               Если таких слов несколько вывести первое из них.             ║\r\n" +

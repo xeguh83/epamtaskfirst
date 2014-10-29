@@ -95,6 +95,9 @@ public class QuadraticEq extends Task{
 		try {
 			String num = in.nextLine();
 			param = Double.parseDouble(num);
+			if (Double.isNaN(param)) {
+				throw new NumberFormatException("С числами типа NaN вычисления не имеют смысла");
+			}
 			if (string == "x^2") {
 				param1 = param;
 				return true;
@@ -121,6 +124,17 @@ public class QuadraticEq extends Task{
 	 */
 	@Override
 	protected void doLogic() {
+		if ((param1 == 0) && (param2 == 0)) {
+			if (param3 == 0) {
+				System.out.println("Уравнение имеет следующее решение: X - любое число");
+				Task.printEmptyLines(2);
+				return;
+			} else {
+				System.out.println("Уравнение введено неверно и не имеет решений");
+				Task.printEmptyLines(2);
+				return;
+			}
+		}
 		double discriminant = Math.pow(param2, 2) - (4 * param1 * param3);
 		if (discriminant >= 0) {
 			double root1 = ( ((-1)*param2) + Math.sqrt(discriminant) ) / (2 * param1);
