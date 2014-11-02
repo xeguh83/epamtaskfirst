@@ -1,5 +1,8 @@
 package ru.epam.task2.gui;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Formatter;
 import java.util.Scanner;
@@ -229,6 +232,21 @@ public abstract class Task {
 			f.format(" ]%n", "");
 		}
 		System.out.println(f);
+	}
+	
+	protected static boolean writeStringsToFile(String file, String[] strings) {
+		try {
+			BufferedWriter writer = new BufferedWriter(new FileWriter("./" + file));
+			for (int i = 0; i < strings.length - 1; i++) {
+				writer.write(strings[i]);
+				writer.newLine();
+			}
+			writer.write(strings[strings.length - 1]);
+			writer.close();
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 	}
 
 }
