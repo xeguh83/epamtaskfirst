@@ -217,6 +217,10 @@ public abstract class Task {
 		return wordsList.toArray(wordsArray);
 	}
 	
+	protected String[] getWordsFromString(String string) {
+		return string.split("\\s");
+	}
+	
 	/**<p>Вывод матрицы в консоль в стандартном виде</p>
 	 * Выводит содержимое матрицы десятично дробных чисел в консоль в стандартном виде. На число отводится 8 цифр, 
 	 * в том числе округленная до сотых дробная часть
