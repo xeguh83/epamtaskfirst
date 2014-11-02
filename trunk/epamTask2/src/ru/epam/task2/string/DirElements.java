@@ -13,7 +13,6 @@ public class DirElements extends Task {
 
 	public DirElements(String shortName) {
 		super(shortName);
-//		dirName = "C:\\workspace\\epamTask2";
 		dirStructure = new ArrayList<String>();
 	}
 	
