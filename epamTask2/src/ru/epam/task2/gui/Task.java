@@ -252,5 +252,10 @@ public abstract class Task {
 		}
 		return true;
 	}
+	
+	protected String getFormattedResult(double result) {
+		Formatter f = new Formatter();
+		return f.format("%#8.2f", result).toString();
+	}
 
 }

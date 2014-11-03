@@ -1,6 +1,5 @@
 package ru.epam.task2.math;
 
-import java.util.Formatter;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Scanner;
@@ -51,11 +50,6 @@ public class PairwiseSetSigma extends Task {
 		double result = getPairwiseSetSigma(numSet);
 		System.out.println(" Многоэтапная попарная сумма элементов множества равна: " + getFormattedResult(result));
 		printEmptyLines(12);
-	}
-
-	private String getFormattedResult(double result) {
-		Formatter f = new Formatter();
-		return f.format("%#8.2f", result).toString();
 	}
 
 	private double getPairwiseSetSigma(LinkedHashSet<Double> set) {
