@@ -84,8 +84,6 @@ public class Main {
 				String option = in.nextLine();
 				if (Integer.parseInt(option) == 0) {
 					break;
-				} else if (Integer.parseInt(option) == 9) {
-					drawPreMenuForArgs(taskList, args);
 				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < (taskList.length + 1))) {
 					taskList[Integer.parseInt(option) - 1].drawTask();
 				}
@@ -121,63 +119,6 @@ public class Main {
 				+ "." + Integer.toString(fin.get(Calendar.YEAR));
 		 System.out.print(" Начало задания:  " + startingDate + ",    Конец задания:  " + finishingDate);
 	}
-
-
-	/**<p>Пременю для отработки задач 1-8 с данными из командной строки</p>
-	 * Отрисовывает список задач для выполнения и осуществляет переход на задачу по выбору пользователя
-	 * @param taskList массив задач для перехода
-	 * @param args параметры командной строки для передачи в выбранную задачу
-	 */
-	private static void drawPreMenuForArgs(Task[] taskList, String[] args) {
-		while (true) {			
-			Scanner in = new Scanner(System.in);
-			drawPreMenuTitle(); 
-			drawPreMenuTable(taskList); 	
-			Task.printEmptyLines(13);
-			System.out.print(" Введите номер задачи (00 для выхода в меню)");
-			try {
-				String option = in.nextLine();
-				if (Integer.parseInt(option) == 0) {
-					break;
-				} else if ((Integer.parseInt(option) > 0) && (Integer.parseInt(option) < 9)) {
-					taskList[Integer.parseInt(option) - 1].drawTask(args);
-					break;
-				}
-			} catch (Exception e) {
-				System.out.println("Неверный ввод номера задачи");
-			}
-
-		}
-	}
-
-
-	/**<p>Вывод списка задач для выполнения с данными из командной строки</p>
-	 * Отрисовывает таблицу составленную из массива задач
-	 * @param taskList массив задач для перехода
-	 */
-	private static void drawPreMenuTable(Task[] taskList) {
-		String menu = " ╔══════════════════════════════════════╦═════════════════════════════════════╗\r\n";
-		for (int i = 0; i < 4; i++) {
-			menu += " ║" + String.format("%02d", taskList[i].getId()) + "." + taskList[i].getShortName() + getNeededSpaces(taskList[i].getShortName()) 
-					 + " ║" + String.format("%02d", taskList[i + 4].getId()) + "." + taskList[i + 4].getShortName() + getNeededSpaces(taskList[i + 4].getShortName()) + "║\r\n";
-		}
-		menu += " ╚══════════════════════════════════════╩═════════════════════════════════════╝";
-		System.out.println(menu);
-	}
-
-
-	/**
-	 * Выводит на консоль заглавие таблицы выбора задачи
-	 */
-	private static void drawPreMenuTitle() {
-		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-							" ║                Выберите задачу которую следует решить, используя           ║\r\n" +
-							" ║                     данные из параметров командной строки                  ║\r\n" +
-							" ╚════════════════════════════════════════════════════════════════════════════╝");
-
-		
-	}
-
 
 	/**<p>Вывод списка задач для выполнения</p>
 	 * Отрисовывает таблицу составленную из массива задач
