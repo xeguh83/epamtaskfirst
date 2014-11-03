@@ -1,17 +1,22 @@
 package ru.epam.task2.math;
 
+import java.util.HashMap;
+
 import ru.epam.task2.gui.Task;
 
 public class LeastSquareMethod extends Task {
+	private HashMap<Integer, Double> mapI, mapU, mapR;
 
 	public LeastSquareMethod(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
+		mapI = new HashMap<Integer, Double>();
+		mapU = new HashMap<Integer, Double>();
+		mapR = new HashMap<Integer, Double>();
+		HashMap<Integer, Double> map = new HashMap<Integer, Double>();
 		
 	}
 
