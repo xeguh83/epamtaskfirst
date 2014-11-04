@@ -239,6 +239,10 @@ public abstract class Task {
 	}
 	
 	protected static boolean writeStringsToFile(String file, String[] strings) {
+		if (strings.length == 0) {
+			strings = new String[1];
+			strings[0] = "";
+		}
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("./" + file));
 			for (int i = 0; i < strings.length - 1; i++) {
