@@ -168,7 +168,7 @@ public class Main {
 				taskList[9] = new SearchDifWords("Поиск отличающихся слов (HashSet)", getStringsFromFile("task10.txt"));
 				taskList[10] = new FreqDifWords("Поиск отличающихся слов (HashMap)", getStringsFromFile("task11.txt"));
 				taskList[11] = new ArrayListVersusLinkedList("Выбывание каждого второго из круга");
-				taskList[12] = new SortSet("Решение квадратных уравнений", getStringsFromFile("task13.txt"));
+				taskList[12] = new SortSet("Сортировка списка по возрастанию", getStringsFromFile("task13.txt"));
 				taskList[13] = new Graph("Создание неориентированного графа");
 				taskList[14] = new NumStorage("Структура для хранения чисел");
 				taskList[15] = new TwoSetsToOne("Объединение двух списков в один", getStringsFromFile("task16.txt"));

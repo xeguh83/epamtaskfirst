@@ -1,5 +1,8 @@
 package ru.epam.task2.list;
 
+import java.util.Collections;
+import java.util.LinkedList;
+
 import ru.epam.task2.gui.Task;
 
 public class SortSet extends Task{
@@ -11,7 +14,11 @@ public class SortSet extends Task{
 
 	@Override
 	protected void doLogic() {
-		// TODO Auto-generated method stub
+		LinkedList<Integer> list = new LinkedList<Integer>();
+		Collections.sort(list);
+		for (Integer integer : list) {
+			
+		}
 		
 	}
 
