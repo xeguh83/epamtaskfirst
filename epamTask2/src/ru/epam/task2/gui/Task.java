@@ -257,9 +257,49 @@ public abstract class Task {
 		return true;
 	}
 	
-	protected String getFormattedResult(double result) {
-		Formatter f = new Formatter();
-		return f.format("%#8.2f", result).toString();
+	protected String askOption(String message) {
+		System.out.print(message);
+		try {
+			Scanner in = new Scanner(System.in);
+			return in.nextLine();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	protected void drawSreen(Object obj) {
+		drawTitle();
+		int stringsCount = drawStructure(obj);
+		printEmptyLines(15 - stringsCount);
 	}
 
+	protected int drawStructure(Object obj) {
+		String[] strings = splitStringEvery(obj.toString(), 79);
+		for (String string : strings) {
+			System.out.println(string);
+		}
+		return strings.length;
+	}
+	
+	protected String[] splitStringEvery(String s, int interval) {
+	    int arrayLength = (int) Math.ceil(((s.length() / (double)interval)));
+	    String[] result = new String[arrayLength];
+	    if (result.length == 0) {
+	    	return result;
+	    }
+	    int j = 0;
+	    int lastIndex = result.length - 1;
+	    for (int i = 0; i < lastIndex; i++) {
+	        result[i] = s.substring(j, j + interval);
+	        j += interval;
+	    }
+	    result[lastIndex] = s.substring(j);
+	    return result;
+	}
+	
+	protected void printError(Object obj, String string) {
+		drawSreen(obj);
+		System.out.print(string + " ");
+		pressAnyKey();
+	}
 }
