@@ -21,9 +21,9 @@ public class Graph extends Task {
 	protected void doLogic() {
 		int vertexCount = askVertexCount();
 		graph = new NumGraph(vertexCount);
-		while(true) {
-			drawSreen();
-			String option = askOption();
+		while (true) {
+			drawSreen(graph);
+			String option = askOption(" Введите действие с ребром (\"+\" добавление, \"-\" удаление, 0 выход в меню): ");
 			if (option.equals("+")) {
 				addEdgeToGraph();
 			} else if (option.equals("-")) {
@@ -36,7 +36,7 @@ public class Graph extends Task {
 
 	private void removeEdgeFromGraph() {
 		while (true) {
-			drawSreen();
+			drawSreen(graph);
 			System.out.print(" Введите вершины удаляемого ребра (формат X,Y)");
 			try {
 				Scanner in = new Scanner(System.in);
@@ -49,7 +49,7 @@ public class Graph extends Task {
 					vertexes[i] = Integer.parseInt(words[i]);
 				}
 				if (!graph.removeEdge(vertexes[0], vertexes[1])){
-					printError(" Ошибка удаления ребра из графа!");
+					printError(graph, " Ошибка удаления ребра из графа!");
 				} else {
 					return;
 				}
@@ -59,16 +59,10 @@ public class Graph extends Task {
 		}
 		
 	}
-
-	private void drawSreen() {
-		drawTitle();
-		int stringsCount = drawgraph();
-		printEmptyLines(15 - stringsCount);
-	}
 	
 	private void addEdgeToGraph() {
 		while (true) {
-			drawSreen();
+			drawSreen(graph);
 			System.out.print(" Введите вершины добавляемого ребра (формат X,Y)");
 			try {
 				Scanner in = new Scanner(System.in);
@@ -81,7 +75,7 @@ public class Graph extends Task {
 					vertexes[i] = Integer.parseInt(words[i]);
 				}
 				if (!graph.addEdge(vertexes[0], vertexes[1])) {
-					printError(" Ошибка добавления ребра в граф!");
+					printError(graph, " Ошибка добавления ребра в граф!");
 				} else {
 					return;
 				}
@@ -90,38 +84,6 @@ public class Graph extends Task {
 			}
 		}
 		
-	}
-
-	private void printError(String string) {
-		drawSreen();
-		System.out.print(string + " ");
-		pressAnyKey();
-	}
-
-	private String askOption() {
-		System.out.print(" Введите действие с ребром (\"+\" добавление, \"-\" удаление, 0 выход в меню): ");
-		try {
-			Scanner in = new Scanner(System.in);
-			return in.nextLine();
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-	private String[] splitStringEvery(String s, int interval) {
-	    int arrayLength = (int) Math.ceil(((s.length() / (double)interval)));
-	    String[] result = new String[arrayLength];
-	    if (result.length == 0) {
-	    	return result;
-	    }
-	    int j = 0;
-	    int lastIndex = result.length - 1;
-	    for (int i = 0; i < lastIndex; i++) {
-	        result[i] = s.substring(j, j + interval);
-	        j += interval;
-	    }
-	    result[lastIndex] = s.substring(j);
-	    return result;
 	}
 
 	private int askVertexCount() {
@@ -142,13 +104,13 @@ public class Graph extends Task {
 		}
 	}
 
-	private int drawgraph() {
-		String[] strings = splitStringEvery(graph.toString(), 79);
-		for (String string : strings) {
-			System.out.println(string);
-		}
-		return strings.length;
-	}
+//	protected int drawStructure() {
+//		String[] strings = splitStringEvery(graph.toString(), 79);
+//		for (String string : strings) {
+//			System.out.println(string);
+//		}
+//		return strings.length;
+//	}
 
 	@Override
 	protected void drawTitle() {

@@ -48,7 +48,7 @@ public class PairwiseSetSigma extends Task {
 		}
 		drawTitle();
 		double result = getPairwiseSetSigma(numSet);
-		System.out.println(" Многоэтапная попарная сумма элементов множества равна: " + getFormattedResult(result));
+		System.out.println(" Многоэтапная попарная сумма элементов множества равна: " + String.format("%#8.2f", result));
 		printEmptyLines(12);
 	}
 
