@@ -1,6 +1,8 @@
 package ru.epam.task2.collection;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -30,7 +32,7 @@ public class NumStorage extends Task {
 		            sb.append(e.equals(this) ? "(this Collection)" : String.format("%#8.2f", e));
 		            if (! it.hasNext())
 		                return sb.append(']').toString();
-		            sb.append(',').append(' ');
+		            sb.append(';').append(' ');
 		        }
 			}
 		};
@@ -66,28 +68,23 @@ public class NumStorage extends Task {
 					printError(structure, " Ошибка поиска! Структура пустая!");
 				} else {
 					printError(structure, " Ближайший к" + String.format("%#8.2f", value) 
-							+ " элемент это" + String.format("%#8.2f", getClosestValue(value)));
+							+ " элемент это" + String.format("%#16.8f", getClosestValue(value)));
 					return;
 				}
 			} catch (Exception e) {
-				printError(structure, " Ошибка удаления числа из структуры!");
+				printError(structure, " Ошибка поиска числа в структуре!");
 			}
 		}
 	}
 
-	private String getClosestValue(Double value) {
-//		int myNumber = 490;
-//		int distance = Math.abs(numbers[0] - myNumber);
-//		int idx = 0;
-//		for(int c = 1; c < numbers.length; c++){
-//		    int cdistance = Math.abs(numbers[c] - myNumber);
-//		    if(cdistance < distance){
-//		        idx = c;
-//		        distance = cdistance;
-//		    }
-//		}
-//		int theNumber = numbers[idx];
-		return null;
+	private Double getClosestValue(Double value) {
+		HashMap<Double, Double> dif = new HashMap<Double, Double>();
+		Iterator<Double> iter = structure.iterator();
+		while (iter.hasNext()) {
+			Double structElement = iter.next();
+			dif.put(Math.abs(structElement - value), structElement);
+		}
+		return dif.get(Collections.min(dif.keySet()));
 	}
 
 	private void removeElement() {
