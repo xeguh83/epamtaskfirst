@@ -2,8 +2,10 @@ package ru.epam.task2.geometry;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import ru.epam.task2.gui.Task;
 
@@ -16,7 +18,13 @@ public class LinesThroughPoints extends Task {
 	@Override
 	protected void doLogic() {
 		List<Dot> dotsList = getDotsFromLines(getStrings());
-		if ((dotsList.equals(null)) || (dotsList.size() < 3)) {
+		if (dotsList.equals(null)) {
+			drawTitle();
+			System.out.println(" Ошибка чтения данных из файла. Точки должны быть записаны \n\r" 
+					+ " в файл построчно в формате Целое,Целое");
+			printEmptyLines(13);
+			return;
+		} else if (dotsList.size() < 3) {
 			drawTitle();
 			System.out.println(" На основании данных из файла невозможно построить ни одной прямой");
 			printEmptyLines(14);
@@ -26,18 +34,30 @@ public class LinesThroughPoints extends Task {
 		drawTitle();
 		System.out.println(" Перечень прямых проходящих больше чем через 2 из заданых точек выведен в файл task17output.txt");
 		printEmptyLines(14);
-		writeStringsToFile("task17output.txt", linesMap.values().toArray(new String[linesMap.size()]));
+		writeStringsToFile("task17output.txt", mapToStringArray(linesMap));
+	}
+
+	private String[] mapToStringArray(Map<Integer, Line> linesMap) {
+		String[] strings = new String[linesMap.size()];
+		int index = 0;
+		for (Line mapValue : linesMap.values()) {
+			strings[index] = mapValue.toString();
+			index++;
+		}
+		return strings;
 	}
 
 	private Map<Integer, Line> getLinesMapFromDotsList(List<Dot> dotsList) {
 		Map<Integer, Line> lines = new HashMap<Integer, Line>();
 		for (Dot dot : dotsList) {
 			for (int i = 0; i < dotsList.size(); i++) {
-				if (dot.equals(dotsList.get(i))) {
+				// перебираем все точки кроме текущей 
+				if (dot.equals(dotsList.get(i))) { 
 					continue;
 				}
-				Line line = new Line(dot.getX(), dot.getY(), dotsList.get(i).getX(), dotsList.get(i).getY());
+				Line line = new Line(dot, dotsList.get(i));
 				for (int j = 0; j < dotsList.size(); j++) {
+					// пропускаем при переборе точки по которым построена прямая 
 					if (dotsList.get(j).equals(dot) || dotsList.get(j).equals(dotsList.get(i))) {
 						continue;
 					}
@@ -57,7 +77,7 @@ public class LinesThroughPoints extends Task {
 		if (strings.length == 0) {
 			return null;
 		}
-		List<Dot> dots = new ArrayList<Dot>();
+		Set<Dot> dots = new HashSet<Dot>();
 		try {
 			for (String string : strings) {
 				String[] dot = string.split(",");
@@ -69,13 +89,19 @@ public class LinesThroughPoints extends Task {
 		} catch (Exception e) {
 			return null;
 		}
-		return dots;
+		return new ArrayList<Dot>(dots);
 	}
 
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
-		
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+		 			" ║   Задача №15. Реализовать структуру хранения чисел с поддержкой операций   ║\r\n" +
+		 			" ║        добавления, удаления и поиска ближайшего по значению элемента       ║\r\n" +
+		 			" ╚════════════════════════════════════════════════════════════════════════════╝");
+System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+		 			" ║ Добавление/удаление ребер происходит через запрос действия у пользователя: ║\r\n" +
+		 			" ║         \"+\" добавление, \"-\" удаление, \"?\" поиск, 0 выход в меню.           ║\r\n" +
+		 			" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 	
 	public class Dot {
@@ -161,15 +187,29 @@ public class LinesThroughPoints extends Task {
 		/**
 		 * Конструктор для вычисления коэфициентов прямой построенной по двум точкам. Уравнение прямой по двум точкам
 		 * имеет вид <code>(1/(y2-y1))y=(1/(x2-x1))x+(y1/(y2-y1)-x1/(x2-x1))</code> или <code>ay=kx+b</code>
-		 * @param x1 значение абсциссы точки А
-		 * @param y1 значение ординаты точки А
-		 * @param x2 значение абсциссы точки В
-		 * @param y2 значение ординаты точки В
+		 * @param dotA первая точка для построения прямой
+		 * @param dotB вторая точка для построения прямой
 		 */
-		public Line(int x1, int y1, int x2, int y2) {
-			a = 1 / (y2 - y1);
-			b = (y1 / (y2 - y1)) - (x1 / (x2 - x1));
-			k = 1 / (x2 - x1);
+		public Line(Dot dotA, Dot dotB) {
+			int x1 = dotA.getX();
+			int y1 = dotA.getY();
+			int x2 = dotB.getX();
+			int y2 = dotB.getY();
+			// ситуация когда прямая вида x=число			
+			if (x1 == x2) {
+				a = 0;
+				k = 1;
+				b = x1;
+			// ситуация когда прямая вида y=число
+			} else if (y1 == y2) {
+				a = 1;
+				k = 0;
+				b = y1;
+			} else {				
+				a = 1 / (y2 - y1);
+				k = 1 / (x2 - x1);
+				b = (y1 / (y2 - y1)) - (x1 / (x2 - x1));
+			}
 			dotsCount = 2;
 		}
 		
@@ -247,6 +287,15 @@ public class LinesThroughPoints extends Task {
 			return true;
 		}
 
+		/* (non-Javadoc)
+		 * @see java.lang.Object#toString()
+		 */
+		@Override
+		public String toString() {
+			return "(" + String.format("%#8.2f", a) + ")*y = (" + String.format("%#8.2f", k) + ")*x + (" + String.format("%#8.2f", b) + ")";
+		}
+
+		
 		
 	}
 	
