@@ -183,7 +183,6 @@ public class Main {
 				e.printStackTrace();
 			}
 		return taskList;
-		
 	}
 
 
@@ -197,7 +196,7 @@ public class Main {
 	 */
 	private static String[] getStringsFromFile(String file) throws IOException {
 		
-			BufferedReader reader = new BufferedReader(new FileReader(new File("./" + file)));
+			BufferedReader reader = new BufferedReader(new FileReader(new File("./inputdata/" + file)));
 		   
 		    ArrayList<String> store = new ArrayList<String>();
 		    String line;

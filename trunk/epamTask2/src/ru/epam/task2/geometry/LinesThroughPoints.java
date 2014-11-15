@@ -10,6 +10,7 @@ import java.util.Set;
 import ru.epam.task2.gui.Task;
 
 public class LinesThroughPoints extends Task {
+	private List<Dot> dotsList;
 
 	public LinesThroughPoints(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
@@ -17,8 +18,7 @@ public class LinesThroughPoints extends Task {
 
 	@Override
 	protected void doLogic() {
-		List<Dot> dotsList = getDotsFromLines(getStrings());
-		if (dotsList.equals(null)) {
+		if (!getDotsFromLines(getStrings())) {
 			drawTitle();
 			System.out.println(" Ошибка чтения данных из файла. Точки должны быть записаны \n\r в файл построчно в формате Целое,Целое");
 			printEmptyLines(13);
@@ -32,7 +32,7 @@ public class LinesThroughPoints extends Task {
 		Map<Integer, Line> linesMap = getLinesMapFromDotsList(dotsList);
 		drawTitle();
 		System.out.println(" Перечень прямых проходящих больше чем через 2 из заданых точек выведен\n\r в файл task17output.txt");
-		printEmptyLines(14);
+		printEmptyLines(13);
 		writeStringsToFile("task17output.txt", mapToStringArray(linesMap));
 	}
 
@@ -82,23 +82,24 @@ public class LinesThroughPoints extends Task {
 		return true;
 	}
 
-	private List<Dot> getDotsFromLines(String[] strings) {
+	private boolean getDotsFromLines(String[] strings) {
 		if (strings.length == 0) {
-			return null;
+			return false;
 		}
 		Set<Dot> dots = new HashSet<Dot>();
 		try {
 			for (String string : strings) {
 				String[] dot = string.split(",");
 				if (dot.length != 2) {
-					return null;
+					return false;
 				}
 				dots.add(new Dot(Integer.parseInt(dot[0]), Integer.parseInt(dot[1])));
 			}
 		} catch (Exception e) {
-			return null;
+			return false;
 		}
-		return new ArrayList<Dot>(dots);
+		this.dotsList = new ArrayList<Dot>(dots);
+		return true;
 	}
 
 	@Override
