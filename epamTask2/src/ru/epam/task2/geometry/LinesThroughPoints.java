@@ -20,8 +20,7 @@ public class LinesThroughPoints extends Task {
 		List<Dot> dotsList = getDotsFromLines(getStrings());
 		if (dotsList.equals(null)) {
 			drawTitle();
-			System.out.println(" Ошибка чтения данных из файла. Точки должны быть записаны \n\r" 
-					+ " в файл построчно в формате Целое,Целое");
+			System.out.println(" Ошибка чтения данных из файла. Точки должны быть записаны \n\r в файл построчно в формате Целое,Целое");
 			printEmptyLines(13);
 			return;
 		} else if (dotsList.size() < 3) {
@@ -32,7 +31,7 @@ public class LinesThroughPoints extends Task {
 		}
 		Map<Integer, Line> linesMap = getLinesMapFromDotsList(dotsList);
 		drawTitle();
-		System.out.println(" Перечень прямых проходящих больше чем через 2 из заданых точек выведен в файл task17output.txt");
+		System.out.println(" Перечень прямых проходящих больше чем через 2 из заданых точек выведен\n\r в файл task17output.txt");
 		printEmptyLines(14);
 		writeStringsToFile("task17output.txt", mapToStringArray(linesMap));
 	}
@@ -57,20 +56,30 @@ public class LinesThroughPoints extends Task {
 				}
 				Line line = new Line(dot, dotsList.get(i));
 				for (int j = 0; j < dotsList.size(); j++) {
-					// пропускаем при переборе точки по которым построена прямая 
+					// пропускаем при переборе точки по которым построена прямая и те которые уже проверялись на принадлежность
 					if (dotsList.get(j).equals(dot) || dotsList.get(j).equals(dotsList.get(i))) {
 						continue;
 					}
-					if (line.hasDot(dotsList.get(j).getX(), dotsList.get(j).getY())) {
+					if (line.hasDotByCoordinates(dotsList.get(j).getX(), dotsList.get(j).getY())) {
 						line.incrementDotsCount();
+						line.addDot(dotsList.get(j));
 					}
 				}
-				if (line.getDotsCount() > 2) {
+				if ((line.getDotsCount() > 2) && hasNoProportionalLines(lines, line)) {
 					lines.put(line.hashCode(), line);
 				}
 			}
 		}
 		return lines;
+	}
+
+	private boolean hasNoProportionalLines(Map<Integer, Line> lines, Line otherLine) {
+		for (Line line : lines.values()) {
+			if (line.isProportionalToAnotherLine(otherLine)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	private List<Dot> getDotsFromLines(String[] strings) {
@@ -95,13 +104,13 @@ public class LinesThroughPoints extends Task {
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-		 			" ║   Задача №15. Реализовать структуру хранения чисел с поддержкой операций   ║\r\n" +
-		 			" ║        добавления, удаления и поиска ближайшего по значению элемента       ║\r\n" +
-		 			" ╚════════════════════════════════════════════════════════════════════════════╝");
-System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
-		 			" ║ Добавление/удаление ребер происходит через запрос действия у пользователя: ║\r\n" +
-		 			" ║         \"+\" добавление, \"-\" удаление, \"?\" поиск, 0 выход в меню.           ║\r\n" +
-		 			" ╚════════════════════════════════════════════════════════════════════════════╝");
+				 			" ║ Задача №17. По заданым координатам точек на плоскости вывести в файл описа-║\r\n" +
+				 			" ║  ние прямых проходящих более чем через 2 точки и указать количество точек  ║\r\n" +
+		 					" ╚════════════════════════════════════════════════════════════════════════════╝");
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+				 			" ║    Координаты точек считываются построчно из файла task17.txt в формате    ║\r\n" +
+				 			" ║      Целое,Целое Уравнение прямых записываются в файл task17output.txt     ║\r\n" +
+		 					" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 	
 	public class Dot {
@@ -168,20 +177,28 @@ System.out.println(" ╔══════════════════�
 	public class Line {
 		
 		/**
+		 * Список точек которые уже проверялись на принадлежность текущей прямой
+		 */
+		private final List<Dot> dotsContains;
+		
+		/**
 		 * коэффициент при <code>y</code> в уравнении <code>ay=kx+b</code>
 		 */
-		private final double a;
+		private double a;
 		
 		/**
 		 * коэффициент свободного члена в уравнении <code>ay=kx+b</code>
 		 */
-		private final double b;
+		private double b;
 		
 		/**
 		 * коэффициент при <code>x</code> в уравнении <code>ay=kx+b</code>
 		 */
-		private final double k;
+		private double k;
 		
+		/**
+		 * Количество заданых точек которые содержит текущая прямая
+		 */
 		private int dotsCount;
 		
 		/**
@@ -191,29 +208,85 @@ System.out.println(" ╔══════════════════�
 		 * @param dotB вторая точка для построения прямой
 		 */
 		public Line(Dot dotA, Dot dotB) {
-			int x1 = dotA.getX();
-			int y1 = dotA.getY();
-			int x2 = dotB.getX();
-			int y2 = dotB.getY();
+			double x1 = dotA.getX();
+			double y1 = dotA.getY();
+			double x2 = dotB.getX();
+			double y2 = dotB.getY();
 			// ситуация когда прямая вида x=число			
 			if (x1 == x2) {
-				a = 0;
-				k = 1;
-				b = x1;
+				a = 0d;
+				k = 1d;
+				b = 0d - x1;
 			// ситуация когда прямая вида y=число
 			} else if (y1 == y2) {
-				a = 1;
-				k = 0;
+				a = 1d;
+				k = 0d;
 				b = y1;
 			} else {				
-				a = 1 / (y2 - y1);
-				k = 1 / (x2 - x1);
+				a = 1d / (y2 - y1);
+				k = 1d / (x2 - x1);
 				b = (y1 / (y2 - y1)) - (x1 / (x2 - x1));
 			}
-			dotsCount = 2;
+			this.dotsCount = 2;
+			this.dotsContains = new ArrayList<Dot>();
+			this.dotsContains.add(dotA);
+			this.dotsContains.add(dotB);
 		}
 		
-		public boolean hasDot(int x, int y) {
+		public boolean isProportionalToAnotherLine(Line otherLine) {
+			// прямые точно не идентичны если один из пары коэффициентов равен 0
+			if ((b != otherLine.getB()) && ((b == 0) || (otherLine.getB() == 0))) {
+				return false;
+			} else if ((a != otherLine.getA()) && ((a == 0) || (otherLine.getA() == 0))) {
+				return false;
+			} else if ((k != otherLine.getK()) && ((k == 0) || (otherLine.getK() == 0))) {
+				return false;
+			}
+			
+			// случай если прямые вида ay=kx
+			if (b == 0) {
+				if ((k == 0) || (a == 0)) {
+					return true;
+				} else {
+					return (a / otherLine.getA()) == (k / otherLine.getK());
+				}
+			}
+			
+			// случай когда прямые вида ay=b
+			if (k == 0) {
+				if ((a == 0) || (b == 0)) {
+					return true;
+				} else {
+					return (a / otherLine.getA()) == (b / otherLine.getB());
+				}
+			}
+			
+			// случай когда прямые вида kx=b
+			if (a == 0) {
+				if ((k == 0) || (b == 0)) {
+					return true;
+				} else {
+					return (k / otherLine.getK()) == (b / otherLine.getB());
+				}
+			}
+			
+			// случай когда прямые вида ay=kx+b
+			return (a / otherLine.getA()) == (k / otherLine.getK()) 
+				&& (a / otherLine.getA()) == (b / otherLine.getB()) 
+				&& (k / otherLine.getK()) == (b / otherLine.getB());
+		}
+
+		public void addDot(Dot dot) {
+			if (!this.dotsContains.contains(dot)) {
+				this.dotsContains.add(dot);
+			}
+		}
+		
+		public boolean hasDot(Dot dot) {
+			return this.dotsContains.contains(dot);
+		}
+		
+		public boolean hasDotByCoordinates(int x, int y) {
 			return (a * y) == ((k * x) + b);
 		}
 		
@@ -292,7 +365,8 @@ System.out.println(" ╔══════════════════�
 		 */
 		@Override
 		public String toString() {
-			return "(" + String.format("%#8.2f", a) + ")*y = (" + String.format("%#8.2f", k) + ")*x + (" + String.format("%#8.2f", b) + ")";
+			return "(" + String.format("%#8.2f", a) + ")*y = (" + String.format("%#8.2f", k) + ")*x + (" + String.format("%#8.2f", b) + ") [" 
+					+ dotsCount + "]";
 		}
 
 		
