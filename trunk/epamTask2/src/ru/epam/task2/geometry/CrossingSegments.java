@@ -29,6 +29,7 @@ public class CrossingSegments extends Task {
 							 + " Отрезки в файле должны быть записаны построчно\r\n" 
 							 + " в формате Целое,Целое;Целое,Целое");
 			printEmptyLines(12);
+			return;
 		}
 		Set<RPoint2D> set = BentleyOttmann.intersections(setOfSegments);
 		Map<RPoint2D, RPoint2D> map = new TreeMap<RPoint2D, RPoint2D>(new RPoint2DComparator());
