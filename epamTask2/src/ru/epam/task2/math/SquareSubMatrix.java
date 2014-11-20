@@ -8,14 +8,8 @@ public class SquareSubMatrix extends Task {
 	
 	private SubMatrix maxSubMatrix;
 	
-	private final Integer[][] matrix = {
-			{ 1,  2,  3,  4,  5},
-			{ 6,  7,  8,  9, 10},
-			{11, 12, 13, 14, 15},
-			{16, 17, 18, 19, 20},
-			{21, 22, 23, 24, 25}
-	};
-
+	private Integer[][] matrix;
+	
 	public SquareSubMatrix(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 		maxSubMatrix = new SubMatrix(0);
@@ -23,8 +17,23 @@ public class SquareSubMatrix extends Task {
 
 	@Override
 	protected void doLogic() {
-		
-		
+		drawTitle();
+		matrix = getMatrixFromStringArray();
+		if (matrix.length == 0) {
+			System.out.println(" Ошибка чтения матрицы из файла или некорректный формат! \r\n" 
+							 + " Матрица должна быть записана построчно и элементы по горизонтали \r\n" 
+							 + " должны быть разделены пробелами. Длина строк матрицы должна быть одинакова");
+			printEmptyLines(12);
+			return;
+		}
+		setMaxSubMatrix();
+		System.out.println(" Найдена подматрица одинаковых элементов максимальной площади!");
+		System.out.println(" Координаты её главной диагонали и количество элементов равны:");
+		System.out.println(" " + maxSubMatrix);
+		printEmptyLines(12);
+	}
+
+	private void setMaxSubMatrix() {
 		// перебор матрицы построчно		
 		for (int j = 0; j < matrix.length; j++) {
 			for (int i = 0; i < matrix[j].length; i++) {
@@ -49,29 +58,16 @@ public class SquareSubMatrix extends Task {
 						if (!matrix[j][i].equals(matrix[y][x])) {
 							line = false;
 							break;
+						} else {
+							setMaxSubMatrixOfCurrentElement(j, i, y, x);
 						}
 					}
 					if (!line) break;
 					countLines++;
 				}
 				setMaxSubMatrixOfCurrentElement(j, i, j + countLines - 1, i + gorizont.size() - 1);
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 			}
 		}
-		
-		
-		
-		
-		
 	}
 
 	private void setMaxSubMatrixOfCurrentElement(int y1, int x1, int y2, int x2) {
@@ -83,8 +79,14 @@ public class SquareSubMatrix extends Task {
 
 	@Override
 	protected void drawTitle() {
-		// TODO Auto-generated method stub
-		
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+				 			" ║ Задача №20. Найти в матрице целых чисел прямоугольную подматрицу, состоящую║\r\n" +
+				 			" ║ из максимального количества одинаковых элементов. Использовать класс Stack ║\r\n" +
+				 			" ╚════════════════════════════════════════════════════════════════════════════╝");
+		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
+				 			" ║   Данные матрицы загружаются из файла task20.txt построчно с разделением   ║\r\n" +
+				 			" ║              пробелами. Результат расчета выводится на экран               ║\r\n" +
+				 			" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 
 	public class SubMatrix {
@@ -104,6 +106,12 @@ public class SquareSubMatrix extends Task {
 		
 		public SubMatrix(int zero) {
 			this.size = zero;
+		}
+		
+		@Override
+		public String toString() {
+			return "[(" + (leftUpperX + 1) + "," + (leftUpperY + 1) + ") .. (" + (rightDownerX + 1) 
+					+ "," + (rightDownerY + 1) + ")] size = " + size; 
 		}
 
 		/**
