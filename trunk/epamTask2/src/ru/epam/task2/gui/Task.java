@@ -167,34 +167,30 @@ public abstract class Task {
 	 * Метод возвращает матрицу в виде двухмерного массива считанную из массива строк.
 	 * Строки матрицы соответствуют строкам массива. Разделение по столбцам происходит 
 	 * по пробелам между числами. Метод использует парсинг отдельных слов в числа типа 
-	 * <code>double</code>. В случае если строки матрицы имеют неодинаковую длину или
+	 * <code>Integer</code>. В случае если строки матрицы имеют неодинаковую длину или
 	 * слова в строке содержать некорректный формат чисел, преобразование в матрицу 
 	 * считается некорректным и возвращается матрица нулевой длины    
 	 * @return матрица полученная из массива строк
 	 */
-	protected double[][] getMatrixFromStringArray() {
-		ArrayList<Double> doublelist = new ArrayList<Double>();
-		double[][] array = new double[incomingStrings.length][];
+	protected Integer[][] getMatrixFromStringArray() {
+		Integer[][] array = new Integer[incomingStrings.length][];
 		try {
 			for (int i = 0; i < array.length; i++) {
 				String[] words = incomingStrings[i].split("\\s");
-				array[i] = new double[words.length]; 
+				array[i] = new Integer[words.length]; 
 				for (int j = 0; j < array[i].length; j++) {
-					array[i][j] = Double.parseDouble(words[j]);
-					if (Double.isNaN(array[i][j])) {
-						throw new NumberFormatException("С числами типа NaN вычисления не имеют смысла");
-					}
+					array[i][j] = Integer.parseInt(words[j]);
 				}
 			}			
 			if (array.length > 1) {
 				for (int i = 0; i < array.length - 1; i++) {
 					if (array[i].length != array[i + 1].length) {
-						return new double[0][0];
+						return new Integer[0][0];
 					}
 				}
 			}
 		} catch (Exception e) {
-			return new double[0][0];
+			return new Integer[0][0];
 		}
 		return array;
 	}
