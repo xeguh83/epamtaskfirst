@@ -40,4 +40,27 @@ public class OvertakingSet {
 		}
 		return stringList.toArray(new String[stringList.size()]);
 	}
+
+	public void setKfirstOvertakings(List<Car> carList, int k) {
+		while (overSet.size() < k) {
+			for (Car car : carList) {
+				car.setFinWay(car.getStartWay() + car.getVelocity()); // fin = start + V * t, при t = 1
+			}
+			for (Car car : carList) {
+				for (Car otherCar : carList) {
+					if (car.equals(otherCar)) continue;
+					if ((car.getStartWay() < otherCar.getStartWay()) 
+							&& (car.getFinWay() >= otherCar.getFinWay())) {
+						overSet.add(new Overtaking(car, otherCar));
+						if (overSet.size() >= k) return;
+					}
+				}
+			}
+			for (Car car : carList) {
+				car.setStartWay(car.getFinWay());
+			}
+			
+			
+		}
+	}
 }
