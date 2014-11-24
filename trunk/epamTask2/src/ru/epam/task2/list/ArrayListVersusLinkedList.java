@@ -21,14 +21,17 @@ public class ArrayListVersusLinkedList extends Task {
 		Integer[] array = fillArrayOfInt(arraySize);
 		String option = askTypeOfCollection();
 		Integer answer = null;
+		long startTime = System.nanoTime();
 		if (option.equals("ArrayList")) {
 			answer = getAnswerUsingArrayList(array);
 		} else {
 			answer = getAnswerUsingLinkedList(array);
 		}
+		long endTime = System.nanoTime();
 		drawTitle();
 		System.out.println(" Оставшийся единственный элемент: " + answer);
-		printEmptyLines(14);
+		System.out.println(" Расчет с использованием " + option + " занял " + (endTime - startTime) + " нс"); 
+		printEmptyLines(13);
 	}
 
 	private Integer getAnswerUsingLinkedList(Integer[] array) {

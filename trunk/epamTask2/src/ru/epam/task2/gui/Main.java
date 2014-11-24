@@ -97,6 +97,9 @@ public class Main {
 	}
 		
 	
+	/**
+	 * Вывод панели описывающей правила работы программы
+	 */
 	private static void printHelpPanel() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 							" ║ Загрузка начальных данных происходит при запуске программы. Для того чтобы ║\r\n" +
@@ -109,11 +112,11 @@ public class Main {
 	 * Метод выводит в консоль дату выдачи задания и дату окончания работ по заданию
 	 */
 	private static void printTaskDate() {
-		Calendar begin = new GregorianCalendar(2014, 9, 24);
+		Calendar begin = new GregorianCalendar(2014, 10, 10);
 		String startingDate = Integer.toString(begin.get(Calendar.DAY_OF_MONTH)) 
 				+ "." + Integer.toString(begin.get(Calendar.MONTH) + 1) 
 				+ "." + Integer.toString(begin.get(Calendar.YEAR));
-		Calendar fin = new GregorianCalendar(2014, 10, 10);
+		Calendar fin = new GregorianCalendar(2014, 11, 24);
 		String finishingDate = Integer.toString(fin.get(Calendar.DAY_OF_MONTH)) 
 				+ "." + Integer.toString(fin.get(Calendar.MONTH) + 1) 
 				+ "." + Integer.toString(fin.get(Calendar.YEAR));
@@ -222,7 +225,7 @@ public class Main {
 	public static void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
 				 			" ║                  Добро пожаловать в программу демонстрирующую              ║\r\n" +
-				 			" ║                     решение задач Теста №1 от <epam> Systems               ║\r\n" +
+				 			" ║                     решение задач Теста №2 от <epam> Systems               ║\r\n" +
 				 			" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 	
