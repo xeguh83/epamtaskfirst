@@ -1,5 +1,10 @@
 package ru.epam.task2.cars;
 
+/**
+ * <p>Служебный класс машина</p>
+ * Класс служит 
+ * @author например Андрей
+ */
 public class Car {
 	
 	private final Integer startPos;

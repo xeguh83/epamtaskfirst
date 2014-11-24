@@ -233,6 +233,17 @@ public abstract class Task {
 		System.out.println(f);
 	}
 	
+	/**
+	 * <p>Запись строкового массива в текстовый файл построчно</p>
+	 * Метод записывает в файл полученный массив строк построчно (каждый элемент массива на новой строке).
+	 * Для записи файла требуется создать в корневой папке каталог "outputdata". Если каталог не будет создан - файл не
+	 * будет создан, но программа не выдаст ошибки. В случае если в указанной папке нет файла имя которого передается в параметре, 
+	 * файл с данными будет создан с указанным именем. Если файл с указанным именем существует, но он не пустой, то метод сотрет его 
+	 * содержимое и запишет в него данные, как если бы файла не существовало.   
+	 * @param file имя файла для записи данных в каталоге /outputdata/
+	 * @param strings массив строк для построчной записи в файл
+	 * @return <code>true</code> в случае успешной записи в файл и <code>false</code> в случае если при записи в файл возникли ошибки 
+	 */
 	protected static boolean writeStringsToFile(String file, String[] strings) {
 		if (strings.length == 0) {
 			strings = new String[1];
@@ -251,6 +262,11 @@ public abstract class Task {
 		return true;
 	}
 	
+	/**
+	 * Метод выводит в консоль строку из параметра и ожидает ввода строки на той же линии 
+	 * @param message строка для вывода в консоль
+	 * @return строка введенная пользователем
+	 */
 	protected String askOption(String message) {
 		System.out.print(message);
 		try {
@@ -261,12 +277,23 @@ public abstract class Task {
 		}
 	}
 	
+	/**
+	 * Служебный метод для циклической отрисовки задачи с выводом элементов коллекции. Метод 
+	 * выводит в консоль заголовок, под заголовком выводит по-элементно переданную в параметре коллекцию,
+	 * затем делает отступ строк в зависимости от того сколько строк заняла выведенная в консоль коллекция
+	 * @param obj абстрактная коллекция для вывода в консоль
+	 */
 	protected void drawSreen(Object obj) {
 		drawTitle();
 		int stringsCount = drawStructure(obj);
 		printEmptyLines(15 - stringsCount);
 	}
 
+	/**
+	 * Метод выводит в консоль поэлементно всю коллекцию и возвращает число занятых на это строк
+	 * @param obj абстрактная коллекция для вывода в консоль
+	 * @return кол-во строк выведенной в консоль коллекции
+	 */
 	protected int drawStructure(Object obj) {
 		String[] strings = splitStringEvery(obj.toString(), 79);
 		for (String string : strings) {
@@ -275,6 +302,12 @@ public abstract class Task {
 		return strings.length;
 	}
 	
+	/**
+	 * Метод возвращает массив строк, заполненных содержимым коллекции. Длина строк равна переданному параметру
+	 * @param s строка содержащая все данные коллекции
+	 * @param interval длина возвращаемой строки
+	 * @return массив строк с длиной равной переданному параметру
+	 */
 	protected String[] splitStringEvery(String s, int interval) {
 	    int arrayLength = (int) Math.ceil(((s.length() / (double)interval)));
 	    String[] result = new String[arrayLength];
@@ -291,6 +324,11 @@ public abstract class Task {
 	    return result;
 	}
 	
+	/**
+	 * Метод выводит панель задания, содержимое коллекции и выводит переданный текст ошибки, после чего ожидает ввода строки
+	 * @param obj абстрактная коллекция для вывода
+	 * @param string строка с текстом ошибки
+	 */
 	protected void printError(Object obj, String string) {
 		drawSreen(obj);
 		System.out.print(string + " ");
