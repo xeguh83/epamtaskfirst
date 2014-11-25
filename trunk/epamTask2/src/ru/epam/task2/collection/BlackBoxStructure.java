@@ -7,14 +7,34 @@ import java.util.TreeSet;
 import ru.epam.task2.gui.Task;
 
 
+/**
+ * <p>Класс задания № 21</p>
+ * Класс отрисовывает задание и содержит структуру "черный ящик" в которую можно добавлять элементы и получать К-ый по минимальности элемент.
+ * Число К вводится пользователем
+ * @author Туркин А.К.
+ */
 public class BlackBoxStructure extends Task {
 	
+	/**
+	 * Структура "черный ящик" реализованная внутренним классом NumStructure
+	 */
 	private NumStructure struct;
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание и исходные данные по входящим параметрам
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public BlackBoxStructure(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод содержит тело задания. Метод проверяет исходные данные и если они некорректны, извещает пользователя об этом и завершает
+	 * работу. Если данные корректны, метод начинает циклично отрисовывать экран состоящий из панели задания и текущего содержимого 
+	 * "черного ящика", а также предлагает пользователю ввести символ действия со структурой. При корректном вводе вызывается 
+	 * соответствующий метод, а затем экран снова перерисовывается.
+	 */
 	@Override
 	protected void doLogic() {
 		drawTitle();
@@ -39,12 +59,23 @@ public class BlackBoxStructure extends Task {
 		}
 	}
 
+	/**
+	 * Метод перерисовывает экран состоящий из панели задания и текущего содержимого 
+	 * "черного ящика" и выводит К-ый по минимальности элемент структуры. К вводится пользователем в методе <code>updateK()</code>. 
+	 * По-умолчанию, К = 1.
+	 * @see #updateK()
+	 */
 	private void findMinKElement() {
 		drawSreen(struct);
 		System.out.print(" K-ый по минимальности элемент это:" + String.format("%#8.2f", struct.getMinKElement()));
 		pressAnyKey();
 	}
 
+	/**
+	 * Метод перерисовывает экран состоящий из панели задания и текущего содержимого 
+	 * "черного ящика" и запрашивает новое значение целого К у пользователя. В случае ошибки
+	 * метод перерисовывает экран и повторяет запрос
+	 */
 	private void updateK() {
 		while (true) {
 			drawSreen(struct);
@@ -65,6 +96,12 @@ public class BlackBoxStructure extends Task {
 		}
 	}
 
+	/**
+	 * Метод перерисовывает экран состоящий из панели задания и текущего содержимого 
+	 * "черного ящика" и запрашивает у пользователя очередное значение элемента структуры. В случае ошибочного ввода 
+	 * пользователь извещается об этом и экран перерисовывается с повтором ввода. Если такой элемент уже добавлен в структуру
+	 * пользователь также об этом извещается. После корректного ввода метод завершает работу
+	 */
 	private void addElement() {
 		while (true) {
 			drawSreen(struct);
@@ -86,6 +123,12 @@ public class BlackBoxStructure extends Task {
 		}
 	}
 
+	/**
+	 * Метод инициализирует структуру объектом класса <code>NumStructure()</code>. В структуру поочередно добавляются
+	 * элементы из исходных данных. В случае корректного элемента он добавляется по правилам метода <code>add()</code> 
+	 * класса <code>NumStructure()</code>
+	 * @return <code>true</code> если все исходные данные корректно добавлены в структуру. Иначе возращает <code>false</code>
+	 */
 	private boolean setStruct() {
 		struct = new NumStructure();
 		String[] words = getWordsFromStringArray();
@@ -104,6 +147,9 @@ public class BlackBoxStructure extends Task {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
@@ -116,11 +162,26 @@ public class BlackBoxStructure extends Task {
 		 					" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 
+	/**
+	 * Внутренний служебный класс содержащий структуру хранения действительных чисел на базе класса <code>TreeSet</code>
+	 * @author Туркин А.К.
+	 */
 	private class NumStructure {
 		
+		/**
+		 * Набор чисел для хранения
+		 */
 		private final TreeSet<Double> numSet;
+		/**
+		 * Внутреннее число К
+		 */
 		private int k;
 		
+		/**
+		 * Конструктор инициализирует набор действительных чисел используя коллекцию <code>TreeSet</code> и переопределяет в 
+		 * нем метод <code>toString()</code> для более удобного отображения содержимого коллекции. Также конструктор задает значение
+		 * числа К по умолчанию равным 1.
+		 */
 		public NumStructure() {
 			numSet = new TreeSet<Double>() {
 				@Override
@@ -143,6 +204,10 @@ public class BlackBoxStructure extends Task {
 			k = 1;
 		}
 
+		/**
+		 * Метод возвращает К-ый по минимальности элемент коллекции
+		 * @return К-ый по минимальности элемент
+		 */
 		public Double getMinKElement() {
 			if (k >= numSet.size()) {
 				return numSet.last();
@@ -156,6 +221,12 @@ public class BlackBoxStructure extends Task {
 			return it.next();
 		}
 
+		/**
+		 * Метод добавляет элемент в коллекцию по правилам метода <code>add()</code> класса <code>TreeSet</code>
+		 * @param num элемент для добавления в коллекцию
+		 * @return возвращает значение по правилам метода <code>add()</code> класса <code>TreeSet</code>
+		 * @see java.util.TreeSet#add(Object)
+		 */
 		public boolean add(Double num) {
 			return numSet.add(num);
 		}

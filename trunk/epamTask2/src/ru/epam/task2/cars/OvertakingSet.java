@@ -5,22 +5,47 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * <p>Служебный класс набор разных обгонов</p>
+ * Предназначен для хранения разных обгонов и обладает методами для работы с ними
+ * @author Туркин А.К.
+ */
 public class OvertakingSet {
 	
+	/**
+	 * набор обгонов
+	 */
 	private final Set<Overtaking> overSet;
 	
+	/**
+	 * Коструктор инициализирующий набор обгонов
+	 */
 	public OvertakingSet() {
 		overSet = new HashSet<Overtaking>();
 	}
 	
-	public void addOvertaking(Overtaking over) {
+	/**
+	 * Метод добавляет обгон в набор по правилам добавления елемента в коллекцию <code>HashSet</code>
+	 * @param over объект обгона
+	 */
+	public void addOvertakоing(Overtaking over) {
 		overSet.add(over);
 	}
 	
+	/**
+	 * Метод возвращает размер набора обгонов
+	 * @return размер набора обгонов
+	 */
 	public int getOverCount() {
 		return overSet.size();
 	}
 	
+	/**
+	 * Метод делает перебор по всему переданному списку машин сравнивая каждую машину с каждой. В случае если стартовая 
+	 * позиция первой машины раньше чем второй и скорость первой машины больше чем второй, то обгон обязательно случится, 
+	 * соответственно метод добавляет объект такого обгона в набор  
+	 * @param carList список машин
+	 */
 	public void setAllOvertakings(List<Car> carList) {
 		for (Car car : carList) {
 			for (Car otherCar : carList) {
@@ -32,6 +57,10 @@ public class OvertakingSet {
 		}
 	}
 	
+	/**
+	 * Метод возращает строковую интерпретацию обгонов в виде строкового массива
+	 * @return строковый массив обгонов
+	 */
 	public String[] getStrings() {
 		List<String> stringList = new ArrayList<String>();
 		for (Overtaking over : overSet) {
@@ -41,6 +70,11 @@ public class OvertakingSet {
 		return stringList.toArray(new String[stringList.size()]);
 	}
 
+	/**
+	 * Метод возращает первые k обгонов в соответствии с переданными параметрами
+	 * @param carList список машин
+	 * @param k требуемое количество первых обгонов
+	 */
 	public void setKfirstOvertakings(List<Car> carList, int k) {
 		while (overSet.size() < k) {
 			for (Car car : carList) {

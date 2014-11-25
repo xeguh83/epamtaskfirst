@@ -5,15 +5,30 @@ import java.util.List;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс задания 22</p>
+ * Класс содержит методы по отрисовке и вычислению задачи: вывод всех обгонов на трассе по заданным параметрам машин
+ * @author Туркин А.К.
+ */
 public class OvertakingCount extends Task {
 	
 	private OvertakingSet overs;
 	private List<Car> carList;
 
+	/**
+	 * Конструктор задания передающий наследуемому классу краткое описание задания и массив исходных данных из файла
+	 * @param shortName краткое описание задачи
+	 * @param incomingStrings массив исходных данных из файла
+	 */
 	public OvertakingCount(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод содержащий тело задания. Метод отрисовывает задание и проверяет список машин. 
+	 * В случае ошибки считывания данных метод выводит информацию об этом пользователю и завершает работу. 
+	 * Метод выводит количество обгонов на экран, а их описание записывает в файл.
+	 */
 	@Override
 	protected void doLogic() {
 		overs = new OvertakingSet();
@@ -31,6 +46,10 @@ public class OvertakingCount extends Task {
 		printEmptyLines(14);
 	}
 
+	/**
+	 * Метод инициализирует список машин и заполняет его значениями из массива <code>incommingStrings</code>
+	 * @return <code>true</code> в случае успешной записи списка машин и <code>false</code> при наличии ошибок
+	 */
 	private boolean setCarList() {
 		carList = new ArrayList<Car>();
 		String[] cars = getStrings();
@@ -47,6 +66,9 @@ public class OvertakingCount extends Task {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

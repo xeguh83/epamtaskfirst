@@ -5,16 +5,45 @@ import java.util.List;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс задания 23</p>
+ * Класс выполняет отрисовку задания и выполняет следующую логику: выводит в файл описание первых К обгонов,
+ * количество которых вводится пользователем при выполнении программы, а список машин загружается из файла. 
+ * @author Туркин А.К.
+ */
+/**
+ * @author Например Андрей
+ *
+ */
 public class FirstKOvertakings extends Task{
 	
+	/**
+	 * Объект набора обгонов
+	 */
 	private OvertakingSet overs;
+	/**
+	 * Список машин
+	 */
 	private List<Car> carList;
+	/**
+	 * требуемое количество обгонов
+	 */
 	private int k;
 
+	/**
+	 * Конструктор задания передающий наследуемому классу краткое описание задания и массив исходных данных из файла
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public FirstKOvertakings(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод содержащий тело задания. Метод отрисовывает задание и проверяет список машин, а затем запрашивает искомое число обгонов. 
+	 * Если список машин содержит некорректные данные или введенное число обгонов больше реального числа обгонов, метод выводит пользователю
+	 * сообщение об ошибке.
+	 */
 	@Override
 	protected void doLogic() {
 		overs = new OvertakingSet();
@@ -42,6 +71,9 @@ public class FirstKOvertakings extends Task{
 		printEmptyLines(14);
 	}
 
+	/**
+	 * Метод выводит запрос пользователю на ввод требуемого количества обногов
+	 */
 	private void setK() {
 		while (true) {
 			drawTitle();
@@ -57,6 +89,9 @@ public class FirstKOvertakings extends Task{
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
@@ -69,6 +104,10 @@ public class FirstKOvertakings extends Task{
 							" ╚════════════════════════════════════════════════════════════════════════════╝");
 	}
 
+	/**
+	 * Метод инициализирует список машин и заполняет его значениями из массива <code>incommingStrings</code>
+	 * @return <code>true</code> в случае успешной записи списка машин и <code>false</code> при наличии ошибок
+	 */
 	private boolean setCarList() {
 		carList = new ArrayList<Car>();
 		String[] cars = getStrings();
