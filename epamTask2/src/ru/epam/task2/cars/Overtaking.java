@@ -1,13 +1,21 @@
 package ru.epam.task2.cars;
 
+/**
+ * <p>Служебный класс обгон</p>
+ * Служит для формирования объекта обгона заданный входящими параметрами типа машин. В классе переопределены методы 
+ * <code>equals()</code> и <code>hashcode()</code>. Обгон у которого 2 машины-участника заданы теми же машинами, но в другом 
+ * порядке считается тем же объектом обгона
+ * @author Туркин А.К.
+ */
 public class Overtaking {
 	
 	private final Car firstCar;
 	private final Car secondCar;
 	
 	/**
-	 * @param firstCar
-	 * @param secondCar
+	 * Конструктор для создания объекта обгона по заданным 2м машинам
+	 * @param firstCar первая машина участвующая в обгоне
+	 * @param secondCar вторая машина участвующая в обгоне
 	 */
 	public Overtaking(Car firstCar, Car secondCar) {
 		this.firstCar = firstCar;
@@ -77,7 +85,4 @@ public class Overtaking {
 			return false;
 		}
 	}
-	
-	
-	
 }

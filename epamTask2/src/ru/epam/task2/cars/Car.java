@@ -2,22 +2,35 @@ package ru.epam.task2.cars;
 
 /**
  * <p>Служебный класс машина</p>
- * Класс служит 
- * @author например Андрей
+ * Класс служит для формирования класса обгона. Содержит параметры машин и методы работы с ними
+ * @author Туркин А.К.
  */
 public class Car {
 	
+	/**
+	 * стартовая позиция машины на треке
+	 */
 	private final Integer startPos;
+	/**
+	 * скорость машины (величина постоянная)
+	 */
 	private final Integer velocity;
 	
+	/**
+	 * начало пути за отрезок времени
+	 */
 	private Integer startWay;
+	/**
+	 * конец пути за отрезок времени
+	 */
 	private Integer finWay;
 	
 	/**
-	 * @param startPos
-	 * @param velocity
+	 * Конструктор задает стартовую позицию и скорость машины по входным данным, 
+	 * а также инициализирует начало пути значением стартовой позиции
+	 * @param startPos стартовая позиция на треке в метрах относительно стартовой линии
+	 * @param velocity постоянная скорость машины в метрах за секунду
 	 */
-	
 	public Car(Integer startPos, Integer velocity) {
 		this.startPos = startPos;
 		this.velocity = velocity;
