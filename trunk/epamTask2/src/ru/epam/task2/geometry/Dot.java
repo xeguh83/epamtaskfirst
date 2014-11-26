@@ -1,5 +1,9 @@
 package ru.epam.task2.geometry;
 
+/**
+ * Класс описывающий точку в двумерном пространстве по заданным координатам
+ * @author Туркин А.К.
+ */
 public class Dot {
 	private final int x;
 	private final int y;
