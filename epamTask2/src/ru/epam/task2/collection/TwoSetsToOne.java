@@ -10,15 +10,30 @@ import java.util.TreeSet;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс реализует задание № 16</p>
+ * Класс отрисовывает задание и содержит методы по его реализации
+ * @author aturkin
+ */
 public class TwoSetsToOne extends Task {
 	private List<Double> firstList;
 	private List<Double> secondList;
 		
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание и исходные данные по входящим параметрам
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public TwoSetsToOne(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод проверяет на корректность входящие данные и в случае корректных данных преобразует их в 2 списка,
+	 * затем сортирует первый список, объединяет их и затем сортирует уже объединенный список. Результат записывается
+	 * в файл 
+	 */
 	@Override
 	protected void doLogic() {
 		String[] words = getWordsFromStringArray();
@@ -37,6 +52,10 @@ public class TwoSetsToOne extends Task {
 		writeStringsToFile("task16output.txt", getStringArray(resList));
 	}
 	
+	/**
+	 * Метод объединяет 2 списка из полей <code>firstList</code> и <code>secondList</code>, а затем сортирует полученный список
+	 * @return
+	 */
 	private List<Double> combineAndSortLists() {
 		List<Double> res = new ArrayList<Double>(firstList);
 		res.addAll(secondList);
@@ -44,6 +63,12 @@ public class TwoSetsToOne extends Task {
 		return res;
 	}
 
+	/**
+	 * Метод анализирует массив слов из параметра и преобразует его в 2 списка положительных действительных чисел разделенных отрицательным 
+	 * числом, а затем записывает полученные 2 списка в поля <code>firstList</code> и <code>secondList</code>
+	 * @param words массив положительных чисел
+	 * @return <code>true</code> в случае корректного преобразвания входящих данных и <code>false</code> в обратном случае
+	 */
 	private boolean sureDataIsCorrectSetsAndSetLists(String[] words) {
 		Set<Double> firstSet = new HashSet<Double>();
 		Set<Double> secondSet = new HashSet<Double>();
@@ -71,6 +96,11 @@ public class TwoSetsToOne extends Task {
 		return true;
 	}
 
+	/**
+	 * Метод преобразует список действительных чисел в строковый массив с округлением до 8 знаков после запятой
+	 * @param list список чисел
+	 * @return строковое представление списка чисел
+	 */
 	private String[] getStringArray(List<Double> list) {
 		Iterator<Double> iter = list.iterator();
 		String[] stringArray = new String[list.size()];
@@ -80,6 +110,9 @@ public class TwoSetsToOne extends Task {
 		return stringArray;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

@@ -12,15 +12,33 @@ import ru.epam.task2.gui.Task;
 import compgeom.RLineSegment2D;
 import compgeom.RPoint2D;
 
+/**
+ * <p>Класс реализующий задание № 19</p>
+ * Класс отрисовывает задание и вычисляет точку пересечения заданных отрезков с наименьшей абсциссой. Класс использует для расчетов библиотеку из 
+ * <code>CompGeom-0.3.jar</code>
+ * @author Туркин А.К.
+ */
 public class CrossingSegments extends Task {
 	
+	/**
+	 * Набор отрезков реализованных классом <code>RLineSegment2D</code>
+	 */
 	private Set<RLineSegment2D> setOfSegments;
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание и исходные данные по входящим параметрам
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public CrossingSegments(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 
 	}
 
+	/**
+	 * Метод проверяет корректность инициализации списка отрезков по входящим данным. В случае ошибки метод информирует об этом пользователя.
+	 * В случае корректных данных метод выводит на экран точку пересечения отрезков с наименьшей абсциссой
+	 */
 	@Override
 	protected void doLogic() {
 		if (!initSetOfSegments(getStrings())) {
@@ -42,6 +60,11 @@ public class CrossingSegments extends Task {
 		printEmptyLines(14);
 	}
 
+	/**
+	 * Метод проверяет на корректность и инициализирует набор отрезков по входящим данным
+	 * @param segments входящие данные отрезков в виде строкового массива
+	 * @return <code>true</code> в случае успешного преобразования данных, иначе <code>false</code>
+	 */
 	private boolean initSetOfSegments(String[] segments) {
 		this.setOfSegments = new HashSet<RLineSegment2D>(); 
 		try {
@@ -63,6 +86,9 @@ public class CrossingSegments extends Task {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
@@ -75,6 +101,10 @@ public class CrossingSegments extends Task {
 							" ╚════════════════════════════════════════════════════════════════════════════╝");	
 	}
 	
+	/**
+	 * Компаратор для точек для сравнения их абсцисс
+	 * @author Туркин А.К.
+	 */
 	private class RPoint2DComparator implements Comparator<RPoint2D> {
 
 		@Override
