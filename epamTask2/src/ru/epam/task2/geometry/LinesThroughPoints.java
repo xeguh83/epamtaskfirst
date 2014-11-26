@@ -9,13 +9,30 @@ import java.util.Set;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс реализующий задание № 17</p>
+ * Класс расчитывает все возможные прямые построенные по точкам из входных данных и записывает в файл только
+ * те прямые, которые проходят больше чем через 2 точки
+ * @author Туркин А.К.
+ */
 public class LinesThroughPoints extends Task {
 	private List<Dot> dotsList;
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание и исходные данные по входящим параметрам
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public LinesThroughPoints(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод содержит тело задачи. Метод проверяет корректность входящих данных. Если данные считались с ошибками, то метод информирует
+	 * об этом пользователя и завершает работу. В случае корректных данных метод проверяет количество элементов в списке точек. Если точек 
+	 * не менее 3 метод продолжает вычисления. Далее метод выводит коллекцию прямых проходящих более чем через 2 точки из заданных в 
+	 * файл и завершает свою работу
+	 */
 	@Override
 	protected void doLogic() {
 		if (!getDotsFromLines(getStrings())) {
@@ -36,6 +53,11 @@ public class LinesThroughPoints extends Task {
 		writeStringsToFile("task17output.txt", mapToStringArray(linesMap));
 	}
 
+	/**
+	 * Метод преобразует коллекцию прямых в строковый массив используя строковую интерпретацию из класса <code>Line</code>
+	 * @param linesMap коллекция прямых
+	 * @return строковый массив с описанием прямых
+	 */
 	private String[] mapToStringArray(Map<Integer, Line> linesMap) {
 		String[] strings = new String[linesMap.size()];
 		int index = 0;
@@ -46,6 +68,12 @@ public class LinesThroughPoints extends Task {
 		return strings;
 	}
 
+	/**
+	 * Метод перебирает все возможные прямые построенные по переданным точкам и записывает в коллекцию только
+	 * те прямые которые проходят более чем через 2 точки
+	 * @param dotsList список точек из начальных данных
+	 * @return коллекция прямых проходящих более чем через 2 точки из заданых
+	 */
 	private Map<Integer, Line> getLinesMapFromDotsList(List<Dot> dotsList) {
 		Map<Integer, Line> lines = new HashMap<Integer, Line>();
 		for (Dot dot : dotsList) {
@@ -73,6 +101,12 @@ public class LinesThroughPoints extends Task {
 		return lines;
 	}
 
+	/**
+	 * Метод проверяет наличие указанной прямой в указанной коллекции прямых
+	 * @param lines коллекция прямых
+	 * @param otherLine прямая проверяемая на принадлежность
+	 * @return <code>true</code> если прямая уже есть в коллекции и <code>false</code> если такой прямой нет 
+	 */
 	private boolean hasNoProportionalLines(Map<Integer, Line> lines, Line otherLine) {
 		for (Line line : lines.values()) {
 			if (line.isProportionalToAnotherLine(otherLine)) {
@@ -82,6 +116,11 @@ public class LinesThroughPoints extends Task {
 		return true;
 	}
 
+	/**
+	 * Метод считавает исходные данные из параметра и в случае отсутствия ошибок записывает их в виде точек в список <code>dotsList</code>
+	 * @param strings массив строк из исходных данных
+	 * @return <code>true</code> если данные считались без ошибок, иначе <code>false</code>
+	 */
 	private boolean getDotsFromLines(String[] strings) {
 		if (strings.length == 0) {
 			return false;
@@ -102,6 +141,9 @@ public class LinesThroughPoints extends Task {
 		return true;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
@@ -115,6 +157,10 @@ public class LinesThroughPoints extends Task {
 	}
 	
 
+	/**
+	 * Класс реализующий прямую на двумерной плоскости
+	 * @author Туркин А.К.
+	 */
 	public class Line {
 		
 		/**
@@ -174,6 +220,11 @@ public class LinesThroughPoints extends Task {
 			this.dotsContains.add(dotB);
 		}
 		
+		/**
+		 * Метод проверяет идентичность двух прямых по уравнениям этих прямых
+		 * @param otherLine другая прямая для сравнения с текущей
+		 * @return <code>true</code> если прямые идентичны, иначе <code>false</code>
+		 */
 		public boolean isProportionalToAnotherLine(Line otherLine) {
 			// прямые точно не идентичны если один из пары коэффициентов равен 0
 			if ((b != otherLine.getB()) && ((b == 0) || (otherLine.getB() == 0))) {
@@ -217,20 +268,38 @@ public class LinesThroughPoints extends Task {
 				&& (k / otherLine.getK()) == (b / otherLine.getB());
 		}
 
+		/**
+		 * Метод добавляет переданную точку в список точек из исходных данных которые лежат на текущей прямой
+		 * @param dot добавляемая точка
+		 */
 		public void addDot(Dot dot) {
 			if (!this.dotsContains.contains(dot)) {
 				this.dotsContains.add(dot);
 			}
 		}
 		
+		/**
+		 * Метод проверяет содержит ли список точек <code>dotsContains</code> указанную точку
+		 * @param dot точка проверяемая на содержание в списке
+		 * @return <code>true</code> если указанная точка присутствует в списке, иначе <code>false</code>
+		 */
 		public boolean hasDot(Dot dot) {
 			return this.dotsContains.contains(dot);
 		}
 		
+		/**
+		 * Метод проверяет лежит ли точка по указанным координатам на текущей прямой
+		 * @param x абсцисса точки
+		 * @param y ордината точки
+		 * @return <code>true</code> если точка лежит на прямой, иначе <code>false</code>
+		 */
 		public boolean hasDotByCoordinates(int x, int y) {
 			return (a * y) == ((k * x) + b);
 		}
 		
+		/**
+		 * Метод увеличивает значение поля <code>dotsCount</code> на 1
+		 */
 		public void incrementDotsCount() {
 			dotsCount++;
 		}
