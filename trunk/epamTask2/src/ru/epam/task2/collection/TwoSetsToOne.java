@@ -46,15 +46,16 @@ public class TwoSetsToOne extends Task {
 		List<Double> resList = combineAndSortLists();
 		System.out.println(" 2 набора положительных чисел были считаны из файла task16.txt");
 		System.out.println(" Наборы преобразованы в списки. Первый список отсортирован по ");
-		System.out.println(" возрастанию, затем наборы были объединены в один общий список, который также был отсортирован");
-		System.out.println(" по возрастанию. Результат будет выведен в файл task16output.txt");
-		printEmptyLines(11);
+		System.out.println(" возрастанию, затем наборы были объединены в один общий список, ");
+		System.out.println(" который также был отсортирован по возрастанию.");
+		System.out.println(" Результат будет выведен в файл task16output.txt");
+		printEmptyLines(10);
 		writeStringsToFile("task16output.txt", getStringArray(resList));
 	}
 	
 	/**
 	 * Метод объединяет 2 списка из полей <code>firstList</code> и <code>secondList</code>, а затем сортирует полученный список
-	 * @return
+	 * @return возращает отсортированный объединенный список
 	 */
 	private List<Double> combineAndSortLists() {
 		List<Double> res = new ArrayList<Double>(firstList);
