@@ -111,7 +111,7 @@ public class SquareSubMatrix extends Task {
 		@Override
 		public String toString() {
 			return "[(" + (leftUpperX + 1) + "," + (leftUpperY + 1) + ") .. (" + (rightDownerX + 1) 
-					+ "," + (rightDownerY + 1) + ")] size = " + size; 
+					+ "," + (rightDownerY + 1) + ")] количество элементов = " + size; 
 		}
 
 		/**
