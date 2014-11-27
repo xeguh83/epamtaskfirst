@@ -7,12 +7,30 @@ import java.util.Scanner;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс реализует задание № 13</p>
+ * Класс не используя дополнительных объектов переставляет элементы списка
+ * целых чисел так, чтобы сначала шли числа меньше заданного числа, а затем больше
+ * @author Туркин А.К.
+ */
 public class SortSet extends Task{
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание и исходные данные по входящим параметрам
+	 * @param shortName краткое описание задания
+	 * @param incomingStrings массив исходных данных
+	 */
 	public SortSet(String shortName, String[] incomingStrings) {
 		super(shortName, incomingStrings);
 	}
 
+	/**
+	 * Метод содержит тело задания. Сначала метод считывает слова из файла, затем преобразует 
+	 * их в массив чисел. При ошибке преобразования метод информирует об этом пользователя и 
+	 * завершает свою работу. Затем метод запрашивает у пользователя число, сортирует коллекцию 
+	 * полученную из массива чисел и выводит сначала те элементы которые меньше заданного числа, 
+	 * а затем те элементы которые больше
+	 */
 	@Override
 	protected void doLogic() {
 		Integer[] nums = wordsToIntegers(getWordsFromStringArray());
@@ -41,6 +59,11 @@ public class SortSet extends Task{
 		printEmptyLines(12);
 	}
 
+	/**
+	 * Метод циклично отрисовывает экран и запрашивает у пользователя число для сравнения чисел 
+	 * в списке. В случае ошибочного ввода метод перерисовывает экран и повторяет запрос
+	 * @return число введенное пользователем
+	 */
 	private Double askNumToCompare() {
 		while (true) {
 			drawTitle();
@@ -61,6 +84,12 @@ public class SortSet extends Task{
 		}
 	}
 
+	/**
+	 * Метод преобразует массив слов в массив целых чисел. В случае 
+	 * ошибки преобразования метод возвращает <code>null</code>
+	 * @param words список слов из файла
+	 * @return массив целых чисел
+	 */
 	private Integer[] wordsToIntegers(String[] words) {
 		Integer[] nums = new Integer[words.length];
 		try {
@@ -73,6 +102,9 @@ public class SortSet extends Task{
 		return nums;
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +

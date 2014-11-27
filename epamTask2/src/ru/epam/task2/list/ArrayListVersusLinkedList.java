@@ -25,6 +25,12 @@ public class ArrayListVersusLinkedList extends Task {
 
 	}
 
+	/**
+	 * Метод содержит тело задачи. Метод запрашивает пользователя о размере коллекции и ее типе 
+	 * (есть выбор между <code>ArrayList</code> и <code>LinkedList</code>). Затем метод выполняет 
+	 * алгоритм поэтапного исключения каждого второго элемента из коллекции, при этом выводится 
+	 * время работы метода и оставшийся после операции элемент
+	 */
 	@Override
 	protected void doLogic() {
 		int arraySize = askArraySize(); 
@@ -44,6 +50,12 @@ public class ArrayListVersusLinkedList extends Task {
 		printEmptyLines(13);
 	}
 
+	/**
+	 * Метод замыкает начало и конец списка и поэтапно исключает каждый второй элемент, пока не остаётся один единственный элемент.
+	 * Список реализуется классом <code>LinkedList</code> и формируется на базе переданного массива 
+	 * @param array массив целых чисел для преобразования в список
+	 * @return последний оставшийся элемент списка
+	 */
 	private Integer getAnswerUsingLinkedList(Integer[] array) {
 		LinkedList<Integer> list = new LinkedList<Integer>(Arrays.asList(array));
 		int index = 1;
@@ -59,6 +71,12 @@ public class ArrayListVersusLinkedList extends Task {
 		}
 		return list.get(0);	}
 
+	/**
+	 * Метод замыкает начало и конец списка и поэтапно исключает каждый второй элемент, пока не остаётся один единственный элемент.
+	 * Список реализуется классом <code>ArrayList</code> и формируется на базе переданного массива 
+	 * @param array массив целых чисел для преобразования в список
+	 * @return последний оставшийся элемент списка
+	 */
 	private Integer getAnswerUsingArrayList(Integer[] array) {
 		ArrayList<Integer> list = new ArrayList<Integer>(Arrays.asList(array)); 
 		int index = 1;
@@ -75,6 +93,12 @@ public class ArrayListVersusLinkedList extends Task {
 		return list.get(0);
 	}
 
+	/**
+	 * Метод циклично отрисовывает экран и запрашивает у пользователя выбранный по номеру тип
+	 * коллекции для выполнения алгоритма. В случае ошибочного ввода метод перерисовывает экран
+	 * и повторяет запрос
+	 * @return строковую интерпретацию выбранного типа коллекциии
+	 */
 	private String askTypeOfCollection() {
 		while (true) {
 			drawTitle();
@@ -97,6 +121,12 @@ public class ArrayListVersusLinkedList extends Task {
 		}
 	}
 
+	/**
+	 * Метод формирует массив целых чисел размера заданного параметром, заполненный 
+	 * последовательностью от 1 до значения равного размеру массива 
+	 * @param arraySize размер создаваемого массива чисел
+	 * @return заполненный массив целых чисел заданного размера
+	 */
 	private Integer[] fillArrayOfInt(int arraySize) {
 		Integer[] array = new Integer[arraySize];
 		for (int i = 0; i < array.length; i++) {
@@ -105,7 +135,12 @@ public class ArrayListVersusLinkedList extends Task {
 		return array;
 	}
 
-	// Разница заметна при 100000 элементах
+	// Разница заметна при 50000 элементах
+	/**
+	 * Метод циклично отрисовывает экран и запрашивает у пользователя размер будущей коллекции
+	 * для выполнения алгоритма. В случае ошибочного ввода метод перерисовывает экран и повторяет запрос
+	 * @return размер будущей коллекции
+	 */
 	private int askArraySize() {
 		while (true) {
 			drawTitle();
@@ -124,6 +159,9 @@ public class ArrayListVersusLinkedList extends Task {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see ru.epam.task2.gui.Task#drawTitle()
+	 */
 	@Override
 	protected void drawTitle() {
 		 System.out.println(" ╔════════════════════════════════════════════════════════════════════════════╗\r\n" +
