@@ -7,9 +7,19 @@ import java.util.Scanner;
 
 import ru.epam.task2.gui.Task;
 
+/**
+ * <p>Класс реализует задание № 12</p>
+ * Класс реализует алгоритм циклиного вычеркивания из списка каждого второго элемента пока не останется один элемент.
+ * Список реализуется 2мя способами: на базе <code>ArrayList</code> и на базе <code>LinkedList</code>. Класс выводит время операции в 
+ * наносекундах чтобы можно было сравнить какая из реализации эффективнее  
+ * @author Туркин А.К. 
+ */
 public class ArrayListVersusLinkedList extends Task {
-	private final Integer[] array = {1,2,3,4,5,6,7,8,9,10};
 
+	/**
+	 * Конструктор передает наследуемому классу краткое описание задания
+	 * @param shortName краткое описание задания
+	 */
 	public ArrayListVersusLinkedList(String shortName) {
 		super(shortName);
 
