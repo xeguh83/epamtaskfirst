@@ -11,14 +11,20 @@ import javax.swing.JPanel;
 import ru.etu.oop.containers.MyScrollPane;
 import ru.etu.oop.containers.TableToolBar;
 import ru.etu.oop.containers.ToolBar;
+import ru.etu.oop.data.Controller;
 import ru.etu.oop.data.Data;
 
 public class MainFrame extends JFrame {
+	
+	private final Controller ctrl;
 	
 	private final static int DEFAULT_WIDTH = 800;
 	private final static int DEFAULT_HEIGHT = 746;
 	
 	public MainFrame() {
+		
+		this.ctrl = new Controller();
+		
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -33,8 +39,8 @@ public class MainFrame extends JFrame {
 		panel.setLayout(new BorderLayout());
 		panel.add(new TableToolBar("Панель управления таблицей"), BorderLayout.NORTH);		
 		String[] col = {"Номер комнаты","Вместимость","ФИО Плательщика"};
-		MyScrollPane table = new MyScrollPane(getData(), col);
-		panel.add(table, BorderLayout.CENTER);
+		MyScrollPane table = new MyScrollPane(getData(), col, ctrl);
+		panel.add(table.getTable(), BorderLayout.CENTER);
 		
 		
 		

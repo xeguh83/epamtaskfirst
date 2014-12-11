@@ -4,15 +4,20 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import ru.etu.oop.data.Controller;
+
 public class InsertFrame extends JFrame {
 	
+	private Controller ctrl;
 	private String number;
 	private String fio;
 	
 	private final static int DEFAULT_WIDTH = 400;
 	private final static int DEFAULT_HEIGHT = 200;
 	
-	public InsertFrame() {
+	public InsertFrame(Controller ctrl) {
+		
+		this.ctrl = ctrl;
 		
 		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
 		setLocationRelativeTo(null);
