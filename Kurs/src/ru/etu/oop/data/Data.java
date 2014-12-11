@@ -32,5 +32,10 @@ public class Data {
 	}
 
 
+	public void updateRoom(int index, Room curRoom) {
+		rooms.set(index, curRoom);
+	}
+
+
 
 }
