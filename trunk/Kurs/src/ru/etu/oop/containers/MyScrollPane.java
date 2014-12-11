@@ -4,7 +4,6 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.Vector;
 
-import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,7 +23,6 @@ public class MyScrollPane {
 	}
 	public MyScrollPane(Vector<Room> data, String[] columnNames, final Controller ctrl) {
 		
-		this.ctrl = ctrl;
 		
 		table = new JTable(new DefaultTableModel(IOClass.roomsToArrays(data), columnNames)) {
 			@Override
@@ -34,6 +32,10 @@ public class MyScrollPane {
 			}
 		};
 		
+		this.ctrl = ctrl;
+		ctrl.setRoomTable(this);
+	
+
 		table.addMouseListener(new MouseListener() {
 			
 			@Override
@@ -63,26 +65,18 @@ public class MyScrollPane {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					InsertFrame frame = new InsertFrame(ctrl);
+					InsertFrame frame = new InsertFrame(table.getModel().getValueAt(table.getSelectedRow(), 0), table.getSelectedRow(), ctrl);
 					frame.setVisible(true);
-					
-//					table.getModel().getValueAt(rowIndex, columnIndex)
-//					System.out.println(table.getSelectedRow());
 				}
 				
 			}
 		});
-//		super(new JTable(new DefaultTableModel(IOClass.roomsToArrays(data), columnNames) {
-//
-//			/* (non-Javadoc)
-//			 * @see javax.swing.table.DefaultTableModel#isCellEditable(int, int)
-//			 */
-//			@Override
-//			public boolean isCellEditable(int row, int column) {
-//				return false;
-//			}
-//			
-//		})); 
+
+	}
+	public void refresh(Object fio, int rowIndex, int columnIndex) {
+		// TODO Auto-generated method stub
+		table.getModel().setValueAt(fio, rowIndex, columnIndex);
+		table.repaint();
 	}
 	
 	
