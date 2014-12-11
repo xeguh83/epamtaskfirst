@@ -20,8 +20,8 @@ public class insertButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 
-				InsertFrame frame = new InsertFrame();
-				frame.setVisible(true);
+//				InsertFrame frame = new InsertFrame();
+//				frame.setVisible(true);
 				
 			}
 		});
