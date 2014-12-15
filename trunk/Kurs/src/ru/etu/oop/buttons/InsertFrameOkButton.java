@@ -21,7 +21,7 @@ public class InsertFrameOkButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ctrl.updateTableFromFieldAndCloseInsertFrame();
+//				ctrl.updateTableFromFieldAndCloseInsertFrame();
 			}
 		});
 

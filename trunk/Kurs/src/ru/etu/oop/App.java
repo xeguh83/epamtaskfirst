@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
+import ru.etu.oop.data.Controller;
 import ru.etu.oop.frames.MainFrame;
 
 public class App {
@@ -13,10 +14,8 @@ public class App {
 			
 			@Override
 			public void run() {
-				
-				MainFrame frame = new MainFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				frame.setVisible(true);
+				Controller ctrl = new Controller(); 
+
 				
 				
 			}

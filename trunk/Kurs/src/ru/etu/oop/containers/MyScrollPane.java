@@ -2,6 +2,7 @@ package ru.etu.oop.containers;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.List;
 import java.util.Vector;
 
 import javax.swing.JTable;
@@ -21,16 +22,16 @@ public class MyScrollPane {
 	public JTable getTable() {
 		return table;
 	}
-	public MyScrollPane(Vector<Room> data, String[] columnNames, final Controller ctrl) {
+	public MyScrollPane(List<Room> data, String[] columnNames, final Controller ctrl) {
 		
 		
-		table = new JTable(new DefaultTableModel(IOClass.roomsToArrays(data), columnNames)) {
-			@Override
-			public boolean isCellEditable(int row, int column) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-		};
+//		table = new JTable(new DefaultTableModel(IOClass.roomsToArrays(data), columnNames)) {
+//			@Override
+//			public boolean isCellEditable(int row, int column) {
+//				// TODO Auto-generated method stub
+//				return false;
+//			}
+	//	};
 		
 		this.ctrl = ctrl;
 		ctrl.setRoomTable(this);
@@ -64,19 +65,17 @@ public class MyScrollPane {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				if (e.getClickCount() == 2) {
-					InsertFrame frame = new InsertFrame(table.getModel().getValueAt(table.getSelectedRow(), 0), table.getSelectedRow(), ctrl);
-					frame.setVisible(true);
-				}
+//				if (e.getClickCount() == 2) {
+//					InsertFrame frame = new InsertFrame(table.getModel().getValueAt(table.getSelectedRow(), 0), table.getSelectedRow(), ctrl);
+//					frame.setVisible(true);
+//				}
 				
 			}
 		});
 
 	}
 	public void refresh(Object fio, int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		table.getModel().setValueAt(fio, rowIndex, columnIndex);
-		table.repaint();
 	}
 	
 	
