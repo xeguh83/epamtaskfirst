@@ -21,7 +21,7 @@ public class InsertFrameCanselButton extends JButton{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ctrl.closeInsertFrame();
+//				ctrl.freeRoomAndCloseInsertFrame();
 			}
 		});
 	}

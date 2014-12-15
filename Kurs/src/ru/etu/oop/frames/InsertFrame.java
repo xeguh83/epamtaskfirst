@@ -1,5 +1,6 @@
 package ru.etu.oop.frames;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -8,25 +9,17 @@ import ru.etu.oop.buttons.InsertFrameCanselButton;
 import ru.etu.oop.buttons.InsertFrameOkButton;
 import ru.etu.oop.data.Controller;
 
-public class InsertFrame extends JFrame {
+public class InsertFrame extends JDialog {
 	
 	private final Controller ctrl;
-	private final Integer row;
 	
-	private final static int DEFAULT_WIDTH = 430;
-	private final static int DEFAULT_HEIGHT = 200;
-	
-	public InsertFrame(Object obj, int row, Controller ctrl) {
-		
+	public InsertFrame(String roomNumber, Controller ctrl) {
 		this.ctrl = ctrl;
-		ctrl.setInsertFrame(this);
-		
-		this.row = row;
-		
-		setSize(DEFAULT_WIDTH, DEFAULT_HEIGHT);
+
+		setSize(430, 200);
 		setLocationRelativeTo(null);
 		setResizable(false);
-		setTitle("Обновить статус комнаты " + obj.toString());
+		setTitle("Обновить статус комнаты " + roomNumber);
 		setLayout(null);
 		
 		JLabel label = new JLabel("Введите ФИО постояльца или освободите комнату");
@@ -55,12 +48,6 @@ public class InsertFrame extends JFrame {
 		cansel.setLocation(210, 100);
 		add(cansel);
 
-		
 	}
-	
-	public int getRow() {
-		return row;
-	}
-
 
 }

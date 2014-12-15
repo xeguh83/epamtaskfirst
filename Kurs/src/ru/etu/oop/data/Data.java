@@ -1,16 +1,17 @@
 package ru.etu.oop.data;
 
-import java.util.Vector;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Data {
 
-	private final Vector<Room> rooms;
+	private final List<Room> rooms;
 		
 	public Data() {
 		
-		rooms = new Vector<Room>();
-		String[] data = IOClass.getData();
-		for (String string : data) {
+		rooms = new ArrayList<Room>();
+		List<String> list = IOClass.getData();
+		for (String string : list) {
 			String[] words = string.split("\\|");
 			if (words.length != 3) return;
 			try {
@@ -27,7 +28,7 @@ public class Data {
 	/**
 	 * @return the rooms
 	 */
-	public Vector<Room> getRooms() {
+	public List<Room> getRooms() {
 		return rooms;
 	}
 

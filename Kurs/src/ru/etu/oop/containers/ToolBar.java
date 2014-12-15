@@ -10,6 +10,11 @@ public class ToolBar extends JToolBar {
 		
 		super(title);
 		
+		JButton save = new JButton(new ImageIcon("./img/save.png")); 
+		save.setToolTipText("Сохранить изменения данных в файл");
+		this.add(save);
+
+		
 		JButton prices = new JButton(new ImageIcon("./img/dollar.png")); 
 		prices.setToolTipText("Прейскурант");
 		this.add(prices);
