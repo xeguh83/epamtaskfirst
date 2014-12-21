@@ -3,12 +3,12 @@ package ru.etu.oop.frames;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import ru.etu.oop.buttons.InsertFrameCanselButton;
-import ru.etu.oop.buttons.InsertFrameOkButton;
 import ru.etu.oop.data.Controller;
 
 public class InsertFrame extends JDialog {
@@ -16,8 +16,8 @@ public class InsertFrame extends JDialog {
 	private final JDialog frame = this;
 	private final Controller ctrl;
 	private final JTextField textFieldFIO;
-	private final InsertFrameOkButton ok;
-	private final InsertFrameCanselButton cansel;
+	private final JButton ok;
+	private final JButton cansel;
 	
 	public InsertFrame(String roomNumber, final int selectedRow, final Controller ctrl) {
 		this.ctrl = ctrl;
@@ -39,35 +39,38 @@ public class InsertFrame extends JDialog {
 		add(labelField);
 		
 		textFieldFIO = new JTextField("", 20);
-		ctrl.setInsertFrameTextField(textFieldFIO);
 		textFieldFIO.setSize(270, 20);
 		textFieldFIO.setLocation(130, 50);
 		add(textFieldFIO);
 		
-		ok = new InsertFrameOkButton(ctrl);
+		ok = new JButton("Заселить клиента", new ImageIcon("./img/insert.png"));
 		ok.setSize(190, 40);
 		ok.setLocation(15, 100);
 		ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.updateTableFromField(selectedRow, textFieldFIO.getText());
-				frame.dispose();
+				ctrl.updateDataFromField(selectedRow, textFieldFIO.getText());
+				frame.setVisible(false);
 			}
 		});
 		add(ok);
 		
-		cansel = new InsertFrameCanselButton(ctrl);
+		cansel = new JButton("Освободить комнату", new ImageIcon("./img/free.png"));
 		cansel.setSize(190, 40);
 		cansel.setLocation(210, 100);
 		cansel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.updateTableFromField(selectedRow, "-");
-				frame.dispose();
+				ctrl.updateDataFromField(selectedRow, "-");
+				frame.setVisible(false);
 			}
 		});
 		add(cansel);
 
+	}
+
+	public String getFieldText() {
+		return textFieldFIO.getText();
 	}
 
 }
