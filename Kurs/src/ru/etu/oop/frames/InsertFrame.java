@@ -2,11 +2,13 @@ package ru.etu.oop.frames;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import ru.etu.oop.data.Controller;
@@ -18,7 +20,9 @@ public class InsertFrame extends JDialog {
 	private final JTextField textFieldFIO;
 	private final JButton ok;
 	private final JButton cansel;
+	private boolean correctlyClosed = false;
 	
+
 	public InsertFrame(String roomNumber, final int selectedRow, final Controller ctrl) {
 		this.ctrl = ctrl;
 		
@@ -49,8 +53,15 @@ public class InsertFrame extends JDialog {
 		ok.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.updateDataFromField(selectedRow, textFieldFIO.getText());
-				frame.setVisible(false);
+				String text = textFieldFIO.getText();
+				if (Pattern.compile(".[a-zA-Zа-яА-Я\\s]+").matcher(text).matches()) {
+					ctrl.updateDataFromField(selectedRow, textFieldFIO.getText());
+					setCorrectlyClosed(true);
+					frame.setVisible(false);					
+				} else {
+					JOptionPane.showMessageDialog(null, "Некорректный формат ФИО");
+					textFieldFIO.setText("");
+				}
 			}
 		});
 		add(ok);
@@ -61,7 +72,9 @@ public class InsertFrame extends JDialog {
 		cansel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textFieldFIO.setText("-");
 				ctrl.updateDataFromField(selectedRow, "-");
+				setCorrectlyClosed(true);
 				frame.setVisible(false);
 			}
 		});
@@ -73,4 +86,17 @@ public class InsertFrame extends JDialog {
 		return textFieldFIO.getText();
 	}
 
+	/**
+	 * @return the correctlyClosed
+	 */
+	public boolean isCorrectlyClosed() {
+		return correctlyClosed;
+	}
+	
+	/**
+	 * @param correctlyClosed the correctlyClosed to set
+	 */
+	public void setCorrectlyClosed(boolean correctlyClosed) {
+		this.correctlyClosed = correctlyClosed;
+	}
 }
