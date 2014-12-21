@@ -6,25 +6,15 @@ import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
-import ru.etu.oop.containers.MyScrollPane;
 import ru.etu.oop.frames.InsertFrame;
 import ru.etu.oop.frames.MainFrame;
 
 public class Controller {
 
 	private final Data data;
-	
 	private final MainFrame mainFrame;
-	
-	private InsertFrame insertFrame;
-	private JTextField insertFrameTextField;
 
-	private MyScrollPane myScrollPane;
-	
-	
-	
 	public Controller() {
 		this.data = new Data();
 		this.mainFrame = new MainFrame(this);
@@ -32,53 +22,26 @@ public class Controller {
 		this.mainFrame.setVisible(true);
 	}
 	
-	
-	/**
-	 * @param insertFrame the insertFrame to set
-	 */
-	public void setInsertFrame(InsertFrame insertFrame) {
-		this.insertFrame = insertFrame;
-	}
-
-	public void closeInsertFrame() {
-		insertFrame.setVisible(false);
-		insertFrame = null;
-	}
-
-
-	public void setInsertFrameTextField(JTextField textFieldFIO) {
-		this.insertFrameTextField = textFieldFIO;
-	}
-
-
-	public void updateTableFromField(int selectedRow, String clientFIO) {
+	public void updateDataFromField(int selectedRow, String clientFIO) {
 		Room curRoom = data.getRooms().get(selectedRow);
 		curRoom.setClientFIO(clientFIO);
 		data.updateRoom(selectedRow, curRoom);
-		mainFrame.updateTable(selectedRow, clientFIO);
 	}
 
-	public void setRoomTable(MyScrollPane myScrollPane) {
-		this.myScrollPane = myScrollPane;
-	}
-
-
-	public Object[][] getTableData() {
-
+	public String[][] getTableData() {
 		return IOClass.roomsToArrays(data);
 	}
-
 
 	public String getNewFIO(int selectedRow) {
 		String roomNumber = data.getRooms().get(selectedRow).getNumber();
 		InsertFrame frame = new InsertFrame(roomNumber, selectedRow, this);
 		frame.setModal(true);
 		frame.setVisible(true);
-		
-		
-		return null;
+		// продолжается выполнение кода с этой точки после вызова setVisible(false) в InsertFrame
+		String text = frame.getFieldText();
+		frame.dispose();
+		return text;
 	}
-
 
 	public void saveDataToFile() {
 		try {

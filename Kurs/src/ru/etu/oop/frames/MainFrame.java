@@ -26,6 +26,7 @@ public class MainFrame extends JFrame {
 	private final JPanel panel;
 	private final JTable table;
 	
+	@SuppressWarnings("serial")
 	public MainFrame(final Controller ctrl) {
 		
 		this.ctrl = ctrl;
@@ -71,9 +72,13 @@ public class MainFrame extends JFrame {
 		
 		panel = new JPanel();
 		panel.add(new JLabel("foo"));
-		panel.setBorder(BorderFactory.createTitledBorder("Перечень комнат гостиницы")); 
+		panel.setBorder(BorderFactory.createTitledBorder("                           Номер комнаты       "
+				+ "                                                      Вместимость           "
+				+ "                                           ФИО Плательщика")); 
 		panel.setLayout(new BorderLayout());
-		String[] col = {"Номер комнаты","Вместимость","ФИО Плательщика"};
+		
+		final String[] col = {"Номер комнаты","Вместимость","ФИО Плательщика"};
+		final String[][] tableData = ctrl.getTableData();
 		table = new JTable(ctrl.getTableData(), col){
 			@Override
 			public boolean isCellEditable(int row, int column) {
@@ -92,25 +97,14 @@ public class MainFrame extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
-					String newFIO = ctrl.getNewFIO(table.getSelectedRow());
-//					InsertFrame frame = new InsertFrame(table.getModel().getValueAt(table.getSelectedRow(), 0), table.getSelectedRow(), ctrl);
-//					frame.setVisible(true);
+					int selectedRow = table.getSelectedRow();
+					String newFIO = ctrl.getNewFIO(selectedRow);
+					table.getModel().setValueAt(newFIO, selectedRow, 2);
 				}
 			}
 		});
-		panel.add(table, BorderLayout.CENTER);
-	
-		add(panel, BorderLayout.CENTER);
-		
-		
-		
-		
-		
-		
-	}
+		panel.add(table, BorderLayout.SOUTH);
 
-	public void updateTable(int selectedRow, String clientFIO) {
-		table.getModel().setValueAt(clientFIO, selectedRow, 2);
+		add(panel, BorderLayout.CENTER);
 	}
-	
 }
