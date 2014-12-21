@@ -1,7 +1,9 @@
 package ru.etu.oop.frames;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -11,11 +13,15 @@ import ru.etu.oop.data.Controller;
 
 public class InsertFrame extends JDialog {
 	
+	private final JDialog frame = this;
 	private final Controller ctrl;
+	private final JTextField textFieldFIO;
+	private final InsertFrameOkButton ok;
+	private final InsertFrameCanselButton cansel;
 	
-	public InsertFrame(String roomNumber, Controller ctrl) {
+	public InsertFrame(String roomNumber, final int selectedRow, final Controller ctrl) {
 		this.ctrl = ctrl;
-
+		
 		setSize(430, 200);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -32,20 +38,34 @@ public class InsertFrame extends JDialog {
 		labelField.setLocation(15, 50);
 		add(labelField);
 		
-		JTextField textFieldFIO = new JTextField("", 20);
+		textFieldFIO = new JTextField("", 20);
 		ctrl.setInsertFrameTextField(textFieldFIO);
 		textFieldFIO.setSize(270, 20);
 		textFieldFIO.setLocation(130, 50);
 		add(textFieldFIO);
 		
-		InsertFrameOkButton ok = new InsertFrameOkButton(ctrl);
+		ok = new InsertFrameOkButton(ctrl);
 		ok.setSize(190, 40);
 		ok.setLocation(15, 100);
+		ok.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.updateTableFromField(selectedRow, textFieldFIO.getText());
+				frame.dispose();
+			}
+		});
 		add(ok);
 		
-		InsertFrameCanselButton cansel = new InsertFrameCanselButton(ctrl);
+		cansel = new InsertFrameCanselButton(ctrl);
 		cansel.setSize(190, 40);
 		cansel.setLocation(210, 100);
+		cansel.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.updateTableFromField(selectedRow, "-");
+				frame.dispose();
+			}
+		});
 		add(cansel);
 
 	}

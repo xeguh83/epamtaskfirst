@@ -1,9 +1,12 @@
 package ru.etu.oop.data;
 
-import javax.swing.JDialog;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.List;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.table.TableModel;
 
 import ru.etu.oop.containers.MyScrollPane;
 import ru.etu.oop.frames.InsertFrame;
@@ -48,27 +51,12 @@ public class Controller {
 	}
 
 
-//	public void updateTableFromFieldAndCloseInsertFrame() {
-//		int index = insertFrame.getRow();
-//		Room curRoom = data.getRooms().get(index);
-//		curRoom.setClientFIO(insertFrameTextField.getText());
-//		data.updateRoom(index, curRoom);
-//		myScrollPane.refresh(curRoom.getClientFIO(), index, 2);
-//		insertFrame.setVisible(false);
-//		insertFrame = null;
-//	}
-
-//	public void freeRoomAndCloseInsertFrame() {
-//		int index = insertFrame.getRow();
-//		Room curRoom = data.getRooms().get(index);
-//		curRoom.setClientFIO("-");
-//		data.updateRoom(index, curRoom);
-//		myScrollPane.refresh(curRoom.getClientFIO(), index, 2);
-//		insertFrame.setVisible(false);
-//		insertFrame = null;
-//	}
-
-	
+	public void updateTableFromField(int selectedRow, String clientFIO) {
+		Room curRoom = data.getRooms().get(selectedRow);
+		curRoom.setClientFIO(clientFIO);
+		data.updateRoom(selectedRow, curRoom);
+		mainFrame.updateTable(selectedRow, clientFIO);
+	}
 
 	public void setRoomTable(MyScrollPane myScrollPane) {
 		this.myScrollPane = myScrollPane;
@@ -76,19 +64,35 @@ public class Controller {
 
 
 	public Object[][] getTableData() {
-		// TODO Auto-generated method stub
+
 		return IOClass.roomsToArrays(data);
 	}
 
 
 	public String getNewFIO(int selectedRow) {
 		String roomNumber = data.getRooms().get(selectedRow).getNumber();
-		InsertFrame frame = new InsertFrame(roomNumber, this);
+		InsertFrame frame = new InsertFrame(roomNumber, selectedRow, this);
 		frame.setModal(true);
 		frame.setVisible(true);
 		
 		
 		return null;
+	}
+
+
+	public void saveDataToFile() {
+		try {
+			PrintWriter pw = new PrintWriter("./data/data.txt");
+			List<Room> list = data.getRooms();
+			for (Room room : list) {
+				pw.println(room.getNumber() + "|" + room.getCapacity() + "|" + room.getClientFIO());
+			}
+			pw.flush();
+			pw.close();
+			JOptionPane.showMessageDialog(null, "Данные успешно сохранены в файл /data/data.txt");
+		} catch (IOException e) {
+			JOptionPane.showMessageDialog(null, "Ошибка записи данных в файл");
+		}
 	}
 	
 

@@ -1,9 +1,10 @@
 package ru.etu.oop.frames;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -14,11 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
 
-import ru.etu.oop.containers.MyScrollPane;
-import ru.etu.oop.containers.TableToolBar;
-import ru.etu.oop.containers.ToolBar;
 import ru.etu.oop.data.Controller;
-import ru.etu.oop.data.Data;
 
 public class MainFrame extends JFrame {
 	
@@ -34,7 +31,7 @@ public class MainFrame extends JFrame {
 		this.ctrl = ctrl;
 		
 		//параметры главного окна
-		setSize(800, 746);
+		setSize(800, 680);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Администратор гостиницы");
@@ -45,6 +42,13 @@ public class MainFrame extends JFrame {
 		
 		save = new JButton(new ImageIcon("./img/save.png")); 
 		save.setToolTipText("Сохранить изменения данных в файл");
+		save.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.saveDataToFile();
+			}
+		});
 		toolBar.add(save);
 
 		prices = new JButton(new ImageIcon("./img/dollar.png")); 
@@ -77,10 +81,15 @@ public class MainFrame extends JFrame {
 			}
 		};
 		table.addMouseListener(new MouseListener() {
+			@Override
 			public void mouseReleased(MouseEvent e) {}
+			@Override
 			public void mousePressed(MouseEvent e) {}
+			@Override
 			public void mouseExited(MouseEvent e) {}
+			@Override
 			public void mouseEntered(MouseEvent e) {}
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				if (e.getClickCount() == 2) {
 					String newFIO = ctrl.getNewFIO(table.getSelectedRow());
@@ -98,6 +107,10 @@ public class MainFrame extends JFrame {
 		
 		
 		
+	}
+
+	public void updateTable(int selectedRow, String clientFIO) {
+		table.getModel().setValueAt(clientFIO, selectedRow, 2);
 	}
 	
 }
