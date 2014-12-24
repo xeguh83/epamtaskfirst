@@ -31,7 +31,7 @@ public class MainFrame extends JFrame {
 		this.ctrl = ctrl;
 		
 		//параметры главного окна
-		setSize(800, 675);
+		setSize(800, 677);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setTitle("Администратор гостиницы");
@@ -86,6 +86,13 @@ public class MainFrame extends JFrame {
 		
 		report = new JButton(new ImageIcon("./img/report.png")); 
 		report.setToolTipText("Отчет");
+		report.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				ctrl.showReport();
+			}
+		});
 		toolBar.add(report);
 		
 		add(toolBar, BorderLayout.NORTH);

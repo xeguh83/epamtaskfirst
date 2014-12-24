@@ -1,10 +1,13 @@
 package ru.etu.oop.frames;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JToolBar;
@@ -57,6 +60,52 @@ public class WorkersFrame extends JDialog{
 		};
 		
 		add(new JScrollPane(table), BorderLayout.CENTER);
+		
+		add.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String[] worker = ctrl.getNewWorker();
+				if (worker != null && worker.length == 3) {
+					DefaultTableModel model = (DefaultTableModel) table.getModel();
+					model.addRow(worker);
+				}
+			}
+		});
+		
+		edit.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				if (row > -1) {
+					String[] worker = ctrl.updateWorker(row);
+					if (worker != null && worker.length == 3) {
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						for (int i = 0; i < 3; i++) {							
+							model.setValueAt(worker[i], row, i);;
+						}
+					}
+				}
+			}
+		});
+		
+		delete.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+				if (row > -1) {
+					int ask = JOptionPane.showConfirmDialog(null, "Вы действительно хотите удалить работника?", "Внимание!", 0);
+					if (ask < 1) {
+						ctrl.deleteWorkerFromData(row);
+						DefaultTableModel model = (DefaultTableModel) table.getModel();
+						model.removeRow(row);
+					}
+					
+				}
+			}
+		});
 		
 	}
 	
