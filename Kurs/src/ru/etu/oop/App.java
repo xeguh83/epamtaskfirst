@@ -1,6 +1,7 @@
 package ru.etu.oop;
 
 import java.awt.EventQueue;
+import java.util.Locale;
 
 import javax.swing.JFrame;
 
@@ -14,6 +15,8 @@ public class App {
 			
 			@Override
 			public void run() {
+				
+				Locale.setDefault(new Locale("ru"));
 				Controller ctrl = new Controller(); 
 
 				

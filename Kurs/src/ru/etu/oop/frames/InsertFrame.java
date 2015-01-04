@@ -69,13 +69,15 @@ public class InsertFrame extends JDialog {
 		cansel = new JButton("Освободить комнату", new ImageIcon("./img/free.png"));
 		cansel.setSize(190, 40);
 		cansel.setLocation(210, 100);
+		String s="";
 		cansel.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				textFieldFIO.setText("-");
 				ctrl.updateDataFromField(selectedRow, "-");
 				setCorrectlyClosed(true);
-				frame.setVisible(false);
+				InsertFrame.this.setVisible(false);
+//				frame.setVisible(false);
 			}
 		});
 		add(cansel);
