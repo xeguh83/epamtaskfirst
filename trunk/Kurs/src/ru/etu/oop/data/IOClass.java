@@ -71,8 +71,18 @@ public class IOClass {
 		return table;
 	}
 
-//	public static String[] columnsToArray(Vector<String> columnNames) {
-//		String[] strings = new String[columnNames.size()];
-//		return columnNames.toArray(strings);
-//	}
+	/**
+	 * @return the dataFile
+	 */
+	public static String getDataFile() {
+		return DATA_FILE;
+	}
+
+	/**
+	 * @return the workerFile
+	 */
+	public static String getWorkerFile() {
+		return WORKER_FILE;
+	}
+
 }
