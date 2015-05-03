@@ -10,21 +10,21 @@ public class Data {
 		
 	public Data() {
 		
-		rooms = new ArrayList<Room>();
+		rooms = DBAdapter.getRooms();
 		workers = new ArrayList<Worker>();
 		
-		DBAdapter.showRooms();
-		
-		List<String> list = IOClass.getData();
-		for (String string : list) {
-			String[] words = string.split("\\|");
-			if (words.length != 3) return;
-			try {
-				rooms.add(new Room(words[0], words[1], words[2]));	
-			} catch (Exception e) {
-				return;
-			}
-		}
+//		DBAdapter.showRooms();
+//		
+//		List<String> list = IOClass.getData();
+//		for (String string : list) {
+//			String[] words = string.split("\\|");
+//			if (words.length != 3) return;
+//			try {
+//				rooms.add(new Room(words[0], words[1], words[2]));	
+//			} catch (Exception e) {
+//				return;
+//			}
+//		}
 		
 		List<String> workerList = IOClass.getWorkers();
 		for (String string : workerList) {
