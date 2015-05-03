@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBAdapter {
 	
@@ -52,6 +54,35 @@ public class DBAdapter {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static List<Room> getRooms() {
+		List<Room> roomList = null;
+		Connection con = null;
+		Statement st = null;
+		ResultSet rs = null;
+		try {
+			con = DriverManager.getConnection(BASE_URL_FOR_JDBC_DRIVER, BASE_USER, BASE_PASSWORD);
+			roomList = new ArrayList<>();
+			st = con.createStatement();
+			rs = st.executeQuery("SELECT * FROM rooms");
+			while (rs.next()) {
+				roomList.add(new Room(Integer.toString(rs.getInt(1)), Integer.toString(rs.getInt(2)), rs.getString(3)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) {
+				con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return roomList;
+		
 	}
 
 }
