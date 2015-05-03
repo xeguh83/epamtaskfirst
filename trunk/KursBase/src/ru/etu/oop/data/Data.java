@@ -13,6 +13,8 @@ public class Data {
 		rooms = new ArrayList<Room>();
 		workers = new ArrayList<Worker>();
 		
+		DBAdapter.tryConnection();
+		
 		List<String> list = IOClass.getData();
 		for (String string : list) {
 			String[] words = string.split("\\|");
