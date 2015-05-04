@@ -46,7 +46,7 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ctrl.saveDataToFile();
+				ctrl.saveDataToDB();
 			}
 		});
 		toolBar.add(save);

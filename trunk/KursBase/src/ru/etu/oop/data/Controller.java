@@ -1,7 +1,6 @@
 package ru.etu.oop.data;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import ru.etu.oop.db.UpdateAdapterDB;
 import ru.etu.oop.frames.ClientsFrame;
 import ru.etu.oop.frames.InsertFrame;
 import ru.etu.oop.frames.MainFrame;
@@ -54,30 +54,20 @@ public class Controller {
 		return text;
 	}
 
-	public void saveDataToFile() {
+	public void saveDataToDB() {
 		try {
-//			PrintWriter pw = new PrintWriter("./data/data.txt");
-//			List<Room> list = data.getRooms();
-//			for (Room room : list) {
-//				pw.println(room.getNumber() + "|" + room.getCapacity() + "|" + room.getClientFIO());
-//			}
-//			pw.flush();
-//			pw.close();
-			
-			DBAdapter.updateTable("rooms", data.getRooms());
-			
-			PrintWriter pw2 = new PrintWriter("./data/workers.txt");
-			List<Worker> list2 = data.getWorkers();
-			for (Worker worker : list2) {
-				pw2.println(worker.getFIO() + "|" + worker.getWork() + "|" + worker.getPassport());
-			}
-			pw2.flush();
-			pw2.close();
-			
-			JOptionPane.showMessageDialog(null, "Данные успешно сохранены в файлы /data/data.txt и /data/workers.txt");
-		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Ошибка записи данных в файл");
+			updateTableInDB("rooms", data.getRooms());
+			updateTableInDB("workers", data.getWorkers());
+			JOptionPane.showMessageDialog(null, "Данные успешно сохранены в базе данных");
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Ошибка связи с базой данных: " + e.toString());
 		}
+	}
+
+	private void updateTableInDB(String table, List<?> entities) throws SQLException {
+		UpdateAdapterDB updateAdapter = new UpdateAdapterDB(table, entities);
+		updateAdapter.doClassQuery();
+		updateAdapter.closeConnection();
 	}
 
 	public void showPrises() {
