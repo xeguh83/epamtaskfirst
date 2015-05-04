@@ -14,6 +14,27 @@ public class DBAdapter {
 	public static final String BASE_PASSWORD = "12345678";
 	public static final String BASE_URL_FOR_JDBC_DRIVER = "jdbc:postgresql://localhost:5432/kurs";
 	
+	public static void updateTable(String table, List<Room> rooms) {
+		Connection con = null;
+		ResultSet rs = null;
+		try {
+			rs = connectAndQuery(con);
+			while (rs.next()) {
+//				roomList.add(createRoom(rs));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (con != null) {
+				con.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+	}
 
 	public static List<Room> getRooms() {
 		List<Room> roomList = new ArrayList<>();
@@ -51,5 +72,7 @@ public class DBAdapter {
 		Statement st = con.createStatement();
 		return st.executeQuery("SELECT * FROM rooms");
 	}
+
+
 
 }

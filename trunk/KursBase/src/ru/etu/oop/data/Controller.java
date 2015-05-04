@@ -56,13 +56,15 @@ public class Controller {
 
 	public void saveDataToFile() {
 		try {
-			PrintWriter pw = new PrintWriter("./data/data.txt");
-			List<Room> list = data.getRooms();
-			for (Room room : list) {
-				pw.println(room.getNumber() + "|" + room.getCapacity() + "|" + room.getClientFIO());
-			}
-			pw.flush();
-			pw.close();
+//			PrintWriter pw = new PrintWriter("./data/data.txt");
+//			List<Room> list = data.getRooms();
+//			for (Room room : list) {
+//				pw.println(room.getNumber() + "|" + room.getCapacity() + "|" + room.getClientFIO());
+//			}
+//			pw.flush();
+//			pw.close();
+			
+			DBAdapter.updateTable("rooms", data.getRooms());
 			
 			PrintWriter pw2 = new PrintWriter("./data/workers.txt");
 			List<Worker> list2 = data.getWorkers();

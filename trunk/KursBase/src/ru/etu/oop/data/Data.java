@@ -1,16 +1,26 @@
 package ru.etu.oop.data;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
+import ru.etu.oop.db.SelectAdapterDB;
+
 public class Data {
 
-	private final List<Room> rooms;
+	private List<Room> rooms;
 	private final List<Worker> workers;
 		
 	public Data() {
 		
-		rooms = DBAdapter.getRooms();
+		try {
+			rooms = getRoomsFromDB();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Ошибка связи с базой данных" + e.toString());
+		}
 		workers = new ArrayList<Worker>();
 		
 //		DBAdapter.showRooms();
@@ -39,9 +49,24 @@ public class Data {
 	}
 	
 	
-	/**
-	 * @return the rooms
-	 */
+	private List<Room> getRoomsFromDB() throws SQLException {
+		List<Room> roomList = new ArrayList<>();
+		SelectAdapterDB adapter = new SelectAdapterDB("rooms");
+		adapter.doClassQuery();
+		ResultSet result = adapter.getResultQuery();
+		while (result.next()) {
+			roomList.add(createRoom(result));
+		}
+		adapter.closeConnection();
+		return roomList;
+	}
+
+
+	private Room createRoom(ResultSet rs) throws SQLException {
+		return new Room(Integer.toString(rs.getInt(1)), Integer.toString(rs.getInt(2)), rs.getString(3));
+	}
+
+
 	public List<Room> getRooms() {
 		return rooms;
 	}
