@@ -12,43 +12,38 @@ import ru.etu.oop.db.SelectAdapterDB;
 public class Data {
 
 	private List<Room> rooms;
-	private final List<Worker> workers;
+	private List<Worker> workers;
 		
 	public Data() {
 		
 		try {
 			rooms = getRoomsFromDB();
+			workers = getWorkersFromDB();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Ошибка связи с базой данных" + e.toString());
+			JOptionPane.showMessageDialog(null, "Ошибка связи с базой данных: " + e.toString());
 		}
-		workers = new ArrayList<Worker>();
-		
-//		DBAdapter.showRooms();
-//		
-//		List<String> list = IOClass.getData();
-//		for (String string : list) {
-//			String[] words = string.split("\\|");
-//			if (words.length != 3) return;
-//			try {
-//				rooms.add(new Room(words[0], words[1], words[2]));	
-//			} catch (Exception e) {
-//				return;
-//			}
-//		}
-		
-		List<String> workerList = IOClass.getWorkers();
-		for (String string : workerList) {
-			String[] word = string.split("\\|");
-			if (word.length != 3) return;
-			try {
-				workers.add(new Worker(word[0], word[1], word[2]));
-			} catch (Exception e) {
-				return;
-			}
-		}
+
 	}
 	
 	
+	private List<Worker> getWorkersFromDB() throws SQLException {
+		List<Worker> roomList = new ArrayList<>();
+		SelectAdapterDB adapter = new SelectAdapterDB("workers");
+		adapter.doClassQuery();
+		ResultSet result = adapter.getResultQuery();
+		while (result.next()) {
+			roomList.add(createWorker(result));
+		}
+		adapter.closeConnection();
+		return roomList;
+	}
+
+
+	private Worker createWorker(ResultSet rs) throws SQLException {
+		return new Worker(rs.getString(1), rs.getString(2), rs.getString(3));
+	}
+
+
 	private List<Room> getRoomsFromDB() throws SQLException {
 		List<Room> roomList = new ArrayList<>();
 		SelectAdapterDB adapter = new SelectAdapterDB("rooms");
