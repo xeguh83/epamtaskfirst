@@ -1,5 +1,6 @@
 package ru.etu.oop.db;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -42,10 +43,26 @@ public class UpdateAdapterDB extends AdapterDB {
 	}
 
 	private void updateWorkerRowInDB(Statement st, Worker worker) throws SQLException {
-		st.executeUpdate("UPDATE " + getTable() + " SET fio = '" 
-				+ worker.getFIO() + "' WHERE passport = '" + worker.getPassport() + "';");
-		st.executeUpdate("UPDATE " + getTable() + " SET work = '" 
-				+ worker.getWork() + "' WHERE passport = '" + worker.getPassport() + "';");
+		if (isWorkerExistInTable(st, worker)) {
+			st.executeUpdate("UPDATE " + getTable() + " SET fio = '" 
+					+ worker.getFIO() + "' WHERE passport = '" + worker.getPassport() + "';");
+			st.executeUpdate("UPDATE " + getTable() + " SET work = '" 
+					+ worker.getWork() + "' WHERE passport = '" + worker.getPassport() + "';");
+			st.executeUpdate("UPDATE " + getTable() + " SET is_deleted = 'FALSE' WHERE passport = '" 
+					+ worker.getPassport() + "';");
+		} else {
+			
+		}
+	}
+
+	private boolean isWorkerExistInTable(Statement st, Worker worker) throws SQLException {
+		ResultSet resultQuery = st.executeQuery("SELECT * FROM " + getTable());
+		while (resultQuery.next()) {
+			if (resultQuery.getString(3).equals(worker.getPassport())) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	private void updateRoomRowInDB(Statement st, Room room) throws SQLException {
