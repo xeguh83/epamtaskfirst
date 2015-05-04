@@ -47,9 +47,8 @@ public class DBAdapter {
 
 
 	private static ResultSet connectAndQuery(Connection con) throws SQLException {
-		Statement st = null;
 		con = DriverManager.getConnection(BASE_URL_FOR_JDBC_DRIVER, BASE_USER, BASE_PASSWORD);
-		st = con.createStatement();
+		Statement st = con.createStatement();
 		return st.executeQuery("SELECT * FROM rooms");
 	}
 
